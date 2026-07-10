@@ -67,7 +67,13 @@ OUTLET_NAME_BY_DOMAIN_MARKER: dict[str, str] = {
 
 # --- Posting (post.py) ---
 DEFAULT_TAGS = ["Metro Atlanta", "Georgia"]
-DEFAULT_KEYWORDS = ["Metro Atlanta roofing", "Georgia homeowners"]
+DEFAULT_KEYWORDS = [
+    "Metro Atlanta roofing",
+    "Georgia homeowners",
+    "roofing contractor Atlanta",
+    "roof replacement Atlanta GA",
+    "storm damage roof repair Georgia",
+]
 
 # --- Prompt template variables ({{key}} placeholders in prompts/*.txt; see blog_automation.company.render_template) ---
 PROMPT_VARS: dict[str, str] = {'byline_service_sentence': 'Peachtree Roofing & Exteriors serves homeowners across Metro Atlanta.',
@@ -110,7 +116,27 @@ PROMPT_VARS: dict[str, str] = {'byline_service_sentence': 'Peachtree Roofing & E
                           '- "roof replacement" (full phrase) — at least twice\n'
                           '- "insurance claims" — when the angle covers claims or coverage\n'
                           '- "GAF Master Elite" or "CertainTeed" — at least once when discussing materials '
-                          'or contractor selection',
+                          'or contractor selection\n'
+                          '\n'
+                          'GEO KEYWORD BANK — pick 4-8 phrases below that fit the topic and weave them in '
+                          'naturally; never force a phrase where it breaks sentence flow, and never repeat '
+                          'the same exact phrase more than twice in one post:\n'
+                          '- Service: "storm damage roof repair", "hail damage roof repair", "emergency roof '
+                          'repair", "new roof installation", "flat roof repair", "metal roofing", "siding '
+                          'installation", "exterior renovation", "gutter installation", "fascia and soffit '
+                          'repair", "window replacement"\n'
+                          '- Local-contractor pattern: when naming a covered suburb (Alpharetta, Marietta, '
+                          'Roswell, Woodstock, Kennesaw, Cumming, Milton, Dunwoody, Sandy Springs, Johns '
+                          'Creek, Buckhead, East Cobb, Peachtree City), pair at least one mention with '
+                          '"roofing contractor" or "roofing company" phrasing (e.g., "a roofing contractor '
+                          'in Alpharetta, GA")\n'
+                          '- Informational: "how much does a new roof cost in Georgia", "signs you need a '
+                          'new roof", "how long does a roof last in Georgia", "best roofing materials for '
+                          'Georgia climate", "when to repair vs. replace a roof", "how to choose a roofing '
+                          'contractor in Atlanta", "energy efficient roofing", "roof ventilation tips", '
+                          '"impact resistant roofing"\n'
+                          '- Trust: "GAF certified roofing contractor", "licensed and insured roofing '
+                          'contractor", "free roof inspection"',
  'company_short': 'Peachtree',
  'contractor_perspective_name': 'Peachtree Roofing',
  'county_guides_counties': 'Fulton, DeKalb, Cobb, Gwinnett, Cherokee, and nearby areas',

@@ -70,7 +70,13 @@ OUTLET_NAME_BY_DOMAIN_MARKER: dict[str, str] = {
 
 # --- Posting (post.py) ---
 DEFAULT_TAGS = ["Dallas-Fort Worth", "Texas"]
-DEFAULT_KEYWORDS = ["Dallas-Fort Worth roofing", "Texas homeowners"]
+DEFAULT_KEYWORDS = [
+    "Dallas-Fort Worth roofing",
+    "Texas homeowners",
+    "roof restoration Dallas TX",
+    "storm damage roof restoration DFW",
+    "hail damage roof repair Dallas TX",
+]
 
 # --- Prompt template variables ({{key}} placeholders in prompts/*.txt; see blog_automation.company.render_template) ---
 # TODO: fill in TC certifications/services/financing facts — company_profile_block and the
@@ -111,7 +117,27 @@ PROMPT_VARS: dict[str, str] = {'byline_service_sentence': 'TC Roofing & Restorat
                           '- "roof replacement" or "roof repair" — at least twice\n'
                           '- "insurance claim support" — when the angle covers claims or coverage\n'
                           '- "GAF Master Elite" or "GAF-certified" — at least once when discussing materials '
-                          'or contractor selection',
+                          'or contractor selection\n'
+                          '\n'
+                          'GEO KEYWORD BANK — pick 4-8 phrases below that fit the topic and weave them in '
+                          'naturally; never force a phrase where it breaks sentence flow, and never repeat '
+                          'the same exact phrase more than twice in one post:\n'
+                          '- Service: "roof restoration", "storm damage restoration", "wind damage roof '
+                          'repair", "roof coating restoration", "emergency roof tarping", "roof leak '
+                          'repair", "shingle roof repair", "commercial roof restoration", "residential roof '
+                          'restoration"\n'
+                          '- Local-contractor pattern: when naming a covered suburb (Plano, Frisco, '
+                          'McKinney, Allen, Arlington, Irving, Garland, Carrollton, Southlake, Keller, '
+                          'Flower Mound, Rockwall, Prosper), pair at least one mention with "roofing '
+                          'contractor" or "roofing company" phrasing (e.g., "a roofing contractor in Plano, '
+                          'TX")\n'
+                          '- Informational: "roof restoration vs. replacement", "how insurance claims work '
+                          'for hail damage in Texas", "how to document roof damage for insurance", "signs of '
+                          'hail damage on your roof", "how to avoid storm chaser roofers", "roofing warranty '
+                          'types", "what is supplementing in roofing insurance", "TDI roofing claim rights", '
+                          '"best roofing materials for Texas heat"\n'
+                          '- Trust: "insurance approved roofer", "certified roof restoration contractor", '
+                          '"BBB accredited roofer", "free roof inspection after a storm"',
  'company_short': 'TC Roofing',
  'contractor_perspective_name': 'TC Roofing',
  'county_guides_counties': 'Tarrant, Dallas County, Collin, Denton, and Rockwall',
