@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from io import BytesIO
 from pathlib import Path
 
@@ -21,6 +22,19 @@ _UNICODE_DASHES = str.maketrans(
         "\uff0d": "-",  # fullwidth hyphen-minus
     }
 )
+
+# Inline styles so CMS themes (e.g. PSAI) that omit table CSS still show borders.
+TABLE_INLINE_STYLE = "border-collapse: collapse; width: 100%; margin: 12px 0;"
+CELL_INLINE_STYLE = (
+    "border: 1px solid #999; padding: 6px 8px; text-align: left; vertical-align: top;"
+)
+TH_INLINE_STYLE = f"{CELL_INLINE_STYLE} background: #f3f3f3;"
+
+_OPEN_TAG_RE = re.compile(
+    r"<(?P<tag>table|th|td)(?P<attrs>(?:\s[^>]*)?)>",
+    flags=re.IGNORECASE,
+)
+_STYLE_ATTR_RE = re.compile(r"""\sstyle\s*=\s*(?P<q>['"])(?P<value>.*?)(?P=q)""", flags=re.IGNORECASE)
 
 
 PDF_CSS = """
@@ -90,6 +104,39 @@ def normalize_text_for_pdf(text: str) -> str:
     return text.translate(_UNICODE_DASHES)
 
 
+def _style_for_tag(tag: str) -> str:
+    lowered = tag.lower()
+    if lowered == "table":
+        return TABLE_INLINE_STYLE
+    if lowered == "th":
+        return TH_INLINE_STYLE
+    return CELL_INLINE_STYLE
+
+
+def apply_inline_table_borders(html: str) -> str:
+    """Ensure every table/th/td has inline border styles (CMS themes often omit table CSS)."""
+
+    def _replace(match: re.Match[str]) -> str:
+        tag = match.group("tag")
+        attrs = match.group("attrs") or ""
+        desired = _style_for_tag(tag)
+        style_match = _STYLE_ATTR_RE.search(attrs)
+        if style_match:
+            existing = style_match.group("value").strip().rstrip(";")
+            merged = f"{existing}; {desired}" if existing else desired
+            quote = style_match.group("q")
+            attrs = (
+                attrs[: style_match.start()]
+                + f" style={quote}{merged}{quote}"
+                + attrs[style_match.end() :]
+            )
+        else:
+            attrs = f'{attrs} style="{desired}"'
+        return f"<{tag}{attrs}>"
+
+    return _OPEN_TAG_RE.sub(_replace, html)
+
+
 def markdown_body_to_html(markdown_text: str) -> str:
     """Return an HTML fragment suitable for CMS blog body fields."""
     try:
@@ -100,10 +147,11 @@ def markdown_body_to_html(markdown_text: str) -> str:
             "`python -m pip install -r requirements.txt`."
         ) from exc
 
-    return markdown_lib.markdown(
+    html = markdown_lib.markdown(
         markdown_text,
         extensions=["extra", "tables", "sane_lists"],
     )
+    return apply_inline_table_borders(html)
 
 
 def markdown_to_html(markdown_text: str) -> str:

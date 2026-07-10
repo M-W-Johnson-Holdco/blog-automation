@@ -25,6 +25,25 @@ Notes / next step:
 - 
 ```
 
+## 2026-07-10 - Inline table borders for PSAI HTML
+
+Changed:
+- `markdown_body_to_html` now injects inline `border` styles on every `table` / `th` / `td` so CMS themes without table CSS still show boxed tables.
+
+Why:
+- Published PSAI posts rendered comparison tables without borders even though the HTML structure was correct.
+
+Files touched:
+- `src/blog_automation/draft_pdf.py`
+- `tests/test_draft_pdf.py`
+- `CHANGELOG.md`
+
+Tested:
+- `PYTHONPATH=src python -m unittest tests.test_draft_pdf -v`
+
+Notes / next step:
+- Re-publish an existing post (or publish a new draft) to see bordered tables on the live site; already-published HTML is unchanged until republished.
+
 ## 2026-07-10 - Raise domain-stages Tavily credit cap to 200
 
 Changed:
