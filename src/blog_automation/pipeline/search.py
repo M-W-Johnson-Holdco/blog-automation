@@ -70,7 +70,7 @@ DEFAULT_QUERIES_PER_CLUSTER = 3
 DEFAULT_MAX_TAVILY_CREDITS = 100
 # Domain-stage runs span 8 stages instead of 2 — raise the cap so the query
 # space isn't trimmed to a handful of searches.
-DOMAIN_STAGES_MAX_TAVILY_CREDITS = 150
+DOMAIN_STAGES_MAX_TAVILY_CREDITS = 200
 DEFAULT_OUTPUT_PATH = PROJECT_ROOT / "output" / "sources" / "search_results.json"
 TAVILY_ADVANCED_SEARCH_CREDITS = 2
 
