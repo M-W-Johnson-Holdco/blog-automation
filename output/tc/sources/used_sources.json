@@ -1,0 +1,18 @@
+{
+  "updated_at": "2026-07-10T18:36:37.265241+00:00",
+  "source_count": 1,
+  "sources": [
+    {
+      "url": "https://www.cbsnews.com/texas/video/hail-wind-damage-across-for-some-parts-of-north-texas-possible/",
+      "normalized_url": "https://cbsnews.com/texas/video/hail-wind-damage-across-for-some-parts-of-north-texas-possible",
+      "domain": "cbsnews.com",
+      "title": "Hail, wind damage across for some parts of North Texas possible - CBS News",
+      "strategy_cluster": "storm_damage",
+      "first_used_at": "2026-07-10T18:36:37.264988+00:00",
+      "last_used_at": "2026-07-10T18:36:37.264988+00:00",
+      "last_draft_path": "generated/tc/approved/drafts_md/2026-07-10-173505-july-7-north-texas-hail-what-dfw-homeowners-should-inspect.md",
+      "last_runner": "blog_automation.pipeline.approve_listen",
+      "use_count": 1
+    }
+  ]
+}
