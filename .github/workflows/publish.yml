@@ -1,4 +1,5 @@
 name: Publish to Website
+run-name: Publish — ${{ inputs.company }}
 
 on:
   workflow_dispatch:

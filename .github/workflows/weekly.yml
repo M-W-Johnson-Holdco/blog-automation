@@ -1,4 +1,5 @@
 name: Weekly Blog Pipeline
+run-name: Weekly Blog Pipeline — ${{ github.event_name == 'workflow_dispatch' && inputs.company || 'both' }}
 
 # Multi-tenant: one repo drives both companies. Per-company secrets live in
 # GitHub Environments named "peachtree" and "tc" (same secret names in each);
@@ -42,6 +43,7 @@ permissions:
 
 jobs:
   draft:
+    name: ${{ matrix.company }}
     strategy:
       fail-fast: false
       matrix:

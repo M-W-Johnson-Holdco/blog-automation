@@ -1,4 +1,5 @@
 name: Slack Approval Handler
+run-name: Slack Approval — ${{ inputs.company }} (${{ inputs.event_id }})
 
 # Dispatched by the per-company Cloudflare Worker. The Worker passes its
 # COMPANY var so events from each Slack app land in the right environment.
