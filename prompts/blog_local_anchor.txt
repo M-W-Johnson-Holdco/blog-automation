@@ -1,0 +1,215 @@
+You are writing a blog post for {{company_name}} (local-anchor template: local news hook amplified by national authority data). The post will be published on their website and must be optimized for Generative Engine Optimization (GEO) — written to be cited by AI search engines like ChatGPT, Perplexity, and Google AI Overviews.
+
+SOURCES TO DRAW FROM:
+{sources_block}
+
+TODAY'S DATE: {today}
+AUTHOR: Jonathan Gil, {author_credentials}
+
+Plan silently. Output only the final Markdown post — no planning, no checklist, no "Thinking Process", no meta-commentary.
+
+---
+
+{{company_profile_block}}
+
+---
+
+SOURCE COMPOSITION NOTE: You have at least one local {{metro_area}} news source AND at least one national roofing industry source. Use the local source as the news hook that makes this post timely and specific. Use the national source as the authority layer that explains why this matters at scale — national data (cost figures, severity trends, industry findings) makes the local story more citable and credible. Never flip this: do not lead with the national data and treat the local event as a footnote.
+
+---
+
+GEO PRINCIPLES (prioritize over word count or keyword density):
+- Write so an AI can quote one sentence per section without surrounding fluff.
+- Lead every major section with a direct answer in the first 1–2 sentences.
+- Prefer definitional clarity: "RCV means…", "Wind uplift is…", "Granule loss means…"
+- Tie every statistic to a homeowner decision in the same sentence.
+- Use only facts from SOURCES; do not invent court dates, dollar amounts, studies, or outlet names.
+- Match the story type to the dominant Strategy cluster in SOURCES — do not force storm framing on insurance or safety stories.
+- Depth beats breadth: one clear local example beats six shallow city name-drops.
+- {{company_name}} is the authoritative voice — never present competitor contractors, vendors, or manufacturers named in SOURCES as the expert the reader should trust.
+- When SOURCES are press releases or vendor commentary, attribute facts to the news outlet — do not build the post around the vendor brand.
+
+---
+
+ANGLE BY STORY TYPE (use the dominant Strategy cluster from SOURCES):
+
+- storm_damage: inspection timing, wind/hail damage, drainage, tree debris, repair vs. replace
+- {{insurance_cluster_key}}: RCV vs. ACV, claims steps, documentation, policy or court changes, deductibles
+- roof_safety: fire risk, penetrations, structural issues, permits, construction safety
+- county_guides: county-specific codes, housing stock, insurers, neighborhoods, local ordinances
+
+When the cluster is {{insurance_cluster_key}}, roof_safety, or county_guides, do not add storm-season or historical tornado framing unless SOURCES are weather-related.
+
+---
+
+FACTUAL ACCURACY RULE (legal, insurance, regulatory posts):
+- Only cite court cases, rulings, legislation, or policy changes explicitly named in SOURCES.
+- Do not infer, extrapolate, or name legal precedents not present in SOURCES.
+- If SOURCES do not name a specific case or law, describe the change in general terms only.
+- Use neutral, professional language about insurers — avoid editorial characterizations like "panic" or "alarmed" unless quoting SOURCES verbatim.
+- When SOURCES include multiple outlets, spread citations across at least 2 different outlet names.
+
+---
+
+STRUCTURE REQUIREMENTS (follow exactly):
+
+1. TITLE — H1, max 70 characters. Frame as the direct question or answer a homeowner or AI would search — include a {{metro_area}} location and the core topic.
+
+   GOOD: "{{metro_city}} Roof Damage: What the 2026 Storm Season Means for Your Claim"
+   BAD: "Everything {{metro_city}} Homeowners Need to Know About Roofing This Summer"
+
+2. LOCAL ANCHOR OPENING — 50–120 words. Sentence one must name the local news outlet, the event date, and the {{metro_area}} consequence (downed trees, power outages, drenched neighborhoods). Sentence two or three brings in the national data to explain why this matters beyond a single storm event. Answer the reader's most likely question before the summary block. No generic openers.
+
+   GOOD opening pattern:
+   "Strong storms swept north {{state}} on June 14, 2026, knocking down trees across {{example_two_counties}} — arriving the same week Verisk reported residential roof replacement costs jumped 33 percent, meaning {{metro_area}} homeowners who defer post-storm inspection are now absorbing far more risk than in prior years."
+
+   BAD opening:
+   Leading with the national report and treating the local storm as a supporting detail, or inventing a homeowner scenario not grounded in a local source.
+
+   Immediately after the opening paragraph include a Quick Answer block:
+   **The short answer:** [1–2 sentence direct answer combining local urgency and national context]
+   **Who this affects:** [specific neighborhoods or homeowner type with county names]
+   **What to do:** [single most important action]
+   **Timeline:** [how soon to act]
+
+   SOURCE AGE RULE: Before writing the Timeline, check TODAY'S DATE against the Published date of each source. If the local source is more than 7 days old relative to TODAY'S DATE, the Timeline must not reference imminent deadlines ("within 24-48 hours", "before tonight", "this week"). Use general best-practice timing instead ("within 1-2 weeks of noticing damage", "before the next storm system").
+
+   LABEL RULE: Use the exact labels above verbatim — do not substitute "Bottom line:", "Key takeaway:", "TL;DR:", or any other phrasing. The label **The short answer:** must appear exactly as written.
+
+3. BODY — write as long as the content requires; do not pad to hit a word count.
+
+   H2 headings must be questions a homeowner would type into an AI search engine. Every H2 ends with ?, except "## FAQ". Each body H2 must include either a {{metro_area}} county/neighborhood name or a specific roofing term.
+
+   Each ## section (except FAQ) should follow:
+   1. First sentence: direct answer to the H2 question.
+   2. Next 2–4 sentences: local mechanism — why this matters in {{metro_area}}, informed by the local source.
+   3. National data layer: one sentence connecting a national finding (cost, severity, frequency) to the local homeowner's decision.
+   4. End with a practical takeaway — what to check, ask, or document.
+
+   Body must include:
+   - The local news event and its {{metro_area}} impact
+   - One section addressing specific {{metro_area}} neighborhoods or counties — name a location only when you can attach a concrete, specific reason. Write in prose paragraphs — no bullet points.
+   - A section using national data to explain cost, severity, or trend context that amplifies the local story
+   - Homeowner action steps
+   - Cost or timeline context grounded in SOURCES
+
+   Include ONLY when SOURCES are weather- or storm-related:
+   - One reference to a historical {{metro_city}} weather event (named, dated, located)
+   - One sentence about {{storm_season_phrase}}
+
+   Include when SOURCES are insurance, legal, or policy-related:
+   - Plain-language summary of what changed and who it affects
+   - A definitional paragraph for key terms (RCV vs. ACV, deductibles, etc.)
+   - One H2 section bridging insurance/policy risk to roof condition
+
+4. COMPARISON TABLE — At least one markdown table. Preferred format: Location × housing-type × vulnerability × homeowner action — four columns, each row names a {{metro_area}} area, building type or era, a specific vulnerability, and what to do. Make every row a distinct, quotable data point.
+
+   Avoid generic factor tables (e.g., "Risk Factor | Impact | Prevention") — tie every row to a specific place or housing stock.
+
+5. CITATIONS — Use linked markdown inline cites for verifiable facts from SOURCES:
+   `(Source: [Outlet Name](URL from SOURCES), Month Year)`
+
+   CITATION RULES:
+   - **Count (strict):** Include **exactly 3 to 6** linked inline citations — never 2 or fewer, never 7 or more.
+   - Place citations in body ## sections; FAQ answers usually need no citation.
+   - Every citation must include a clickable markdown link from SOURCES.
+   - Every number (%, $, counts) must appear in SOURCES or be clearly derivable from them.
+   - Spread citations across both the local and national sources — do not cite only one outlet.
+   - **Two sources in SOURCES:** At least one linked citation from each outlet/domain, 3–6 total.
+   - **Three or more sources:** At least one cite per outlet while total stays ≤ 6.
+
+6. NAMED LOCATIONS — Use {{metro_area}} locations only when they make a fact more specific and useful.
+
+   Allowlist for automated validation:
+{metro_locations_list}
+
+   Quality rule: every location mention must carry a specific reason relevant to roofing risk, insurance exposure, or local housing conditions. Six well-used locations beat twelve shallow ones.
+
+7. FAQ — Exactly 8 Q&A pairs under "## FAQ". Each question as ### H3 heading.
+
+   Question requirements:
+   - Written as a homeowner would type into ChatGPT — standalone, readable without the article
+   - At least 3 of 8 must name a {{metro_area}} location or {{state}}-specific context
+   - At least 2 questions use "I/my" voice
+   - Mix local-event questions with national-data questions — e.g., "How does the 33% cost increase affect my repair estimate in {{example_county_b}}?"
+   - Must not repeat body content verbatim
+
+   Answer requirements:
+   - First sentence must fully answer the question
+   - 4–5 sentences each
+   - At least one specific verifiable detail per answer, drawn from SOURCES or established local context
+   - Vary the actionable takeaway across answers
+
+8. AUTHOR BYLINE — Exact text as normal paragraph:
+   "Written by {author_name}, {author_credentials}. {{byline_service_sentence}}"
+
+9. COMPANY MENTIONS AND CTA
+
+   The exact sentence "{{cta_sentence}}" must appear EXACTLY ONCE in the post — at the very end, immediately before the author byline.
+
+   For mid-body company touchpoints, reference {{company_short}}'s specific services educationally (not as a repeated CTA). Use varied phrasing — never repeat the exact CTA phrase. Place 2–3 natural mentions throughout the body:
+   - After the Quick Answer block: reference the {{drone_inspection_phrase}} in context {{mention_example_inspection}}
+   - After the neighborhood/local-risk section: reference {{company_short}}'s {{metro_area}} coverage and relevant certification {{mention_example_certification}}
+   - After the national-data or cost section: reference {{mention_cost_services}}
+   - Each touchpoint: 1–2 sentences max, tied to the educational content immediately before it
+
+---
+
+VOICE RULES:
+- Active voice throughout
+- Em dashes for parenthetical asides — not parentheses
+- Varied sentence length
+- No unverifiable superlatives
+- Neutral tone on insurers and regulators — factual, not editorial
+- Educational before promotional
+- Never name competitor contractors, vendors, or product brands from SOURCES as the trusted authority
+- No generic openers ("In today's world", "As a homeowner", "When it comes to", "Storm season is here")
+
+---
+
+VALIDATION CHECKLIST — verify every item before outputting:
+☐ One H1 title, max 70 characters
+☐ Opening paragraph 50–120 words, local event first, national data second
+☐ Quick Answer block present after opening
+☐ Every ## is a question ending ?, except "## FAQ"
+☐ Every H2 first sentence directly answers the question in the heading
+☐ Neighborhood or location mentions each carry a specific, concrete reason
+☐ At least one markdown comparison table with location × housing-type rows
+☐ Exactly 3–6 linked inline citations; at least one from local source and one from national source
+☐ At least 6 different allowlist locations used with specific context
+☐ Exactly 8 FAQ ### questions under ## FAQ
+☐ FAQ answers 3–5 sentences; first sentence answers the question
+☐ Exact author byline sentence
+☐ Exact CTA sentence appears EXACTLY ONCE, at the very end before the author byline
+☐ No competitor/vendor brand promoted as the expert voice
+☐ No generic openers anywhere in the post
+☐ No invented statistics, dates, source names, or legislation
+
+---
+
+ACCURACY SELF-AUDIT (mandatory — do this silently before you output):
+
+After you finish the draft, re-read it line by line against SOURCES. Fix every problem you find. Output only the corrected final post.
+
+STEP 1 — SOURCE GROUNDING
+For each factual claim: can you point to the exact sentence in SOURCES that supports it? If no: delete, soften, or rewrite.
+
+STEP 2 — CITATION INTEGRITY
+Count inline citations: exactly 3–6. Confirm at least one cite from each source in SOURCES. Every number must appear in a cited sentence.
+
+STEP 2b — BRAND & CTA
+Remove competitor/vendor brands as authoritative voices. Confirm the exact CTA sentence appears EXACTLY ONCE, at the very end before the author byline. Verify 2–3 varied {{company_short}} service mentions appear naturally in the body using different phrasing each time.
+
+STEP 3 — SOURCE BALANCE
+Confirm the local source drives the opening and neighborhood sections. Confirm the national source provides cost/severity/trend context in at least one body section. Neither source should dominate to the exclusion of the other.
+
+STEP 4 — LOCATION QUALITY
+Confirm at least 6 different allowlist locations appear. Each must include a specific local reason.
+
+STEP 5 — FINAL READ-THROUGH
+Would a homeowner trust this on a business website? Does the post read as locally grounded rather than a repurposed national article? Does any FAQ answer repeat the body verbatim?
+
+If anything fails, revise before output. Only when all five steps pass, return the post.
+
+OUTPUT FORMAT:
+Return the complete blog post in Markdown only. No preamble. No meta-commentary. No validation report. No accuracy audit. Just the post.

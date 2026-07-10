@@ -1,0 +1,44 @@
+# Multi-tenant Slack events Worker — one deployment per company:
+#   npx wrangler deploy --env peachtree
+#   npx wrangler deploy --env tc
+#
+# Secrets are per-env (set once for each):
+#   npx wrangler secret put SLACK_SIGNING_SECRET --env peachtree
+#   npx wrangler secret put GITHUB_TOKEN --env peachtree
+#   npx wrangler secret put SLACK_SIGNING_SECRET --env tc
+#   npx wrangler secret put GITHUB_TOKEN --env tc
+
+main = "src/index.js"
+compatibility_date = "2024-06-01"
+
+[observability.logs]
+enabled = true
+invocation_logs = true
+
+[env.peachtree]
+name = "peachtree-slack-events"
+
+# Cloudflare cron is UTC. Run hourly on the configured days and let the Worker
+# dispatch at 8:00 AM America/New_York, plus a noon ET retry on Monday if the
+# 8 AM dispatch never reached GitHub Actions. DST-safe.
+[env.peachtree.triggers]
+crons = ["0 * * * 2,4"]
+
+[env.peachtree.vars]
+COMPANY = "peachtree"
+GITHUB_REPOSITORY = "M-W-Johnson-Holdco/blog-automation"
+GITHUB_REF_NAME = "main"
+# Slack bot user ID (U...) to skip bot-added reaction events.
+SLACK_BOT_USER_ID = "U0B7MAVTH52"
+
+[env.tc]
+name = "tc-slack-events"
+
+[env.tc.triggers]
+crons = ["0 * * * 2,4"]
+
+[env.tc.vars]
+COMPANY = "tc"
+GITHUB_REPOSITORY = "M-W-Johnson-Holdco/blog-automation"
+GITHUB_REF_NAME = "main"
+SLACK_BOT_USER_ID = "U0BB4KHAMCL"

@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blog-automation"
+version = "0.1.0"
+description = "Multi-tenant roofing blog automation pipeline (Peachtree, TC Roofing)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "anthropic>=0.40.0",
+    "tavily-python==0.5.0",
+    "together==1.4.1",
+    "google-auth==2.40.1",
+    "google-auth-oauthlib==1.2.2",
+    "google-auth-httplib2==0.2.0",
+    "google-api-python-client==2.169.0",
+    "python-dotenv==1.1.0",
+    "requests==2.32.3",
+    "slack_sdk==3.33.5",
+    "markdown==3.8",
+    "xhtml2pdf==0.2.17",
+]
+
+[project.scripts]
+blog-pipeline = "blog_automation.pipeline.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = true

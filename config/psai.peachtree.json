@@ -1,0 +1,9 @@
+{
+  "api_url": "https://developers.predictivesalesai.com",
+  "author": "j.gil@peachtreerestorations.com",
+  "default_status": "draft",
+  "site_brand": "Peachtree Roofing & Exteriors",
+  "notify_subscribers": false,
+  "auto_publish": false,
+  "display_author_details": true
+}

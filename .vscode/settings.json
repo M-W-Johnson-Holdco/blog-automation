@@ -1,0 +1,8 @@
+{
+  "workbench.editorAssociations": {
+    "*.pdf": "pdf.preview"
+  },
+  "pdf-preview.default.scale": "page-width",
+  "pdf-preview.default.sidebar": false,
+  "pdf-preview.default.scrollMode": "vertical"
+}

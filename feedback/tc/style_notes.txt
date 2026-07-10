@@ -1,0 +1,17 @@
+# TC Blog — Running Style Feedback Log
+# Format: [YYYY-MM-DD] KEEP/CHANGE: note
+# This file is read by write_serverless and injected into the blog prompt as recent editor feedback.
+
+# --- Seed notes (pre-launch) ---
+[2026-05-26] KEEP: Answer-first openings — strong for GEO, keep leading with the direct answer
+[2026-05-26] KEEP: Em dashes for asides — matches brand voice
+[2026-05-26] CHANGE: Never use "storm season" as an opener — too generic
+[2026-05-26] CHANGE: Avoid passive constructions like "it was reported that" — rewrite as active
+[2026-06-09] CHANGE: Never build the post around competitor/vendor brands from press releases (e.g., StormArmour) — cite the news outlet; TC Roofing is the contractor voice
+[2026-06-09] CHANGE: CTA must appear at least 3 times — after Quick Answer, after local-risk section, after roof-bridge section, and at end
+[2026-06-09] CHANGE: Insurance posts must bridge exclusions to roof inspection, flashing, maintenance, or replacement — that is the service we sell
+[2026-06-09] CHANGE: Citations must be linked markdown `(Source: [Outlet](URL), Month Year)` — never plain outlet name without URL
+[2026-06-09] KEEP: Draft 152847 approach — cite Insurance Journal not StormArmour; roof-bridge section; 3+ CTAs (publishable pattern)
+[2026-06-09] CHANGE: Tables should use location × housing-type × scenario rows (e.g., Marietta townhomes 1980s/90s), not generic risk-factor grids
+[2026-06-09] CHANGE: FAQ must vary topics (RCV/ACV, file before repair, documentation) — avoid repeating "check your policy" in every answer
+[2026-06-09] KEEP: Named storm precedent (Helene, Milton) only when SOURCES mention it; construction era + housing type with each location

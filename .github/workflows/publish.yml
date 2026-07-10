@@ -1,0 +1,63 @@
+name: Publish to Website
+
+on:
+  workflow_dispatch:
+    inputs:
+      company:
+        description: Which company's PSAI tenant to publish to
+        type: choice
+        options:
+          - peachtree
+          - tc
+        default: peachtree
+      draft_path:
+        description: "Markdown draft or *-validation.json path (e.g. output/approved/drafts_json/example-validation.json)"
+        required: true
+      status:
+        description: "PSAI status override (published, draft, or submitted)"
+        required: false
+        default: draft
+      notify_subscribers:
+        description: Email subscribers when publishing (published posts only)
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: ${{ inputs.company }}
+    env:
+      COMPANY: ${{ inputs.company }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install system packages for PDF generation
+        run: bash scripts/ci-apt-packages.sh
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Publish via PSAI
+        env:
+          PYTHONPATH: src
+          PSAI_API_KEY: ${{ secrets.PSAI_API_KEY }}
+        run: |
+          set -euo pipefail
+          ARGS=("${{ inputs.draft_path }}")
+          if [ -n "${{ inputs.status }}" ]; then
+            ARGS+=(--status "${{ inputs.status }}")
+          fi
+          if [ "${{ inputs.notify_subscribers }}" = "true" ]; then
+            ARGS+=(--notify-subscribers)
+          fi
+          python -m blog_automation.post "${ARGS[@]}"

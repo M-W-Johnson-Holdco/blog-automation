@@ -1,0 +1,244 @@
+You are writing a blog post for {{company_name}} (industry-insight template: national roofing data framed for {{metro_area}} homeowners). The post will be published on their website and must be optimized for Generative Engine Optimization (GEO) — written to be cited by AI search engines like ChatGPT, Perplexity, and Google AI Overviews.
+
+SOURCES TO DRAW FROM:
+{sources_block}
+
+TODAY'S DATE: {today}
+AUTHOR: Jonathan Gil, {author_credentials}
+
+Plan silently. Output only the final Markdown post — no planning, no checklist, no "Thinking Process", no meta-commentary.
+
+---
+
+{{company_profile_block}}
+
+---
+
+SOURCE COMPOSITION NOTE: Your sources are national roofing industry publications, research reports, or trade data (e.g., Verisk findings, NRCA reports, Claims Journal, Roofing Contractor magazine, insurance industry data). There is no local {{metro_area}} news event. Do not invent one.
+
+NO LOCAL EVENT RULE — read this before writing a single word:
+- Do NOT write "Last week, storms hit {{metro_city}}" or any variation unless a local source with a specific date is explicitly in SOURCES.
+- Do NOT open with a homeowner vignette ("When {{example_vignette_name_city}} noticed…") unless a local news source is in SOURCES.
+- Do NOT manufacture urgency around a storm that is not in SOURCES.
+- Anchor {{metro_city}} relevance through: housing stock characteristics ({{housing_stock_examples}}), {{storm_season_anchor_phrase}}, county insurance market patterns, aging roof demographics, and general local climate context.
+- This is a strength, not a limitation — industry data with clear local implications is highly citable by AI engines.
+
+NO OTHER-STATE RULE — this is equally important:
+- Do NOT mention {{out_of_state_list_a}} as a model, comparison, or warning about what {{state}} "may soon" do.
+- Do NOT reference another state's insurance law, legislation, or court ruling unless it is explicitly a federal law or nationwide industry standard.
+- Do NOT frame {{metro_city}} implications as "{{state}} may follow California's example" or "similar to what Colorado did" — this is speculative, off-topic, and undermines credibility.
+- When a source covers a non-{{state}} state event, extract the underlying NATIONAL industry principle (e.g., "insurers industry-wide are tightening roof-age underwriting criteria") and frame THAT as the {{metro_city}}-relevant finding. Ignore the state-specific trigger entirely — do not name the state.
+- National-level stories worth covering: industry-wide cost trends, new roofing materials or technology, NRCA or manufacturer certification standards, nationwide hail/wind frequency data, insurance market pricing shifts, contractor fraud patterns, material supply chain changes. These apply to every homeowner in the country, including {{metro_area}}, without mentioning any other state.
+
+---
+
+GEO PRINCIPLES (prioritize over word count or keyword density):
+- Write so an AI can quote one sentence per section without surrounding fluff.
+- Lead every major section with a direct answer in the first 1–2 sentences.
+- Prefer definitional clarity: "RCV means…", "Hail severity is measured by…", "Replacement cost means…"
+- Tie every statistic to a homeowner decision in the same sentence.
+- Use only facts from SOURCES; do not invent dollar amounts, studies, percentages, or outlet names.
+- Depth beats breadth: one clear local implication beats six shallow city name-drops.
+- {{company_name}} is the authoritative voice — never present competitor contractors, vendors, or manufacturers named in SOURCES as the expert the reader should trust.
+- When SOURCES are press releases or vendor commentary, attribute facts to the news outlet — do not build the post around the vendor brand.
+
+---
+
+ANGLE BY STORY TYPE (use the dominant Strategy cluster from SOURCES):
+
+- storm_damage: industry hail/wind severity data, national replacement cost trends, aging roof risk stats, inspection best practices
+- {{insurance_cluster_key}}: RCV vs. ACV industry-wide trends, nationwide claims denial rates, documentation standards, insurer underwriting shifts
+- roof_safety: fire-resistance ratings, structural load standards, material certification news, ventilation requirements
+- county_guides: housing stock vulnerability by era, insurer behavior patterns, local construction codes
+- roof_technology: new roofing materials (impact-resistant shingles, metal, synthetic), manufacturer innovations, contractor certification standards, installation technology, solar integration, longevity data
+- cost_trends: national replacement cost inflation, material price changes, labor market shifts, supply chain impacts on roofing budgets
+
+IMPORTANT: For {{insurance_cluster_key}} angles, tie every industry finding to the homeowner decision directly — not to what another state is doing. "Insurers nationwide are increasingly using aerial inspection data to adjust claims" is a good frame. "Like California's new law…" is not.
+
+---
+
+FACTUAL ACCURACY RULE:
+- Only cite court cases, rulings, or legislation explicitly named in SOURCES.
+- Do not name legal precedents, bill numbers, or policy exclusions not present in SOURCES.
+- Use neutral, professional language about insurers — no editorial characterizations.
+- Spread citations across at least 2 different outlet names when SOURCES lists multiple outlets.
+
+---
+
+STRUCTURE REQUIREMENTS (follow exactly):
+
+1. TITLE — H1, max 70 characters. Frame as the direct question or answer a homeowner or AI would search — include a {{metro_area}} location and the core topic.
+
+   GOOD: "{{metro_city}} Roof Replacement Costs: What the 33% Surge Means in 2026"
+   GOOD: "Why More {{metro_city}} Roof Insurance Claims Are Being Denied in 2026"
+   GOOD: "Impact-Resistant Shingles: What {{metro_city}} Homeowners Should Know in 2026"
+   GOOD: "What Rising Roofing Material Costs Mean for {{example_county_b}} Homeowners"
+   BAD: "2026 Roofing Industry Trends You Should Know About" (no {{metro_city}} angle)
+   BAD: "How California's Insurance Law Could Affect {{metro_city}}" (other-state framing)
+
+2. INDUSTRY INSIGHT OPENING — 50–120 words. Lead with the national industry finding (report name, outlet, date, key figure or trend). In the next sentence, frame what this means specifically for {{metro_area}} homeowners — connect via housing stock age, {{metro_city}}'s storm season, county insurance market, or local roof replacement cycles. Answer the reader's most likely question. No homeowner vignette. No invented storm event. No generic openers.
+
+   GOOD opening pattern:
+   "Residential roof replacement costs jumped 33 percent in 2025 compared to the prior four-year average, Verisk reported in June 2026 — a trend {{metro_area}} homeowners with 1990s-era shingles approaching the end of their lifespan are already absorbing when their insurance adjuster calls."
+   "NRCA's 2026 roofing industry outlook projects that impact-resistant shingle installations will represent more than 40 percent of new residential roofs by year-end — a shift {{example_two_counties_industry}} can use to lower their hail-damage risk and qualify for insurer discounts."
+
+   BAD opening:
+   "Storm season is here, and {{metro_city}} homeowners are facing new challenges." (generic)
+   "Last month, a {{example_vignette_homeowner}} discovered her roof was damaged." (invented local event)
+   "Following California's new insurance law, {{state}} homeowners may face similar changes." (other-state framing — never do this)
+
+   Immediately after the opening paragraph include a Quick Answer block:
+   **The short answer:** [1–2 sentence direct answer grounded in the national finding + {{metro_city}} context]
+   **Who this affects:** [specific {{metro_area}} homeowner types or counties most exposed to this trend]
+   **What to do:** [single most important action — inspection, documentation, material upgrade, or claims prep]
+   **Timeline:** [general best-practice timing — never urgent unless a specific deadline is in SOURCES]
+
+   TIMELINE RULE FOR THIS TEMPLATE: Do not write "act within 24-48 hours", "before tonight", "this week", or "immediately" unless SOURCES contain a specific, time-bound event or deadline. Use timing like "before the next storm season", "within 30 days of noticing granule loss", "at your next annual inspection", or "before your policy renewal".
+
+   LABEL RULE: Use the exact labels above verbatim. The label **The short answer:** must appear exactly as written.
+
+3. BODY — write as long as the content requires; do not pad to hit a word count.
+
+   H2 headings must be questions a homeowner would type into an AI search engine. Every H2 ends with ?, except "## FAQ". Each body H2 must include either a {{metro_area}} county/neighborhood name or a specific roofing term.
+
+   Each ## section (except FAQ) should follow:
+   1. First sentence: direct answer to the H2 question.
+   2. Next 2–4 sentences: what the national data means in the context of {{metro_area}} — connect via housing stock, insurance behavior, storm frequency, or local construction era.
+   3. Optional: one specific {{metro_area}} example (county, housing type, construction era) with a concrete reason.
+   4. End with a practical takeaway — what to check, document, or ask a contractor.
+
+   Body must include:
+   - A section explaining the national finding and why it matters to {{metro_area}} homeowners
+   - One section addressing specific {{metro_area}} neighborhoods or counties — connect each location to the national trend via local housing stock, insurer behavior, or terrain. Write in prose paragraphs — no bullet points.
+   - Homeowner action steps grounded in the national data
+   - Cost or risk context drawn directly from SOURCES
+
+   Include when SOURCES are insurance, legal, or policy-related:
+   - Plain-language summary of what changed and who it affects
+   - A definitional paragraph for key terms (RCV vs. ACV, replacement cost, deductibles)
+   - One H2 section bridging the national trend to roof condition — how aging shingles, deferred maintenance, or installation shortcuts interact with the trend ({{company_short}} as the licensed contractor voice)
+
+   Do NOT include unless local storm sources are present in SOURCES:
+   - A specific named storm event in {{metro_area}}
+   - Urgency framing tied to an approaching weather system
+   - A homeowner vignette with a named fictional resident
+
+4. COMPARISON TABLE — At least one markdown table. Preferred formats for this template:
+   - **Location × housing-type × national-trend implication × homeowner action** — connects each {{metro_area}} area's housing stock to what the national data means for that homeowner type.
+   - **Cost range × roof type × {{metro_city}} context** — replacement or repair cost ranges by material, with {{metro_city}}-specific notes on prevalence or insurer treatment.
+   - **Before vs. after** — for policy or industry changes (how claims were handled vs. how they are handled now).
+
+   Avoid generic factor tables with interchangeable rows — tie every row to a specific place, housing stock, or real scenario from SOURCES.
+
+5. CITATIONS — Use linked markdown inline cites for verifiable facts from SOURCES:
+   `(Source: [Outlet Name](URL from SOURCES), Month Year)`
+
+   CITATION RULES:
+   - **Count (strict):** Include **exactly 3 to 6** linked inline citations — never 2 or fewer, never 7 or more.
+   - Place citations in body ## sections; FAQ answers usually need no citation.
+   - Every citation must include a clickable markdown link from SOURCES.
+   - Every number (%, $, counts, rankings) must appear in SOURCES or be clearly derivable from them.
+   - If SOURCES lack a number, use qualitative language — do not invent statistics.
+   - **Two sources in SOURCES:** At least one linked citation from each outlet/domain, 3–6 total.
+   - **Three or more sources:** At least one cite per outlet while total stays ≤ 6.
+
+6. NAMED LOCATIONS — Use {{metro_area}} locations to ground national data in local context.
+
+   Allowlist for automated validation:
+{metro_locations_list}
+
+   Quality rule: every location mention must carry a specific reason connecting the national trend to local conditions — construction era, housing type, insurer behavior, or storm exposure. A bare name drop adds nothing. Six well-used locations with real context beat twelve shallow ones.
+
+7. FAQ — Exactly 8 Q&A pairs under "## FAQ". Each question as ### H3 heading.
+
+   Question requirements:
+   - Written as a homeowner would type into ChatGPT — standalone, readable without the article
+   - At least 3 of 8 must name a {{metro_area}} location or {{state}}-specific context
+   - At least 2 questions use "I/my" voice
+   - Frame questions around what the national trend means locally: "Does the 33% cost increase affect my {{example_county_a}} claim payout?", "How do rising replacement costs affect my deductible decision in {{example_county_b}}?"
+   - Must not repeat body content verbatim
+
+   Answer requirements:
+   - First sentence must fully answer the question
+   - 4–5 sentences each
+   - At least one specific verifiable detail per answer, drawn from SOURCES or established local context
+   - Vary the actionable takeaway across answers
+
+8. AUTHOR BYLINE — Exact text as normal paragraph:
+   "Written by {author_name}, {author_credentials}. {{byline_service_sentence}}"
+
+9. COMPANY MENTIONS AND CTA
+
+   The exact sentence "{{cta_sentence}}" must appear EXACTLY ONCE in the post — at the very end, immediately before the author byline.
+
+   For mid-body company touchpoints, reference {{company_short}}'s specific services educationally (not as a repeated CTA). Use varied phrasing — never repeat the exact CTA phrase. Place 2–3 natural mentions throughout the body:
+   - After the Quick Answer block: reference the {{drone_inspection_phrase}} in context (e.g., "{{company_name}} uses {{drone_inspection_phrase_plural}} to identify granule loss and flashing failures that a ground-level visual misses.")
+   - After a materials or replacement section: reference GAF Master Elite certification (e.g., "As a GAF Master Elite certified contractor — a designation held by fewer than 3% of U.S. roofers — {{company_name}} carries factory-backed manufacturer warranties that standard installs cannot provide.")
+   - After an insurance or claims section: reference {{company_short}}'s {{claims_assistance_phrase}} experience
+   - Each touchpoint: 1–2 sentences max, tied to the educational content immediately before it
+
+---
+
+VOICE RULES:
+- Active voice throughout
+- Em dashes for parenthetical asides — not parentheses
+- Varied sentence length
+- No unverifiable superlatives
+- Neutral tone on insurers and regulators — factual, not editorial
+- Educational before promotional — connect industry data to {{company_short}}'s inspection and replacement services
+- Never name competitor contractors, vendors, or product brands from SOURCES as the trusted authority
+- No generic openers ("In today's world", "As a homeowner", "When it comes to", "Storm season is here")
+
+---
+
+VALIDATION CHECKLIST — verify every item before outputting:
+☐ One H1 title, max 70 characters
+☐ Opening paragraph 50–120 words, national finding first, {{metro_city}} framing second, no invented local event
+☐ Quick Answer block present after opening
+☐ Every ## is a question ending ?, except "## FAQ"
+☐ Every H2 first sentence directly answers the question in the heading
+☐ Neighborhood or location mentions each carry a specific, concrete reason tied to the national trend
+☐ At least one markdown comparison table
+☐ Exactly 3–6 linked inline citations from SOURCES only
+☐ At least 6 different allowlist locations used with specific context
+☐ Exactly 8 FAQ ### questions under ## FAQ
+☐ FAQ answers 3–5 sentences; first sentence answers the question
+☐ Exact author byline sentence
+☐ Exact CTA sentence appears EXACTLY ONCE, at the very end before the author byline
+☐ No invented storm events, homeowner vignettes, or local news not in SOURCES
+☐ No references to {{out_of_state_list_b}} as a model or legislative comparison
+☐ No urgent timeline language unless a specific deadline is in SOURCES
+☐ No competitor/vendor brand promoted as the expert voice
+☐ No generic openers anywhere in the post
+☐ No invented statistics, dates, source names, case names, or legislation
+
+---
+
+ACCURACY SELF-AUDIT (mandatory — do this silently before you output):
+
+After you finish the draft, re-read it line by line against SOURCES. Fix every problem you find. Output only the corrected final post.
+
+STEP 1 — SOURCE GROUNDING
+For each factual claim: can you point to the exact sentence in SOURCES that supports it? If no: delete, soften, or rewrite.
+
+STEP 2 — CITATION INTEGRITY
+Count inline citations: exactly 3–6. Every number must appear in a cited sentence or be removed.
+
+STEP 2b — BRAND & CTA
+Remove competitor/vendor brands as authoritative voices. Confirm the exact CTA sentence appears EXACTLY ONCE, at the very end before the author byline. Verify 2–3 varied {{company_short}} service mentions appear naturally in the body using different phrasing each time.
+
+STEP 3 — NO LOCAL EVENT / NO OTHER-STATE CHECK
+Scan the entire post for:
+- Invented local events, specific storm dates not in SOURCES, or homeowner vignettes without a grounding local source — remove or rewrite.
+- Any mention of {{out_of_state_list_b}} as a legislative model, comparison, or signal of what {{state}} "may" do — remove entirely. Extract the national principle instead and reframe it without the state reference.
+
+STEP 4 — LOCATION QUALITY
+Confirm at least 6 different allowlist locations appear, each tied to the national trend via local housing stock, insurer behavior, or terrain.
+
+STEP 5 — FINAL READ-THROUGH
+Would a homeowner trust this on a business website? Does the post read as a credible industry analysis grounded in {{metro_city}} reality, not a generic national article with {{metro_city}} names inserted? Does any FAQ answer repeat the body verbatim?
+
+If anything fails, revise before output. Only when all five steps pass, return the post.
+
+OUTPUT FORMAT:
+Return the complete blog post in Markdown only. No preamble. No meta-commentary. No validation report. No accuracy audit. Just the post.

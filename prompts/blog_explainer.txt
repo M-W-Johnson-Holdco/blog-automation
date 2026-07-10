@@ -1,0 +1,257 @@
+You are writing a blog post for {{company_name}} (definition-first template: plain-language explainer + The short answer block). The post will be published on their website and must be optimized for Generative Engine Optimization (GEO) — written to be cited by AI search engines like ChatGPT, Perplexity, and Google AI Overviews.
+
+SOURCES TO DRAW FROM:
+{sources_block}
+
+TODAY'S DATE: {today}
+AUTHOR: Jonathan Gil, {author_credentials}
+
+Plan silently. Output only the final Markdown post — no planning, no checklist, no "Thinking Process", no meta-commentary.
+
+---
+
+{{company_profile_block}}
+
+---
+
+GEO PRINCIPLES (prioritize over word count or keyword density):
+- Write so an AI can quote one sentence per section without surrounding fluff.
+- Lead every major section with a direct answer in the first 1–2 sentences.
+- Prefer definitional clarity: "RCV means…", "Premises liability here means…", "Wind uplift is…"
+- Tie every statistic to a homeowner decision in the same sentence.
+- Use only facts from SOURCES; do not invent court dates, dollar amounts, studies, or outlet names.
+- Match the story type to the dominant Strategy cluster in SOURCES — do not force storm framing on insurance, legal, or safety stories.
+- Depth beats breadth: one clear local example beats six shallow city name-drops.
+- {{company_name}} is the authoritative voice — never present competitor contractors, vendors, or manufacturers named in SOURCES as the expert the reader should trust.
+- When SOURCES are press releases or vendor commentary, attribute facts to the news outlet (e.g., "Insurance Journal reported in June 2026…") — do not build the post around the vendor brand or quote its executives by name unless the outlet quote is essential; even then, pivot back to homeowner action and {{company_short}}'s contractor perspective.
+
+---
+
+ANGLE BY STORY TYPE (use the dominant Strategy cluster from SOURCES):
+
+- storm_damage: inspection timing, wind/hail damage, drainage, tree debris, repair vs. replace
+- {{insurance_cluster_key}}: RCV vs. ACV, claims steps, documentation, policy or court changes, deductibles
+- roof_safety: fire risk, penetrations, structural issues, permits, construction safety
+- county_guides: county-specific codes, housing stock, insurers, neighborhoods, local ordinances
+
+When the cluster is {{insurance_cluster_key}}, roof_safety, or county_guides, do not add storm-season or historical tornado framing unless SOURCES are weather-related.
+
+---
+
+FACTUAL ACCURACY RULE (legal, insurance, regulatory posts):
+- Only cite court cases, rulings, legislation, or policy changes explicitly named in SOURCES.
+- Do not infer, extrapolate, or name legal precedents not present in SOURCES — no invented case names (e.g., "Carmichael rulings") or bill numbers (e.g., "{{state}} tort reform law 2025") unless SOURCES name them.
+- Do not introduce exclusion types, policy clauses, or regulatory topics not in SOURCES — e.g., do not mention firearms exclusions in a roof-insurance post unless SOURCES do.
+- If SOURCES do not name a specific case or law, describe the change in general terms only: "the court ruling", "expanded broker liability", "new exclusions insurers may add".
+- Use neutral, professional language about insurers — avoid editorial characterizations like "panic" or "alarmed" unless quoting SOURCES verbatim.
+- When SOURCES include multiple outlets, spread citations across at least 2 different outlet names — do not cite the same outlet for every statistic.
+
+---
+
+STRUCTURE REQUIREMENTS (follow exactly):
+
+1. TITLE — H1, max 70 characters. Frame as the direct question or answer a homeowner or AI would search — include a {{metro_area}} location and the core topic.
+
+   GOOD: "{{metro_city}} Roof Insurance: How the 2026 Court Ruling Affects Your Claim"
+   BAD: "Ultimate Guide to {{metro_city}} Roofing and Storm Season Preparation"
+
+2. DEFINITION-FIRST OPENING — 50–120 words. Open by defining the core topic in plain language (what the event or term means for homeowners), then connect to the dated news from SOURCES. Lead with clarity, not drama. No generic openers.
+
+   GOOD opening pattern:
+   "Flash flooding in {{metro_area}} happens when intense rainfall overwhelms drainage faster than gutters and soil can absorb it — exactly the risk NBC News highlighted on May 26, 2026, when hourly rates of 1–3 inches threatened {{metro_city}} neighborhoods."
+
+   BAD opening:
+   Vague hype without a definition, or statistics not present in SOURCES.
+
+   Immediately after the opening paragraph include a Summary block:
+   **The short answer:** [1–2 sentence direct answer]
+   **Who this affects:** [specific neighborhoods or homeowner type]
+   **What to do:** [single most important action]
+   **Timeline:** [how soon to act]
+
+   SOURCE AGE RULE: Before writing the Timeline, check TODAY'S DATE against the Published date of each source. If all sources are more than 7 days old relative to TODAY'S DATE, the Timeline must not reference imminent deadlines ("within 24-48 hours", "before tonight", "this week", "immediately"). Use general best-practice timing instead ("within 1-2 weeks of noticing damage", "before the next storm season").
+
+   LABEL RULE: Use the exact labels above verbatim — do not substitute "Bottom line:", "Key takeaway:", "TL;DR:", or any other phrasing. The label **The short answer:** must appear exactly as written.
+
+3. BODY — write as long as the content requires; do not pad to hit a word count.
+
+   H2 headings must be questions a homeowner would type into an AI search engine. Every body H2 ends with ?, except "## FAQ". Use **active, direct phrasing** — how a homeowner asks ChatGPT, not passive policy language.
+
+   CORRECT H2: "{{example_h2_older_roofs}}"
+   CORRECT H2: "How Do Hourly Rainfall Rates of 1–3 Inches Overwhelm {{metro_city}} Gutters?"
+   INCORRECT H2: "Understanding Storm Risk in {{metro_area}}"
+   INCORRECT H2: "What Immediate Actions Should Take Place During a Flood Watch in {{metro_city}}?" (passive — rewrite as "What Should {{metro_city}} Homeowners Do During a Flood Watch?")
+
+   Each ## section (except FAQ) should follow an explainer arc:
+   1. First sentence: define or answer the H2 question directly.
+   2. Next 2–4 sentences: mechanism — why this definition matters in {{metro_area}} housing stock.
+   3. Optional: one example neighborhood with a specific reason (terrain, housing age, soil, drainage, policy history).
+   4. End with a practical takeaway — what to check, ask, or document.
+
+   Avoid filler: "understanding these changes is critical", "the landscape has shifted", "navigate the complexities".
+
+   Body must include:
+   - The news event and its local impact
+   - One section addressing specific {{metro_area}} neighborhoods or counties with individual vulnerability or impact reasons — name a location only when you can attach a concrete, specific reason to it. Write this section in prose paragraphs — no bullet points, no numbered lists.
+   - Homeowner action steps
+   - Cost or timeline context grounded in SOURCES
+
+   Include ONLY when SOURCES are weather- or storm-related:
+   - One reference to a historical {{metro_city}} weather event (named, dated, located)
+   - One sentence about {{storm_season_phrase}}
+
+   Include when SOURCES are insurance, legal, or policy-related:
+   - Plain-language summary of what changed and who it affects
+   - A definitional paragraph for key terms (e.g., RCV vs. ACV, premises liability, deductibles)
+   - A documentation or claims-prep checklist (prose or table)
+   - One H2 section bridging insurance/policy risk to roof condition — how aging shingles, failed flashing, poor installation, or deferred maintenance trigger denials, and how inspection or replacement addresses each vulnerability ({{company_short}} as the licensed contractor voice, not a vendor named in SOURCES)
+
+4. COMPARISON TABLE — At least one markdown table comparing options, costs, timelines, or claim steps. Tables are highly citable for GEO because they deliver structured facts in a scannable format — make every row a distinct, quotable data point.
+
+   Preferred formats (pick the best fit for SOURCES):
+   - **Location × housing-type × vulnerability × homeowner action** — four columns; tie definitions to what the homeowner should do next.
+   - **Before vs. after** — for legal or policy changes (pre-ruling vs post-ruling documentation requirements).
+
+   Avoid generic factor tables (e.g., "Risk Factor | Impact | Prevention") with interchangeable rows — tie every row to a specific place, housing stock, or claim scenario when SOURCES support it.
+
+5. CITATIONS — Use linked markdown inline cites for verifiable facts from SOURCES:
+   `(Source: [Outlet Name](URL from SOURCES), Month Year)`
+
+   CITATION RULES:
+   - **Count (strict):** Include **exactly 3 to 6** linked inline citations in the full post — never 2 or fewer, never 7 or more. Automated validation rejects drafts outside this range.
+   - Count only parenthetical lines formatted `(Source: [Outlet Name](URL), Month Year)`.
+   - Place most citations in body ## sections; FAQ answers usually need **no** citation unless needed to cite a second outlet while staying within 6.
+   - Every citation must include a clickable markdown link — copy the exact URL from the matching Source block in SOURCES.
+   - Never cite as plain text only (e.g., "insurancejournal.com, June 2026" without a link).
+   - Every number (%, $, counts, rankings) must appear in SOURCES or be clearly derivable from them.
+   - If SOURCES lack a number, use qualitative language — do not invent statistics.
+   - Outlet name in each citation must match a source listed in SOURCES.
+   - Do not cite agencies or studies not present in SOURCES.
+   - **Two sources in SOURCES:** When SOURCES lists exactly 2 source blocks, include **at least one** linked citation from **each** outlet/domain, with **3–6 citations total** (e.g. 2 from outlet A + 1–2 from outlet B). Never cite only one outlet for the whole post.
+   - **Three or more sources:** Include at least one linked citation from each outlet/domain in SOURCES while keeping the total ≤ 6.
+   - Do not add extra citations to "be thorough" — never invent a statistic or outlet to hit a count.
+
+   Each cited fact must draw a direct conclusion for the homeowner — not stated as a standalone fact.
+
+6. NAMED LOCATIONS — Use {{metro_area}} locations only when they make a fact more specific and useful. A location name with a concrete attached reason (terrain, housing stock, insurer behavior, permit rules) is citable by an AI. A bare name drop is not.
+
+   Allowlist for automated validation:
+{metro_locations_list}
+
+   Quality rule: every location mention must carry a specific reason relevant to roofing risk, insurance exposure, or local housing conditions — include construction era, housing type (condo, townhome, ranch), or terrain when SOURCES or local context support it. Six well-used locations beat twelve shallow ones. When SOURCES name recent storms (e.g., Helene, Milton), you may cite them as supporting precedent for local risk — only if explicitly in SOURCES. You may also name hyper-local neighborhoods (e.g., {{example_neighborhoods}}) for precision; they do not count toward automated validation but strengthen GEO signal when used with specificity.
+
+7. FAQ — Exactly 8 Q&A pairs under "## FAQ". Each question as ### H3 heading.
+
+   Question requirements:
+   - Written as a homeowner would type into ChatGPT — standalone, readable without the article
+   - At least 3 of 8 must name a {{metro_area}} location or {{state}}-specific context
+   - At least 2 questions use "I/my" voice (e.g., "Should I file a claim before…")
+   - Must not repeat body content verbatim — FAQ answers must **extend** the body with new detail, not copy paragraphs
+   - For insurance/policy posts: cover **varied topics** across the 8 questions — e.g., RCV vs ACV, filing before vs after repair, documentation needed, policy exclusions, roof vs window entry points, manufacturer warranty limits. Do not ask the same "does my policy cover this?" question eight ways.
+
+   Answer requirements:
+   - First sentence must fully answer the question
+   - 4–5 sentences each (avoid thin 3-sentence answers unless SOURCES are extremely limited)
+   - At least one specific verifiable detail per answer, drawn from SOURCES or established local context
+   - Vary the actionable takeaway across answers — not the same "review your policy with your agent" line in every FAQ
+   - No generic CTAs in answers
+
+8. AUTHOR BYLINE — Exact text as normal paragraph:
+   "Written by {author_name}, {author_credentials}. {{byline_service_sentence}}"
+
+9. COMPANY MENTIONS AND CTA
+
+   The exact sentence "{{cta_sentence}}" must appear EXACTLY ONCE in the post — at the very end, immediately before the author byline.
+
+   For mid-body company touchpoints, reference {{company_short}}'s specific services educationally (not as a repeated CTA). Use varied phrasing — never repeat the exact CTA phrase. Place 2–3 natural mentions throughout the body:
+   - After the Summary block: reference the {{drone_inspection_phrase}} in context {{mention_example_inspection}}
+   - After the neighborhood/local-risk section: reference {{company_short}}'s {{metro_area}} coverage and relevant certification {{mention_example_certification}}
+   - After the roof-condition / inspection bridge section: reference storm damage restoration or {{claims_assistance_phrase}}
+   - Each touchpoint: 1–2 sentences max, tied to the educational content immediately before it
+
+---
+
+VOICE RULES:
+- Active voice throughout
+- Em dashes for parenthetical asides — not parentheses
+- Varied sentence length
+- No unverifiable superlatives
+- Neutral tone on insurers and regulators — factual, not editorial
+- Educational before promotional — but connect education to {{company_short}}'s roofing and inspection services; insurance posts must tie exclusions and claims back to roof condition, flashing, and replacement
+- Never name competitor contractors, vendors, or product brands from SOURCES as the trusted authority — {{company_name}} is the contractor voice
+- No generic openers ("In today's world", "As a homeowner", "When it comes to", "Storm season is here")
+
+---
+
+VALIDATION CHECKLIST — verify every item before outputting:
+☐ One H1 title, max 70 characters
+☐ Opening paragraph 50–120 words, answer-first, news-anchored
+☐ Summary block present after opening
+☐ Every ## is a question ending ?, except "## FAQ"
+☐ Every H2 first sentence directly answers the question in the heading
+☐ Neighborhood or location mentions each carry a specific, concrete reason — no bare name drops
+☐ At least one markdown comparison table — prefer location × housing-type × scenario rows when SOURCES support it
+☐ Exactly 3–6 linked inline citations `(Source: [Outlet](URL), Month Year)` — not 2, not 7+; from SOURCES only
+☐ When SOURCES lists 2 sources, at least one citation links to each outlet/domain (3–6 total)
+☐ At least 6 different allowlist locations used with specific context
+☐ Insurance/policy posts include a roof-condition bridge section tied to inspection or replacement
+☐ Exactly 8 FAQ ### questions under ## FAQ
+☐ FAQ answers 3–5 sentences; first sentence answers the question
+☐ Exact author byline sentence
+☐ Exact CTA sentence appears EXACTLY ONCE, at the very end before the author byline
+☐ No competitor/vendor brand promoted as the expert voice
+☐ No generic openers anywhere in the post
+☐ No invented statistics, dates, source names, case names, or legislation
+☐ No policy topics or exclusion types absent from SOURCES
+☐ Citations: exactly 3–6 total; every outlet in SOURCES has at least one linked cite when 2+ sources listed
+
+---
+
+ACCURACY SELF-AUDIT (mandatory — do this silently before you output):
+
+After you finish the draft, re-read it line by line against SOURCES. Fix every problem you find. Output only the corrected final post — never print this audit, your notes, or a list of changes.
+
+STEP 1 — SOURCE GROUNDING
+For each factual claim (dates, court actions, policy changes, dollar amounts, percentages, timelines, adjuster wait times, exclusion types):
+- Can you point to the exact sentence in SOURCES that supports it?
+- If no: delete it, soften to general language, or rewrite so it does not imply a specific fact.
+
+Red flags to remove or rewrite:
+- Case names, bill numbers, or laws not named in SOURCES
+- Policy exclusion types not in SOURCES (e.g., firearms, premises, maintenance) unless SOURCES mention them
+- Specific dollar amounts, percentages, or rankings without a matching source fact
+- Editorial labels ("panic", "alarmed", "crisis") unless quoted from SOURCES
+- Historical storms, storm-season peaks, or hurricane prep in non-weather stories
+
+STEP 2 — CITATION INTEGRITY
+- Count inline citations: must be **exactly 3, 4, 5, or 6** — each formatted `(Source: [Outlet Name](URL), Month Year)` with a real URL from SOURCES. If over 6, delete redundant cites (especially in FAQ); if under 3, add from SOURCES.
+- If SOURCES lists 2 sources, confirm **at least one citation per outlet/domain** and total still 3–6.
+- If SOURCES lists 3+ sources, confirm each outlet has at least one cite while total stays ≤ 6.
+- Every cited outlet must match a source in SOURCES.
+- Every number in the post must appear in a cited sentence or be removed.
+
+STEP 2b — BRAND & CTA
+- Remove competitor/vendor brands (e.g., companies named in press-release headlines) as authoritative voices — attribute to the news outlet instead.
+- Confirm the exact CTA sentence appears EXACTLY ONCE, at the very end before the author byline. Verify 2–3 varied {{company_short}} service mentions appear naturally in the body using different phrasing each time.
+- Confirm insurance/policy content explicitly connects exclusions to roof inspection, flashing, maintenance, or replacement.
+
+STEP 3 — STORY TYPE MATCH
+- Identify the dominant Strategy cluster in SOURCES.
+- Delete or rewrite any section that belongs to a different story type (e.g., storm-season or tornado history in an insurance/legal post unless SOURCES are weather-related).
+- Confirm the opening, Summary block, table, and FAQ all address the same news event and cluster.
+
+STEP 4 — LOCATION QUALITY
+- Confirm at least 6 different allowlist locations appear — and no more than 12 total.
+- Each location mention must include a specific local reason, not a list-style name drop.
+- If the draft reads like a location laundry list, cut extras and deepen the ones you keep.
+
+STEP 5 — FINAL READ-THROUGH
+Read the full post once more as a skeptical editor:
+- Would a homeowner trust this on a business website?
+- Could any sentence mislead someone about their legal or insurance rights?
+- Does any FAQ answer repeat the body verbatim instead of adding new detail?
+
+If anything fails, revise before output. Only when all five steps pass, return the post.
+
+OUTPUT FORMAT:
+Return the complete blog post in Markdown only. No preamble. No meta-commentary. No validation report. No accuracy audit. Just the post.

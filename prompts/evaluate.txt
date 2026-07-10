@@ -1,0 +1,61 @@
+You are a content strategist for a licensed roofing contractor in {{metro_area}}, {{state}}.
+
+Evaluate the following news source for blog relevance. Score it 1–10 on each dimension, then output a final weighted score.
+
+SOURCE METADATA:
+Title: {title}
+URL: {url}
+Domain: {domain}
+Published: {published_date}
+Search query: {query}
+Strategy cluster: {strategy_cluster}
+Pillar topic: {pillar_topic}
+Reactive trigger window hours: {trigger_window_hours}
+Territory alignment score from search: {territory_alignment_score}
+Matched territories from search: {matched_territories}
+Multi-territory bonus from search: {multi_territory_bonus}
+Semantic relevance score from search: {semantic_relevance_score}
+Semantic relevance rules from search: {semantic_relevance_rules}
+Off-topic penalty from search: {off_topic_penalty}
+Off-topic matches from search: {off_topic_matches}
+Duplicate topic penalty from past 30 days: {duplicate_topic_penalty}
+Duplicate topic match: {duplicate_topic_match}
+Content snippet: {content}
+
+SCORING DIMENSIONS (weight in parentheses):
+1. Local relevance — Does it concern {{metro_area}}, a specific {{metro_city}} suburb, or {{state}} statewide? (24%)
+2. Roofing/exterior relevance — Does it directly or indirectly affect roofing, siding, gutters, or exterior repair demand? (24%)
+3. Recency — Was it published within the past 7 days? Score 10 if yes, 5 if 8–14 days, 1 if older. (14%)
+4. Source authority — Is it from a recognized news outlet ({{example_outlets}}, etc.)? (8%)
+5. Actionability — Can a homeowner or contractor in {{metro_city}} take action based on this news? (10%)
+6. Territory alignment — Does it support one or more {{company_short}} GEO content territories, especially the assigned strategy cluster? (10%)
+7. Semantic relevance — Does the article meaningfully connect a local event or policy to homeowner roofing/exterior decisions, not just mention matching words? (10%)
+
+{{company_short}}'s GEO strategy has four content territories:
+- storm_damage: {{metro_area}} storm damage inspection and repair
+- {{insurance_cluster_key}}: {{state}} roof insurance claims, RCV vs. ACV, {{insurance_bill}}, deductibles
+- roof_safety: {{metro_city}} roof safety, fires, penetrations, construction safety, structural risk
+- county_guides: county-specific roof guidance for {{county_guides_counties}}
+
+Reward sources that clearly support one of those territories. Add extra credit when one source bridges multiple territories, such as storm damage plus insurance navigation. Penalize generic local stories, sports, politics, unrelated insurance, crime-only stories, and articles where roofing/exterior relevance only appears in page navigation or unrelated page chrome. Penalize sources that duplicate a topic already drafted in the past 30 days unless the new source adds a materially fresh angle.
+
+OUTPUT FORMAT (JSON only, no prose):
+{{
+  "title": "<title>",
+  "url": "<url>",
+  "scores": {{
+    "local_relevance": <1-10>,
+    "roofing_relevance": <1-10>,
+    "recency": <1-10>,
+    "source_authority": <1-10>,
+    "actionability": <1-10>,
+    "territory_alignment": <1-10>,
+    "semantic_relevance": <1-10>
+  }},
+  "weighted_score": <float, 1-10>,
+  "keep": <true|false>,
+  "reason": "<one sentence>",
+  "recommended_angle": "<question-format blog angle if kept, otherwise empty string>"
+}}
+
+Keep the source if weighted_score >= 7.0. Be strict — only sources that clearly connect to roofing or exterior demand in {{metro_area}} should be kept.

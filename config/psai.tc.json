@@ -1,0 +1,9 @@
+{
+  "api_url": "https://developers.predictivesalesai.com",
+  "author": "jonathan@tcroofingexperts.com",
+  "default_status": "draft",
+  "site_brand": "TC Roofing & Restorations",
+  "notify_subscribers": false,
+  "auto_publish": false,
+  "display_author_details": true
+}

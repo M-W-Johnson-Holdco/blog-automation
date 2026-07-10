@@ -1,0 +1,28 @@
+---
+description: Record every meaningful project change in CHANGELOG.md
+alwaysApply: true
+---
+
+# Changelog discipline
+
+When you change this project in a meaningful way (code, prompts, workflow, config, dependencies), **also update `CHANGELOG.md`** in the same session.
+
+## When to log
+
+- New or changed scripts, modules, CLI flags, defaults
+- Prompt or validation rule changes
+- Path/layout moves (e.g. `src/`, `output/`)
+- API/model/search/cost behavior changes
+- Bug fixes that affect pipeline behavior
+- README/workflow updates tied to behavior
+
+Skip changelog entries for typos-only, comments-only, or pure formatting with no behavior change.
+
+## How to log
+
+1. Add a new section **at the top of the changelog body** (right after the entry template), newest date first.
+2. Use the template in `CHANGELOG.md`: **Changed**, **Why**, **Files touched**, **Tested**, **Notes / next step**.
+3. Use `YYYY-MM-DD` and a short imperative title (e.g. `Add search credit cap`).
+4. List concrete file paths; after `src/` moves, prefer paths like `src/blog_automation/...` and note root shims if relevant.
+
+Do not commit `CHANGELOG.md` unless the user asked for a commit.
