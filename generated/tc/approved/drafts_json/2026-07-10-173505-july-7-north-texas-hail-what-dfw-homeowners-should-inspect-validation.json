@@ -254,7 +254,14 @@
     "recycled_by": null,
     "revision_mode": "",
     "revision_mode_reason": "",
-    "feedback": []
+    "feedback": [],
+    "psai": {
+      "status": "published",
+      "published_at": "2026-07-10T18:37:42.790163+00:00",
+      "blog_id": "260710000",
+      "url": "/blog/p.260710000/july-7-north-texas-hail-what-dfw-homeowners-should-inspect",
+      "published_by": "U059KMJ0Q1H"
+    }
   },
   "ci_run_id": "29111133317"
 }
