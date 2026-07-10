@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from blog_automation.paths import PROJECT_ROOT
+from blog_automation.paths import SOURCES_DIR
 
 import json
 from datetime import datetime, timezone
@@ -11,7 +11,8 @@ from typing import Any
 from urllib.parse import urlparse, urlunparse
 
 
-DEFAULT_USED_SOURCES_PATH = PROJECT_ROOT / "output" / "sources" / "used_sources.json"
+# Per-company: output/<slug>/sources/used_sources.json (SOURCES_DIR is company-scoped).
+DEFAULT_USED_SOURCES_PATH = SOURCES_DIR / "used_sources.json"
 
 
 def normalize_source_url(url: str) -> str:
