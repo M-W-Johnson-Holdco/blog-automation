@@ -12,7 +12,7 @@ Scheduled weekly run:
     → draft → Slack → archive generated/ → git push
 
 Slack reviewer reactions / thread replies:
-  Cloudflare Worker (/slack/events)
+  Cloudflare Worker (/slack/events/<company>)
     → verify signature → HTTP 200 immediately
     → dispatch slack_approve.yml
 
@@ -21,18 +21,18 @@ Slack reviewer reactions / thread replies:
     → scripts/process_slack_event.py (approve_listen handlers)
     → git commit/push generated/ + used_sources.json
 
-Top-level @PT Blog Bot pipeline:
-  Cloudflare Worker (/slack/events)
+Top-level @Bot pipeline:
+  Cloudflare Worker (/slack/events/<company>)
     → verify signature → HTTP 200 immediately
-    → dispatch weekly.yml directly
+    → dispatch weekly.yml for that company
 
 Reviewer 🔁 on a draft intro:
-  Cloudflare Worker (/slack/events)
+  Cloudflare Worker (/slack/events/<company>)
     → verify signature → HTTP 200 immediately
-    → dispatch weekly.yml directly
+    → dispatch weekly.yml for that company
 ```
 
-The Worker does **not** run approve logic — only GitHub Actions does. The scheduled Monday/Wednesday trigger, manual top-level `@PT Blog Bot pipeline` command, and reviewer-added 🔁 all dispatch `weekly.yml` directly. GitHub's native `schedule:` block is intentionally disabled so Cloudflare is the source of truth for timing.
+The Worker does **not** run approve logic — only GitHub Actions does. The scheduled Monday/Wednesday trigger dispatches `weekly.yml` with `company=both`. Manual top-level `@Bot pipeline` and reviewer-added 🔁 dispatch `weekly.yml` for the path's company. GitHub's native `schedule:` block is intentionally disabled so Cloudflare is the source of truth for timing.
 
 `slack_approve.yml` uses a lightweight dependency install for simple approval events. It installs PDF/Cairo packages only for free-form thread feedback, because that path can auto-rewrite a draft and generate a new PDF.
 
@@ -59,7 +59,7 @@ You do **not** need Render, Docker, or `approve_listen listen` on your Mac for t
 | Secret | Used by |
 |--------|---------|
 | `TAVILY_API_KEY` | Weekly pipeline |
-| `TOGETHER_API_KEY` | Weekly + Slack rewrites |
+| `TOGETHER_API_KEY` | Optional Together rollback only |
 | `SLACK_APPROVAL_BOT_TOKEN` | Weekly + slack_approve |
 | `SLACK_APPROVAL_CHANNEL` | Weekly + slack_approve |
 | `PSAI_API_KEY` | 🌐 publish (optional) |
@@ -99,31 +99,39 @@ npm install
 Edit `workers/slack-events/wrangler.toml`:
 
 ```toml
+name = "blog-automation-slack-events"
+
 [triggers]
-crons = ["0 * * * 1,3"]
+crons = ["0 * * * 2,4"]
 
 [vars]
-GITHUB_REPOSITORY = "M-W-Johnson-Holdco/PT-Blog-Automation"
+GITHUB_REPOSITORY = "M-W-Johnson-Holdco/blog-automation"
 GITHUB_REF_NAME = "main"
-# Optional: suppress bot-added approval prompt reactions before dispatch.
-# SLACK_BOT_USER_ID = "U..."
+SLACK_BOT_USER_ID_PEACHTREE = "U..."
+SLACK_BOT_USER_ID_TC = "U..."
 ```
 
-Cloudflare cron is UTC, so the Worker runs hourly on Monday/Wednesday and checks `America/New_York` local time in JavaScript. It dispatches `weekly.yml` only when the scheduled time is exactly **8:00 AM ET**, including daylight saving time changes.
+Cloudflare cron is UTC, so the Worker runs hourly on Tuesday/Thursday (cron days `2,4`) and checks `America/New_York` local time in JavaScript. It dispatches `weekly.yml` with `company=both` only when the scheduled time is exactly **8:00 AM ET**, including daylight saving time changes.
+
+Per-company Slack apps post to path-scoped endpoints:
+
+- `/slack/events/peachtree`
+- `/slack/events/tc`
 
 The Worker forwards only events that need approval-state work to `slack_approve.yml`:
 
 - reviewer `reaction_added` / `reaction_removed`
 - thread reply `message` events (`thread_ts` exists and differs from `ts`)
 
-Top-level `app_mention` events are handled separately: exact `@PT Blog Bot pipeline` dispatches `weekly.yml` directly. Reviewer-added 🔁 reactions also dispatch `weekly.yml` directly. Threaded `app_mention` events, top-level non-mention channel messages, bot messages, and message edits/deletes are ignored before they create GitHub Actions runs. If you set `SLACK_BOT_USER_ID` (or `SLACK_APPROVAL_BOT_USER_ID`) to the bot's Slack user ID, bot-added prompt reactions are also ignored at the Worker.
+Top-level `app_mention` events are handled separately: exact `@Bot pipeline` dispatches `weekly.yml` for that path's company. Reviewer-added 🔁 reactions also dispatch `weekly.yml` directly. Threaded `app_mention` events, top-level non-mention channel messages, bot messages, and message edits/deletes are ignored before they create GitHub Actions runs. Per-company `SLACK_BOT_USER_ID_<SLUG>` values skip bot-added prompt reactions at the Worker.
 
 ### 3d. Set Worker secrets
 
 ```bash
 npx wrangler login
-npx wrangler secret put SLACK_SIGNING_SECRET    # Slack app → Basic Information
-npx wrangler secret put GITHUB_TOKEN            # PAT from Step 2
+npx wrangler secret put SLACK_SIGNING_SECRET_PEACHTREE  # Peachtree Slack app → Basic Information
+npx wrangler secret put SLACK_SIGNING_SECRET_TC         # TC Slack app → Basic Information
+npx wrangler secret put GITHUB_TOKEN                   # PAT from Step 2
 ```
 
 To rotate `GITHUB_TOKEN` after regenerating a PAT, run from the repo root (Wrangler prompts for the value; input is hidden):
@@ -146,7 +154,7 @@ No redeploy is required after updating a secret — the live Worker picks it up 
 npm run deploy
 ```
 
-Wrangler prints a URL like `https://peachtree-slack-events.your-subdomain.workers.dev`.
+Wrangler prints a URL like `https://blog-automation-slack-events.your-subdomain.workers.dev`.
 
 Health check: `https://YOUR-WORKER-URL/health`
 
@@ -156,7 +164,7 @@ Health check: `https://YOUR-WORKER-URL/health`
 
 1. [api.slack.com/apps](https://api.slack.com/apps) → Blog Automation app.
 2. **Event Subscriptions** → Enable.
-3. **Request URL:** `https://YOUR-WORKER-URL/slack/events`  
+3. **Request URL:** `https://YOUR-WORKER-URL/slack/events/peachtree` (or `/slack/events/tc`)  
    Slack sends a challenge; the Worker responds automatically.
 4. **Subscribe to bot events:**
    - `reaction_added`

@@ -5,10 +5,10 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT/workers/slack-events"
 
 echo "Updating Cloudflare Worker secret: GITHUB_TOKEN"
-echo "Worker: peachtree-slack-events"
+echo "Worker: blog-automation-slack-events"
 echo ""
 echo "Paste your GitHub PAT when prompted (input is hidden)."
-echo "Fine-grained PAT: Actions Read and write + Contents Read on PT-Blog-Automation."
+echo "Fine-grained PAT: Actions Read and write + Contents Read on blog-automation."
 echo "Classic PAT: repo scope is enough to dispatch workflows."
 echo ""
 

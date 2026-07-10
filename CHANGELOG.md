@@ -25,6 +25,76 @@ Notes / next step:
 - 
 ```
 
+## 2026-07-10 - Stop requiring TOGETHER_API_KEY for evaluate/search
+
+Changed:
+- Incremental and batch evaluate no longer initialize a Together client up front.
+- Evaluate now uses `chat_completion` / `LLM_PROVIDER` (Anthropic by default), so Claude-only runs need `ANTHROPIC_API_KEY` only.
+
+Why:
+- Weekly pipeline failed at search/evaluate with `TOGETHER_API_KEY is not set` even when using Anthropic.
+
+Files touched:
+- `src/blog_automation/pipeline/evaluate.py`
+- `docs/cloudflare-workers-setup.md`
+- `docs/github-actions.md`
+- `CHANGELOG.md`
+
+Tested:
+- `python -c "from blog_automation.pipeline.evaluate import IncrementalEvaluator"` import check
+
+Notes / next step:
+- Re-run weekly pipeline; ensure `ANTHROPIC_API_KEY` is set in the GitHub Environment.
+
+## 2026-07-10 - Consolidate Slack Workers into one shared Worker
+
+Changed:
+- Replaced per-company Worker deployments with a single `blog-automation-slack-events` Worker.
+- Route Slack Events by path (`/slack/events/peachtree`, `/slack/events/tc`) with per-company signing secrets and bot user IDs.
+- Cron now dispatches `weekly.yml` once with `company=both` (one cron slot for both blogs).
+- Updated deploy/secret npm scripts and setup docs.
+
+Why:
+- Stay under the Cloudflare Free plan cron limit and simplify ops to one Worker URL.
+
+Files touched:
+- `workers/slack-events/src/index.js`
+- `workers/slack-events/wrangler.toml`
+- `workers/slack-events/package.json`
+- `scripts/set_worker_github_token.sh`
+- `docs/cloudflare-workers-setup.md`
+- `docs/multi-tenancy.md`
+- `docs/company-duplication-handoff.md`
+- `CHANGELOG.md`
+
+Tested:
+- `node --check workers/slack-events/src/index.js`
+
+Notes / next step:
+- Deploy the shared Worker, set `GITHUB_TOKEN` + `SLACK_SIGNING_SECRET_PEACHTREE` + `SLACK_SIGNING_SECRET_TC`, point each Slack app at its `/slack/events/<slug>` URL, delete old per-company Workers.
+
+## 2026-07-10 - Rename Slack Workers for blog-automation
+
+Changed:
+- Renamed Cloudflare Worker deployments to `peachtree-blog-automation-slack-events` and `tc-blog-automation-slack-events`.
+- Updated setup/handoff docs and the GitHub token rotation script to match the new names.
+
+Why:
+- Make Worker names clearly scoped to the blog-automation project.
+
+Files touched:
+- `workers/slack-events/wrangler.toml`
+- `docs/cloudflare-workers-setup.md`
+- `docs/company-duplication-handoff.md`
+- `scripts/set_worker_github_token.sh`
+- `CHANGELOG.md`
+
+Tested:
+- Not redeployed in this session.
+
+Notes / next step:
+- Redeploy both envs (`npm run deploy:peachtree` / `npm run deploy:tc`), update Slack Request URLs, then delete the old `*-slack-events` Workers in the Cloudflare dashboard.
+
 ## 2026-07-06 - Add helper to rotate Worker GITHUB_TOKEN
 
 Changed:

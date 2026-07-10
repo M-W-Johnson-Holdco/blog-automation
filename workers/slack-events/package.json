@@ -3,13 +3,11 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "dev": "wrangler dev --env peachtree",
-    "deploy:peachtree": "wrangler deploy --env peachtree",
-    "deploy:tc": "wrangler deploy --env tc",
-    "secret:github-token:peachtree": "wrangler secret put GITHUB_TOKEN --env peachtree",
-    "secret:github-token:tc": "wrangler secret put GITHUB_TOKEN --env tc",
-    "secret:slack-signing:peachtree": "wrangler secret put SLACK_SIGNING_SECRET --env peachtree",
-    "secret:slack-signing:tc": "wrangler secret put SLACK_SIGNING_SECRET --env tc"
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "secret:github-token": "wrangler secret put GITHUB_TOKEN",
+    "secret:slack-signing:peachtree": "wrangler secret put SLACK_SIGNING_SECRET_PEACHTREE",
+    "secret:slack-signing:tc": "wrangler secret put SLACK_SIGNING_SECRET_TC"
   },
   "devDependencies": {
     "wrangler": "^4.14.0"

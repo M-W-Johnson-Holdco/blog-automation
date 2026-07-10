@@ -113,7 +113,7 @@ If the new company serves the **same Metro Atlanta market**, search queries can 
 
 | File | Change |
 |------|--------|
-| `workers/slack-events/wrangler.toml` | `name = "[company]-slack-events"`, `GITHUB_REPOSITORY = "org/NewCo-Blog-Automation"` |
+| `workers/slack-events/` | Add slug to `VALID_COMPANIES`, `SLACK_BOT_USER_ID_<SLUG>`, and `SLACK_SIGNING_SECRET_<SLUG>` |
 | `workers/slack-events/package.json` | `name` field |
 | `docs/cloudflare-workers-setup.md`, `docs/slack-webhook-setup.md`, `README.md` | Repo/brand examples |
 
@@ -197,7 +197,7 @@ Defined in `src/blog_automation/together_models.py`. Each role retries down its 
 
 1. [api.slack.com/apps](https://api.slack.com/apps) → **Create New App**.
 2. Create `#[company]-blog-approval`, invite the new bot.
-3. **Event Subscriptions** → Request URL = `https://[company]-slack-events.<subdomain>.workers.dev/slack/events`
+3. **Event Subscriptions** → Request URL = `https://blog-automation-slack-events.<subdomain>.workers.dev/slack/events/[company]`
 4. Bot events: `reaction_added`, `reaction_removed`, `message.channels`
 5. Scopes: `chat:write`, `reactions:read`, `reactions:write`, `files:write`, channel history as needed.
 
@@ -215,7 +215,7 @@ Reactions (via Worker → `slack_approve.yml`):
 cd workers/slack-events
 npm install
 # Edit wrangler.toml first (name + GITHUB_REPOSITORY)
-npx wrangler secret put SLACK_SIGNING_SECRET
+npx wrangler secret put SLACK_SIGNING_SECRET_<SLUG>
 npx wrangler secret put GITHUB_TOKEN
 npx wrangler deploy
 ```

@@ -1,44 +1,38 @@
-# Multi-tenant Slack events Worker — one deployment per company:
-#   npx wrangler deploy --env peachtree
-#   npx wrangler deploy --env tc
+# Shared Slack events Worker for all companies:
+#   npm run deploy
 #
-# Secrets are per-env (set once for each):
-#   npx wrangler secret put SLACK_SIGNING_SECRET --env peachtree
-#   npx wrangler secret put GITHUB_TOKEN --env peachtree
-#   npx wrangler secret put SLACK_SIGNING_SECRET --env tc
-#   npx wrangler secret put GITHUB_TOKEN --env tc
+# Secrets (set once):
+#   npm run secret:github-token
+#   npm run secret:slack-signing:peachtree
+#   npm run secret:slack-signing:tc
+#
+# Slack Event Subscription Request URLs:
+#   https://blog-automation-slack-events.<subdomain>.workers.dev/slack/events/peachtree
+#   https://blog-automation-slack-events.<subdomain>.workers.dev/slack/events/tc
 
+name = "blog-automation-slack-events"
 main = "src/index.js"
 compatibility_date = "2024-06-01"
+
+# Cloudflare account to deploy into (k.liss@peachtreerestorations.com).
+# Find it at dash.cloudflare.com/<account_id> or Workers & Pages → account details.
+# Not a secret — safe to commit. Prevents deploying to the wrong account.
+# account_id = "PASTE_K_LISS_ACCOUNT_ID_HERE"
 
 [observability.logs]
 enabled = true
 invocation_logs = true
 
-[env.peachtree]
-name = "peachtree-slack-events"
-
 # Cloudflare cron is UTC. Run hourly on the configured days and let the Worker
 # dispatch at 8:00 AM America/New_York, plus a noon ET retry on Monday if the
 # 8 AM dispatch never reached GitHub Actions. DST-safe.
-[env.peachtree.triggers]
+# One cron tick dispatches weekly.yml with company=both.
+[triggers]
 crons = ["0 * * * 2,4"]
 
-[env.peachtree.vars]
-COMPANY = "peachtree"
+[vars]
 GITHUB_REPOSITORY = "M-W-Johnson-Holdco/blog-automation"
 GITHUB_REF_NAME = "main"
-# Slack bot user ID (U...) to skip bot-added reaction events.
-SLACK_BOT_USER_ID = "U0B7MAVTH52"
-
-[env.tc]
-name = "tc-slack-events"
-
-[env.tc.triggers]
-crons = ["0 * * * 2,4"]
-
-[env.tc.vars]
-COMPANY = "tc"
-GITHUB_REPOSITORY = "M-W-Johnson-Holdco/blog-automation"
-GITHUB_REF_NAME = "main"
-SLACK_BOT_USER_ID = "U0BB4KHAMCL"
+# Slack bot user IDs (U...) to skip bot-added reaction events, per company.
+SLACK_BOT_USER_ID_PEACHTREE = "U0B7MAVTH52"
+SLACK_BOT_USER_ID_TC = "U0BB4KHAMCL"

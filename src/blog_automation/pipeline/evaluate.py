@@ -27,17 +27,12 @@ from typing import Any
 from dotenv import load_dotenv
 
 from blog_automation.llm_client import chat_completion
-from blog_automation.llm_models import resolve_evaluation_model
+from blog_automation.llm_models import default_evaluation_model, resolve_evaluation_model
 from blog_automation.used_sources import normalize_source_url, source_url, used_source_urls
 from blog_automation.pipeline_costs import record_evaluate_cost, print_inference_stage_cost
-from blog_automation.together_models import (
-    DEFAULT_EVALUATION_MODEL,
-    EVALUATION_MODEL_FALLBACK_CHAIN,
-)
+from blog_automation.together_models import EVALUATION_MODEL_FALLBACK_CHAIN
 from blog_automation.write_common import (
     build_generation_report,
-    extract_usage,
-    get_together_client,
     print_generation_cost_summary,
 )
 from blog_automation.company import get_profile, render_template
@@ -53,7 +48,7 @@ DEFAULT_KEPT_PATH = PROJECT_ROOT / "output" / "sources" / "kept_sources.json"
 PROMPT_PATH = PROJECT_ROOT / "prompts" / "evaluate.txt"
 NATIONAL_TRADE_PROMPT_PATH = PROJECT_ROOT / "prompts" / "evaluate_national_trade.txt"
 
-DEFAULT_MODEL = DEFAULT_EVALUATION_MODEL
+DEFAULT_MODEL = default_evaluation_model()
 KEEP_THRESHOLD = 6.0
 MIN_KEPT_SOURCES = 2
 MIN_EVALUATED_KEPT_TO_PROCEED = 1
@@ -187,12 +182,6 @@ def extract_json_object(text: str) -> dict[str, Any]:
     return parsed
 
 
-def get_together_client():
-    from blog_automation.write_common import get_together_client as _get_client
-
-    return _get_client()
-
-
 def evaluate_source_with_llm(
     source: dict[str, Any],
     prompt_template: str,
@@ -234,6 +223,7 @@ def evaluate_source_with_together(
     *,
     allow_fallback: bool = True,
 ) -> tuple[dict[str, Any], dict[str, int], str | None]:
+    """Backward-compatible alias; Together client is unused (provider via LLM_PROVIDER)."""
     del client
     return evaluate_source_with_llm(
         source,
@@ -336,9 +326,8 @@ class IncrementalEvaluator:
     """Score search candidates one-by-one during Tavily ingest; track kept sources."""
 
     def __init__(self, *, model: str | None = None) -> None:
-        self.model = resolve_evaluation_model(model)
         load_dotenv(PROJECT_ROOT / ".env")
-        self.client = get_together_client()
+        self.model = resolve_evaluation_model(model)
         self.prompt_template = load_prompt()
         self.evaluated: list[dict[str, Any]] = []
         self._evaluated_urls: set[str] = set()
@@ -370,10 +359,9 @@ class IncrementalEvaluator:
 
         title = source.get("title", "Untitled")
         print(f"[evaluate] Scoring search keep ({len(self.evaluated) + 1}): {title}")
-        item, usage, model_returned = evaluate_source_with_together(
+        item, usage, model_returned = evaluate_source_with_llm(
             source,
             self.prompt_template,
-            self.client,
             self.model,
         )
         self.evaluated.append(item)
@@ -443,7 +431,7 @@ def evaluate_sources(
 
     started = time.perf_counter()
     load_dotenv(PROJECT_ROOT / ".env")
-    client = get_together_client()
+    model = resolve_evaluation_model(model)
     prompt_template = load_prompt()
     evaluated: list[dict[str, Any]] = []
     total_usage = {
@@ -456,8 +444,8 @@ def evaluate_sources(
 
     for index, source in enumerate(sources, start=1):
         print(f"[evaluate] Scoring source {index}/{len(sources)}: {source.get('title', 'Untitled')}")
-        item, usage, model_returned = evaluate_source_with_together(
-            source, prompt_template, client, model
+        item, usage, model_returned = evaluate_source_with_llm(
+            source, prompt_template, model
         )
         evaluated.append(item)
         for key in total_usage:

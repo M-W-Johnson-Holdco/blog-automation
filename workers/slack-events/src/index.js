@@ -1,6 +1,13 @@
 /**
  * Cloudflare Worker: verify Slack Events API requests and dispatch GitHub Actions.
+ *
+ * One Worker serves all companies:
+ *   POST /slack/events/peachtree
+ *   POST /slack/events/tc
+ * Cron dispatches weekly.yml with company=both.
  */
+
+const VALID_COMPANIES = ["peachtree", "tc"];
 
 function timingSafeEqual(a, b) {
   if (a.length !== b.length) {
@@ -44,12 +51,31 @@ async function verifySlackRequest(request, signingSecret) {
   return { body, payload: JSON.parse(body) };
 }
 
-function configuredBotUserId(env) {
-  return String(env.SLACK_BOT_USER_ID || env.SLACK_APPROVAL_BOT_USER_ID || "").trim();
+function companyFromPath(pathname) {
+  const match = String(pathname || "").match(/^\/slack\/events\/([a-z0-9_-]+)\/?$/i);
+  if (!match) {
+    return "";
+  }
+  const company = match[1].toLowerCase();
+  return VALID_COMPANIES.includes(company) ? company : "";
 }
 
-function isConfiguredBotUser(event, env) {
-  const botUserId = configuredBotUserId(env);
+function companyContext(company, env) {
+  const slug = String(company || "").trim().toLowerCase();
+  if (!VALID_COMPANIES.includes(slug)) {
+    throw new Error(`Unknown company "${company}". Expected one of: ${VALID_COMPANIES.join(", ")}.`);
+  }
+  const secretKey = `SLACK_SIGNING_SECRET_${slug.toUpperCase()}`;
+  const botKey = `SLACK_BOT_USER_ID_${slug.toUpperCase()}`;
+  return {
+    company: slug,
+    signingSecret: String(env[secretKey] || "").trim(),
+    botUserId: String(env[botKey] || "").trim(),
+    secretKey,
+  };
+}
+
+function isConfiguredBotUser(event, botUserId) {
   return Boolean(botUserId && event && event.user === botUserId);
 }
 
@@ -73,7 +99,7 @@ function isRepeatPipelineReaction(event) {
   return event.type === "reaction_added" && event.reaction === "repeat" && event.item && event.item.type === "message";
 }
 
-function shouldForwardEvent(event, env = {}) {
+function shouldForwardEvent(event, botUserId = "") {
   if (!event || typeof event !== "object") {
     return false;
   }
@@ -84,7 +110,7 @@ function shouldForwardEvent(event, env = {}) {
     return false;
   }
 
-  if (isConfiguredBotUser(event, env)) {
+  if (isConfiguredBotUser(event, botUserId)) {
     return false;
   }
 
@@ -141,26 +167,18 @@ async function dispatchGithubWorkflow(env, workflowFile, inputs = {}) {
   }
 }
 
-function companyVar(env) {
-  const company = String(env.COMPANY || "").trim().toLowerCase();
-  if (!company) {
-    throw new Error("COMPANY must be configured on the Worker (peachtree or tc).");
-  }
-  return company;
-}
-
-async function dispatchSlackApproveWorkflow(env, event, eventId) {
+async function dispatchSlackApproveWorkflow(env, company, event, eventId) {
   await dispatchGithubWorkflow(env, "slack_approve.yml", {
     event_b64: encodeEventB64(event),
     event_id: eventId || `${event.type}-${Date.now()}`,
-    company: companyVar(env),
+    company,
   });
 }
 
-async function dispatchWeeklyPipelineWorkflow(env, inputs = {}) {
+async function dispatchWeeklyPipelineWorkflow(env, company, inputs = {}) {
   await dispatchGithubWorkflow(env, "weekly.yml", {
     send_to_slack: "true",
-    company: companyVar(env),
+    company,
     ...inputs,
   });
 }
@@ -254,6 +272,7 @@ export default {
       return;
     }
 
+    // One cron tick runs both companies via weekly.yml's matrix + company=both.
     if (action === "retry") {
       ctx.waitUntil(
         hasWeeklyRunToday(env, event.scheduledTime)
@@ -261,7 +280,7 @@ export default {
             if (alreadyRan) {
               return;
             }
-            return dispatchWeeklyPipelineWorkflow(env, { scheduled_day: scheduledDay });
+            return dispatchWeeklyPipelineWorkflow(env, "both", { scheduled_day: scheduledDay });
           })
           .catch((error) => {
             console.error("scheduled pipeline retry dispatch failed", error);
@@ -271,7 +290,7 @@ export default {
     }
 
     ctx.waitUntil(
-      dispatchWeeklyPipelineWorkflow(env, { scheduled_day: scheduledDay }).catch((error) => {
+      dispatchWeeklyPipelineWorkflow(env, "both", { scheduled_day: scheduledDay }).catch((error) => {
         console.error("scheduled pipeline dispatch failed", error);
       }),
     );
@@ -281,7 +300,11 @@ export default {
     if (request.method === "GET") {
       const url = new URL(request.url);
       if (url.pathname === "/health") {
-        return Response.json({ status: "ok" });
+        return Response.json({
+          status: "ok",
+          companies: VALID_COMPANIES,
+          event_paths: VALID_COMPANIES.map((company) => `/slack/events/${company}`),
+        });
       }
       return new Response("Blog Automation Slack Events Worker", { status: 200 });
     }
@@ -291,18 +314,28 @@ export default {
     }
 
     const url = new URL(request.url);
-    if (url.pathname !== "/slack/events") {
-      return new Response("Not Found", { status: 404 });
+    const company = companyFromPath(url.pathname);
+    if (!company) {
+      return new Response(
+        `Not Found. Use one of: ${VALID_COMPANIES.map((slug) => `/slack/events/${slug}`).join(", ")}`,
+        { status: 404 },
+      );
     }
 
-    const signingSecret = env.SLACK_SIGNING_SECRET;
-    if (!signingSecret) {
-      return new Response("SLACK_SIGNING_SECRET is not configured.", { status: 500 });
+    let context;
+    try {
+      context = companyContext(company, env);
+    } catch (error) {
+      return new Response(String(error.message || error), { status: 404 });
+    }
+
+    if (!context.signingSecret) {
+      return new Response(`${context.secretKey} is not configured.`, { status: 500 });
     }
 
     let payload;
     try {
-      ({ payload } = await verifySlackRequest(request, signingSecret));
+      ({ payload } = await verifySlackRequest(request, context.signingSecret));
     } catch (error) {
       return new Response(String(error.message || error), { status: 401 });
     }
@@ -313,18 +346,18 @@ export default {
 
     if (payload.type === "event_callback") {
       const event = payload.event || {};
-      if (isConfiguredBotUser(event, env)) {
+      if (isConfiguredBotUser(event, context.botUserId)) {
         return Response.json({ ok: true });
       }
       if (isPipelineMentionCommand(event) || isRepeatPipelineReaction(event)) {
         ctx.waitUntil(
-          dispatchWeeklyPipelineWorkflow(env).catch((error) => {
+          dispatchWeeklyPipelineWorkflow(env, context.company).catch((error) => {
             console.error("pipeline dispatch failed", error);
           }),
         );
-      } else if (shouldForwardEvent(event, env)) {
+      } else if (shouldForwardEvent(event, context.botUserId)) {
         ctx.waitUntil(
-          dispatchSlackApproveWorkflow(env, event, payload.event_id || "").catch((error) => {
+          dispatchSlackApproveWorkflow(env, context.company, event, payload.event_id || "").catch((error) => {
             console.error("dispatch failed", error);
           }),
         );

@@ -51,7 +51,7 @@ Add at **Settings → Secrets and variables → Actions → New repository secre
 | Secret | Used for |
 |--------|----------|
 | `TAVILY_API_KEY` | News search |
-| `TOGETHER_API_KEY` | Evaluate + write |
+| `TOGETHER_API_KEY` | Optional (Together rollback only) |
 | `SLACK_APPROVAL_BOT_TOKEN` | Post draft to Slack (`xoxb-…`) |
 | `SLACK_APPROVAL_CHANNEL` | Channel ID — or move to a config file later |
 

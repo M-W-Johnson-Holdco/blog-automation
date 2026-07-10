@@ -13,8 +13,8 @@ now historical).
   at import time (`blog_automation.company.get_profile()`).
 - Default when unset: `peachtree`.
 - **One process = one company.** The profile is cached per process; don't try
-  to switch companies mid-run. CI and the Workers run a separate job/deployment
-  per company.
+  to switch companies mid-run. CI runs a separate job per company; the shared
+  Cloudflare Worker routes by `/slack/events/<slug>`.
 
 ## What is shared vs. per-company
 
@@ -26,7 +26,7 @@ now historical).
 | Workflows / Worker code | `feedback/<slug>/style_notes.txt` |
 | — | `output/<slug>/`, `generated/<slug>/` (runtime, isolated) |
 | — | GitHub Environment secrets (`peachtree`, `tc`) |
-| — | Cloudflare Worker deployment (`--env <slug>`) |
+| — | Cloudflare Worker path `/slack/events/<slug>` + signing secret |
 
 Credentials stay isolated per company: separate Slack apps, separate Tavily
 accounts, separate PSAI tenants. Shared keys (Anthropic, Together) live at the
@@ -45,10 +45,12 @@ GitHub repo level.
 5. `mkdir -p generated/<slug>/{runs,approved}`, seed `slack_index.json`
    (`{"messages": {}}`) and `weekly_pipeline.json` (`{}`).
 6. Add the slug to the matrix in `.github/workflows/weekly.yml`, the `company`
-   choice inputs in `slack_approve.yml` / `publish.yml`, and add a
-   `[env.<slug>]` block in `workers/slack-events/wrangler.toml`.
-7. Create the GitHub Environment `<slug>` with its secrets; a new Slack app +
-   Cloudflare Worker deployment (`wrangler deploy --env <slug>`).
+   choice inputs in `slack_approve.yml` / `publish.yml`, and add the slug to
+   `VALID_COMPANIES` plus `SLACK_BOT_USER_ID_<SLUG>` in
+   `workers/slack-events/` (Worker code + `wrangler.toml`).
+7. Create the GitHub Environment `<slug>` with its secrets; a new Slack app;
+   set `SLACK_SIGNING_SECRET_<SLUG>` on the shared Worker; point the Slack
+   Request URL at `/slack/events/<slug>`.
 8. Verify: `COMPANY=<slug> PYTHONPATH=src python -m unittest discover -s tests`.
 
 ## Verifying prompt templates
