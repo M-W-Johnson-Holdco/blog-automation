@@ -25,6 +25,24 @@ Notes / next step:
 - 
 ```
 
+## 2026-07-10 - Raise domain-stages Tavily credit cap to 200
+
+Changed:
+- `DOMAIN_STAGES_MAX_TAVILY_CREDITS` increased from 150 to 200.
+
+Why:
+- Give `--domain-stages` runs more headroom before query trimming without jumping to 250.
+
+Files touched:
+- `src/blog_automation/pipeline/search.py`
+- `CHANGELOG.md`
+
+Tested:
+- Not run (constant-only change).
+
+Notes / next step:
+- Default weekly search still uses the 100-credit cap unless `--domain-stages` is passed.
+
 ## 2026-07-10 - Stop requiring TOGETHER_API_KEY for evaluate/search
 
 Changed:
