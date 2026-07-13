@@ -1,1 +1,9 @@
-{}
+{
+  "iso_week": "2026-W29",
+  "monday": {
+    "run_id": "29248260520",
+    "status": "failed",
+    "finished_at": "2026-07-13T12:02:31+00:00"
+  },
+  "monday_failure_notified_at": "2026-07-13T12:02:33+00:00"
+}
