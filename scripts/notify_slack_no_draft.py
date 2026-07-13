@@ -15,6 +15,7 @@ from blog_automation.weekly_pipeline import (
     mark_no_draft_notified,
     monday_failure_slack_text,
     no_draft_slack_text,
+    resolve_pipeline_failure_reason,
     should_notify_monday_failure,
     should_notify_no_draft,
 )
@@ -26,21 +27,27 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--day", required=True, help="Scheduled day from weekly plan")
     args = parser.parse_args(argv)
 
+    failure_reason = resolve_pipeline_failure_reason()
+    iso_week = current_iso_week()
+
     if args.day == "monday":
         if not should_notify_monday_failure():
             print("[notify_slack_no_draft] Skipping — draft exists or already notified.")
             return
-        text = monday_failure_slack_text(iso_week=current_iso_week())
+        text = monday_failure_slack_text(iso_week=iso_week, reason=failure_reason)
         mark = mark_monday_failure_notified
     elif args.day == "wednesday":
         if not should_notify_no_draft():
             print("[notify_slack_no_draft] Skipping — draft exists or already notified.")
             return
-        text = no_draft_slack_text(iso_week=current_iso_week())
+        text = no_draft_slack_text(iso_week=iso_week, reason=failure_reason)
         mark = mark_no_draft_notified
     else:
         print(f"[notify_slack_no_draft] Skipping — no notification for day={args.day!r}.")
         return
+
+    if failure_reason:
+        print(f"[notify_slack_no_draft] Failure reason: {failure_reason}")
 
     client = get_slack_client()
     channel = get_approval_channel()

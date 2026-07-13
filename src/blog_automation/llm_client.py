@@ -30,6 +30,18 @@ _ROLE_FALLBACK_CHAINS: dict[str, tuple[str, ...]] = {
     "fact_audit": FACT_AUDIT_MODEL_FALLBACK_CHAIN,
 }
 
+_ANTHROPIC_CREDIT_ERROR_MARKERS = (
+    "credit balance is too low",
+    "purchase credits",
+    "plans & billing",
+    "monthly spend limit",
+    "spending limit",
+)
+
+
+class LlmCreditsExhaustedError(EnvironmentError):
+    """Raised when the active LLM provider cannot run due to billing/credits."""
+
 
 def get_llm_provider() -> str:
     provider = os.getenv(LLM_PROVIDER_ENV, DEFAULT_LLM_PROVIDER).strip().lower()
@@ -55,6 +67,48 @@ def get_anthropic_client():
     if not api_key:
         raise EnvironmentError(f"{ANTHROPIC_API_KEY_ENV} is not set. Add it to .env.")
     return anthropic.Anthropic(api_key=api_key)
+
+
+def _is_anthropic_credit_error(exc: BaseException) -> bool:
+    text = str(exc).lower()
+    return any(marker in text for marker in _ANTHROPIC_CREDIT_ERROR_MARKERS)
+
+
+def ensure_llm_credits(*, log_prefix: str = "[llm]") -> None:
+    """Fail fast if the active LLM provider cannot run — call before Tavily spend.
+
+    Anthropic does not expose a public credit-balance endpoint, so this sends a
+    1-token probe request. When the account is out of credits, abort before search.
+    """
+    provider = get_llm_provider()
+    if provider == "together":
+        from blog_automation.write_common import get_together_client
+
+        get_together_client()
+        print(f"{log_prefix} Preflight: Together API key present", flush=True)
+        return
+
+    client = get_anthropic_client()
+    from blog_automation.claude_models import DEFAULT_EVALUATION_MODEL
+
+    print(f"{log_prefix} Preflight: checking Anthropic API credits…", flush=True)
+    try:
+        client.messages.create(
+            model=DEFAULT_EVALUATION_MODEL,
+            max_tokens=1,
+            messages=[{"role": "user", "content": "ping"}],
+        )
+    except Exception as exc:
+        if _is_anthropic_credit_error(exc):
+            raise LlmCreditsExhaustedError(
+                "Anthropic API credit balance is too low (or spend limit reached). "
+                "Add credits at https://console.anthropic.com/settings/billing "
+                "before running search so Tavily credits are not wasted."
+            ) from exc
+        raise EnvironmentError(
+            f"Anthropic API preflight failed before search: {exc}"
+        ) from exc
+    print(f"{log_prefix} Preflight: Anthropic API OK", flush=True)
 
 
 def normalize_anthropic_usage(usage: Any) -> dict[str, int]:

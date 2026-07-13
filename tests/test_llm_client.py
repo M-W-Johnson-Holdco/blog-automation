@@ -10,6 +10,7 @@ from unittest.mock import MagicMock, patch
 from blog_automation.llm_client import (
     anthropic_omits_sampling_params,
     chat_completion,
+    ensure_llm_credits,
     get_llm_provider,
     normalize_anthropic_usage,
     split_messages_for_anthropic,
@@ -115,6 +116,47 @@ class LlmProviderTests(unittest.TestCase):
     def test_get_llm_provider_accepts_claude_alias(self) -> None:
         with patch.dict(os.environ, {"LLM_PROVIDER": "claude"}, clear=False):
             self.assertEqual(get_llm_provider(), "anthropic")
+
+
+class EnsureLlmCreditsTests(unittest.TestCase):
+    def test_anthropic_preflight_passes(self) -> None:
+        mock_client = MagicMock()
+        mock_client.messages.create.return_value = SimpleNamespace(content=[])
+        with patch.dict(
+            os.environ,
+            {"LLM_PROVIDER": "anthropic", "ANTHROPIC_API_KEY": "test-key"},
+            clear=False,
+        ):
+            with patch("blog_automation.llm_client.get_anthropic_client", return_value=mock_client):
+                ensure_llm_credits()
+        mock_client.messages.create.assert_called_once()
+        kwargs = mock_client.messages.create.call_args.kwargs
+        self.assertEqual(kwargs["max_tokens"], 1)
+
+    def test_anthropic_preflight_raises_on_low_credits(self) -> None:
+        from blog_automation.llm_client import LlmCreditsExhaustedError
+
+        mock_client = MagicMock()
+        mock_client.messages.create.side_effect = Exception(
+            "Error code: 400 - Your credit balance is too low to access the Anthropic API. "
+            "Please go to Plans & Billing to upgrade or purchase credits."
+        )
+        with patch.dict(
+            os.environ,
+            {"LLM_PROVIDER": "anthropic", "ANTHROPIC_API_KEY": "test-key"},
+            clear=False,
+        ):
+            with patch("blog_automation.llm_client.get_anthropic_client", return_value=mock_client):
+                with self.assertRaises(LlmCreditsExhaustedError) as ctx:
+                    ensure_llm_credits()
+        self.assertIn("credit balance is too low", str(ctx.exception).lower())
+        self.assertIn("tavily", str(ctx.exception).lower())
+
+    def test_together_preflight_only_checks_key(self) -> None:
+        with patch.dict(os.environ, {"LLM_PROVIDER": "together"}, clear=False):
+            with patch("blog_automation.write_common.get_together_client") as mock_together:
+                ensure_llm_credits()
+        mock_together.assert_called_once()
 
 
 if __name__ == "__main__":

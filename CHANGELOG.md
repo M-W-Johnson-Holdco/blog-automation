@@ -25,6 +25,31 @@ Notes / next step:
 - 
 ```
 
+## 2026-07-13 - Preflight Anthropic credits + credit-aware Slack failure copy
+
+Changed:
+- Added `ensure_llm_credits()` — a 1-token Anthropic probe (or Together key check) that runs before incremental search spends Tavily credits.
+- `search_roofing_news(..., incremental_evaluate=True)` now fails fast with a clear billing message when Anthropic credits are exhausted.
+- Monday/Wednesday no-draft Slack alerts now say credits are exhausted and ask to refill when that was the failure reason (instead of “no qualifying stories”).
+
+Why:
+- Monday scheduled runs burned Tavily credits then failed evaluate/write with “credit balance is too low”, and Slack still blamed quiet news weeks.
+
+Files touched:
+- `src/blog_automation/llm_client.py`
+- `src/blog_automation/pipeline/search.py`
+- `src/blog_automation/weekly_pipeline.py`
+- `scripts/notify_slack_no_draft.py`
+- `tests/test_llm_client.py`
+- `tests/test_weekly_failure_slack.py`
+- `CHANGELOG.md`
+
+Tested:
+- `PYTHONPATH=src python -m unittest tests.test_llm_client tests.test_weekly_failure_slack -v`
+
+Notes / next step:
+- Add Anthropic credits, push, then re-run Weekly Blog Pipeline.
+
 ## 2026-07-10 - Inline table borders for PSAI HTML
 
 Changed:

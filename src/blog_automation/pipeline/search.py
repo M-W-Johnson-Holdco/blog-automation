@@ -15,6 +15,7 @@ Output:
 
 Required environment:
     TAVILY_API_KEY
+    ANTHROPIC_API_KEY (when LLM_PROVIDER=anthropic and --incremental-evaluate)
 """
 
 from __future__ import annotations
@@ -33,6 +34,8 @@ from urllib.parse import urlparse
 
 from dotenv import load_dotenv
 
+from blog_automation.company import get_profile
+from blog_automation.llm_client import LlmCreditsExhaustedError, ensure_llm_credits
 from blog_automation.pipeline.evaluate import (
     DEFAULT_KEPT_PATH,
     IncrementalEvaluator,
@@ -40,16 +43,20 @@ from blog_automation.pipeline.evaluate import (
     MIN_EVALUATED_KEPT_TO_PROCEED,
     TARGET_EVALUATED_KEPT,
 )
-from blog_automation.used_sources import normalize_source_url, used_source_urls
 from blog_automation.pipeline_costs import (
     estimate_tavily_cost_usd,
+    mark_tavily_search_ran,
     record_evaluate_cost,
     record_search_cost,
     reset_pipeline_costs,
-    mark_tavily_search_ran,
     tavily_usd_per_credit,
 )
-from blog_automation.company import get_profile
+from blog_automation.used_sources import normalize_source_url, used_source_urls
+from blog_automation.weekly_pipeline import (
+    FAILURE_REASON_ANTHROPIC_CREDITS,
+    clear_pipeline_failure_reason,
+    record_pipeline_failure_reason,
+)
 
 # Company profile: all brand/geo/market-specific search data lives in
 # blog_automation/companies/<slug>.py. Bound once at import time — one
@@ -794,6 +801,14 @@ def search_roofing_news(
 ) -> list[dict]:
     load_dotenv(PROJECT_ROOT / ".env")
     reset_pipeline_costs()
+    clear_pipeline_failure_reason()
+    # Fail before any Tavily spend if evaluate/write cannot run (out of Anthropic credits).
+    if incremental_evaluate:
+        try:
+            ensure_llm_credits(log_prefix=f"[{LOG_PREFIX}]")
+        except LlmCreditsExhaustedError as exc:
+            record_pipeline_failure_reason(FAILURE_REASON_ANTHROPIC_CREDITS, str(exc))
+            raise
     # Domain-stage runs cover 8 stages; auto-raise the credit cap so the query
     # plan isn't trimmed to a handful of searches unless the caller overrode it.
     if use_domain_stages and max_tavily_credits == DEFAULT_MAX_TAVILY_CREDITS:

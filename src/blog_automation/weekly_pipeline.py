@@ -8,10 +8,18 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from blog_automation.paths import GENERATED_DIR, GENERATED_WEEKLY_PIPELINE_PATH, PROJECT_ROOT
+from blog_automation.paths import GENERATED_DIR, GENERATED_WEEKLY_PIPELINE_PATH, OUTPUT_DIR, PROJECT_ROOT
 from blog_automation.company import get_profile
 
 SCHEDULED_DAYS = frozenset({"monday", "wednesday"})
+PIPELINE_FAILURE_REASON_PATH = OUTPUT_DIR / "pipeline_failure_reason.json"
+FAILURE_REASON_ANTHROPIC_CREDITS = "anthropic_credits"
+_ANTHROPIC_CREDIT_LOG_MARKERS = (
+    "credit balance is too low",
+    "llmcreditsexhausted",
+    "anthropic api credit balance is too low",
+    "purchase credits",
+)
 
 
 def utc_now() -> str:
@@ -56,6 +64,68 @@ def draft_posted_this_week(state: dict[str, Any] | None = None) -> bool:
     return bool(str(state.get("draft_run_id") or "").strip())
 
 
+def clear_pipeline_failure_reason() -> None:
+    if PIPELINE_FAILURE_REASON_PATH.is_file():
+        PIPELINE_FAILURE_REASON_PATH.unlink()
+
+
+def record_pipeline_failure_reason(code: str, message: str = "") -> None:
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "code": code,
+        "message": message,
+        "recorded_at": utc_now(),
+    }
+    with PIPELINE_FAILURE_REASON_PATH.open("w", encoding="utf-8") as handle:
+        json.dump(payload, handle, indent=2)
+        handle.write("\n")
+    print(
+        f"[weekly] Recorded failure reason {code!r} → "
+        f"{PIPELINE_FAILURE_REASON_PATH.relative_to(PROJECT_ROOT)}"
+    )
+
+
+def load_pipeline_failure_reason() -> dict[str, Any] | None:
+    if not PIPELINE_FAILURE_REASON_PATH.is_file():
+        return None
+    with PIPELINE_FAILURE_REASON_PATH.open("r", encoding="utf-8") as handle:
+        data = json.load(handle)
+    return data if isinstance(data, dict) else None
+
+
+def _log_mentions_anthropic_credits(text: str) -> bool:
+    lowered = text.lower()
+    return any(marker in lowered for marker in _ANTHROPIC_CREDIT_LOG_MARKERS)
+
+
+def detect_anthropic_credits_failure_from_logs() -> bool:
+    """Fallback detector when a marker file was not written (e.g. mid-run billing error)."""
+    candidates: list[Path] = []
+    pipeline_log = OUTPUT_DIR / "drafts" / "pipeline_run.log"
+    if pipeline_log.is_file():
+        candidates.append(pipeline_log)
+    multi_run = OUTPUT_DIR / "multi_run"
+    if multi_run.is_dir():
+        candidates.extend(sorted(multi_run.glob("*/run.log"), reverse=True)[:3])
+    for path in candidates:
+        try:
+            text = path.read_text(encoding="utf-8", errors="ignore")
+        except OSError:
+            continue
+        if _log_mentions_anthropic_credits(text):
+            return True
+    return False
+
+
+def resolve_pipeline_failure_reason() -> str | None:
+    recorded = load_pipeline_failure_reason()
+    if recorded and str(recorded.get("code") or "").strip():
+        return str(recorded["code"]).strip()
+    if detect_anthropic_credits_failure_from_logs():
+        return FAILURE_REASON_ANTHROPIC_CREDITS
+    return None
+
+
 def should_notify_no_draft(state: dict[str, Any] | None = None) -> bool:
     state = reset_week_state_if_new_week(state or load_weekly_state())
     if draft_posted_this_week(state):
@@ -74,7 +144,14 @@ def should_notify_monday_failure(state: dict[str, Any] | None = None) -> bool:
     return True
 
 
-def monday_failure_slack_text(*, iso_week: str) -> str:
+def monday_failure_slack_text(*, iso_week: str, reason: str | None = None) -> str:
+    if reason == FAILURE_REASON_ANTHROPIC_CREDITS:
+        return (
+            f"No blog draft for week {iso_week} — Anthropic API credits are exhausted. "
+            "Please refill credits at https://console.anthropic.com/settings/billing, "
+            "then re-run the Weekly Blog Pipeline. "
+            "Wednesday auto-retry will also fail until credits are restored."
+        )
     return (
         f"No blog draft for week {iso_week} — search found no qualifying "
         f"{get_profile().METRO_AREA} roofing stories. Will retry Wednesday at 8:00 AM ET "
@@ -82,7 +159,13 @@ def monday_failure_slack_text(*, iso_week: str) -> str:
     )
 
 
-def no_draft_slack_text(*, iso_week: str) -> str:
+def no_draft_slack_text(*, iso_week: str, reason: str | None = None) -> str:
+    if reason == FAILURE_REASON_ANTHROPIC_CREDITS:
+        return (
+            f"No blog draft for week {iso_week} — Anthropic API credits are exhausted. "
+            "Please refill credits at https://console.anthropic.com/settings/billing, "
+            "then re-run the Weekly Blog Pipeline. Next scheduled run: Monday."
+        )
     return (
         f"No blog draft for week {iso_week} — search found no qualifying "
         f"{get_profile().METRO_AREA} roofing stories after the Wednesday retry. "
