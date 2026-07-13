@@ -144,13 +144,38 @@ def should_notify_monday_failure(state: dict[str, Any] | None = None) -> bool:
     return True
 
 
+def should_notify_credits_failure(state: dict[str, Any] | None = None) -> bool:
+    """Credit alerts are separate from quiet-news alerts (and work for manual runs)."""
+    state = reset_week_state_if_new_week(state or load_weekly_state())
+    if state.get("credits_failure_notified_at"):
+        return False
+    return True
+
+
+def credits_failure_slack_text(*, iso_week: str) -> str:
+    return (
+        f"No blog draft for week {iso_week} ({get_profile().COMPANY_SHORT}) — "
+        "Anthropic API credits are exhausted. "
+        "Please refill credits at https://console.anthropic.com/settings/billing, "
+        "then re-run the Weekly Blog Pipeline."
+    )
+
+
+def manual_failure_slack_text(*, iso_week: str, reason: str | None = None) -> str:
+    if reason == FAILURE_REASON_ANTHROPIC_CREDITS:
+        return credits_failure_slack_text(iso_week=iso_week)
+    return (
+        f"No blog draft for week {iso_week} ({get_profile().COMPANY_SHORT}) — "
+        f"search found no qualifying {get_profile().METRO_AREA} roofing stories "
+        "(manual run). Re-run the Weekly Blog Pipeline after conditions improve, "
+        "or wait for the next scheduled Monday/Wednesday attempt."
+    )
+
+
 def monday_failure_slack_text(*, iso_week: str, reason: str | None = None) -> str:
     if reason == FAILURE_REASON_ANTHROPIC_CREDITS:
-        return (
-            f"No blog draft for week {iso_week} — Anthropic API credits are exhausted. "
-            "Please refill credits at https://console.anthropic.com/settings/billing, "
-            "then re-run the Weekly Blog Pipeline. "
-            "Wednesday auto-retry will also fail until credits are restored."
+        return credits_failure_slack_text(iso_week=iso_week) + (
+            " Wednesday auto-retry will also fail until credits are restored."
         )
     return (
         f"No blog draft for week {iso_week} — search found no qualifying "
@@ -161,11 +186,7 @@ def monday_failure_slack_text(*, iso_week: str, reason: str | None = None) -> st
 
 def no_draft_slack_text(*, iso_week: str, reason: str | None = None) -> str:
     if reason == FAILURE_REASON_ANTHROPIC_CREDITS:
-        return (
-            f"No blog draft for week {iso_week} — Anthropic API credits are exhausted. "
-            "Please refill credits at https://console.anthropic.com/settings/billing, "
-            "then re-run the Weekly Blog Pipeline. Next scheduled run: Monday."
-        )
+        return credits_failure_slack_text(iso_week=iso_week) + " Next scheduled run: Monday."
     return (
         f"No blog draft for week {iso_week} — search found no qualifying "
         f"{get_profile().METRO_AREA} roofing stories after the Wednesday retry. "
@@ -280,5 +301,12 @@ def mark_no_draft_notified() -> dict[str, Any]:
 def mark_monday_failure_notified() -> dict[str, Any]:
     state = reset_week_state_if_new_week(load_weekly_state())
     state["monday_failure_notified_at"] = utc_now()
+    save_weekly_state(state)
+    return state
+
+
+def mark_credits_failure_notified() -> dict[str, Any]:
+    state = reset_week_state_if_new_week(load_weekly_state())
+    state["credits_failure_notified_at"] = utc_now()
     save_weekly_state(state)
     return state

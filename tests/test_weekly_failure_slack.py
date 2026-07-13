@@ -31,7 +31,33 @@ class WeeklyFailureSlackTextTests(unittest.TestCase):
         self.assertIn("Anthropic API credits are exhausted", text)
         self.assertIn("refill", text.lower())
         self.assertIn("console.anthropic.com/settings/billing", text)
+        self.assertIn("Wednesday auto-retry", text)
         self.assertNotIn("no qualifying", text.lower())
+
+    def test_credits_text_includes_company(self) -> None:
+        from blog_automation.weekly_pipeline import credits_failure_slack_text
+
+        text = credits_failure_slack_text(iso_week="2026-W29")
+        self.assertIn("Anthropic API credits are exhausted", text)
+        self.assertRegex(text, r"\((Peachtree|TC Roofing)\)")
+
+    def test_manual_failure_mentions_manual_run(self) -> None:
+        from blog_automation.weekly_pipeline import manual_failure_slack_text
+
+        text = manual_failure_slack_text(iso_week="2026-W29")
+        self.assertIn("manual run", text.lower())
+        self.assertIn("no qualifying", text.lower())
+        self.assertRegex(text, r"\((Peachtree|TC Roofing)\)")
+
+    def test_manual_credits_asks_to_refill(self) -> None:
+        from blog_automation.weekly_pipeline import manual_failure_slack_text
+
+        text = manual_failure_slack_text(
+            iso_week="2026-W29",
+            reason=FAILURE_REASON_ANTHROPIC_CREDITS,
+        )
+        self.assertIn("Anthropic API credits are exhausted", text)
+        self.assertNotIn("manual run", text.lower())
 
     def test_wednesday_credits_asks_to_refill(self) -> None:
         text = no_draft_slack_text(

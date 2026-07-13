@@ -25,6 +25,50 @@ Notes / next step:
 - 
 ```
 
+## 2026-07-13 - Slack failure alerts for manual weekly runs
+
+Changed:
+- Manual Weekly Blog Pipeline failures now post to Slack (credits or quiet-news), matching scheduled-run feedback.
+- Notify step already runs on any failed pipeline attempt; the notify script no longer skips `scheduled_day=manual`.
+
+Why:
+- Manual re-runs aborted correctly but Slack stayed silent unless the day was monday/wednesday.
+
+Files touched:
+- `scripts/notify_slack_no_draft.py`
+- `src/blog_automation/weekly_pipeline.py`
+- `.github/workflows/weekly.yml`
+- `tests/test_weekly_failure_slack.py`
+- `CHANGELOG.md`
+
+Tested:
+- `PYTHONPATH=src python -m unittest tests.test_weekly_failure_slack -v`
+
+Notes / next step:
+- Re-run Weekly Blog Pipeline with default `scheduled_day=manual` to confirm Slack gets the credit/quiet-news failure post.
+
+## 2026-07-13 - Slack credit alerts on manual weekly runs too
+
+Changed:
+- Weekly failure notify step now runs for any failed pipeline attempt (not only monday/wednesday inputs).
+- Anthropic credit failures post a refill Slack alert even when `scheduled_day` is `manual`.
+
+Why:
+- Manual re-runs after the credit preflight correctly aborted before Tavily, but Slack stayed silent because notify was gated to monday/wednesday only.
+
+Files touched:
+- `.github/workflows/weekly.yml`
+- `scripts/notify_slack_no_draft.py`
+- `src/blog_automation/weekly_pipeline.py`
+- `tests/test_weekly_failure_slack.py`
+- `CHANGELOG.md`
+
+Tested:
+- `PYTHONPATH=src python -m unittest tests.test_weekly_failure_slack tests.test_llm_client -v`
+
+Notes / next step:
+- Re-run Weekly Blog Pipeline (manual is fine); expect a Slack refill alert if credits are still empty.
+
 ## 2026-07-13 - Preflight Anthropic credits + credit-aware Slack failure copy
 
 Changed:

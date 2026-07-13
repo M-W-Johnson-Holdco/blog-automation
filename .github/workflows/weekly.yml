@@ -177,17 +177,20 @@ jobs:
           retention-days: 30
 
       - name: Record failure and notify if final
-        if: failure() && steps.plan.outputs.run_pipeline == 'true' && (inputs.scheduled_day == 'monday' || inputs.scheduled_day == 'wednesday')
+        if: failure() && steps.plan.outputs.run_pipeline == 'true'
         env:
           PYTHONPATH: src
           SLACK_APPROVAL_BOT_TOKEN: ${{ secrets.SLACK_APPROVAL_BOT_TOKEN }}
           SLACK_APPROVAL_CHANNEL: ${{ secrets.SLACK_APPROVAL_CHANNEL }}
         run: |
-          python scripts/weekly_pipeline_record.py \
-            --status failed \
-            --day "${{ steps.plan.outputs.scheduled_day }}" \
-            --run-id "${{ github.run_id }}"
-          python scripts/notify_slack_no_draft.py --day "${{ steps.plan.outputs.scheduled_day }}"
+          DAY="${{ steps.plan.outputs.scheduled_day }}"
+          if [ "$DAY" = "monday" ] || [ "$DAY" = "wednesday" ]; then
+            python scripts/weekly_pipeline_record.py \
+              --status failed \
+              --day "$DAY" \
+              --run-id "${{ github.run_id }}"
+          fi
+          python scripts/notify_slack_no_draft.py --day "$DAY"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git pull --rebase origin "${GITHUB_REF_NAME:-main}" || true
