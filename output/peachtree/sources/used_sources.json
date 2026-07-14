@@ -1,0 +1,30 @@
+{
+  "updated_at": "2026-07-14T18:23:56.131216+00:00",
+  "source_count": 2,
+  "sources": [
+    {
+      "url": "https://www.cbs46.com/2026/01/10/live-updates-tornado-watch-issued-west-georgia-counties-cold-front-moves",
+      "normalized_url": "https://cbs46.com/2026/01/10/live-updates-tornado-watch-issued-west-georgia-counties-cold-front-moves",
+      "domain": "cbs46.com",
+      "title": "UPDATES: Cold front brings severe thunderstorm, tornado threats to north Georgia",
+      "strategy_cluster": "storm_damage",
+      "first_used_at": "2026-07-14T18:23:56.131023+00:00",
+      "last_used_at": "2026-07-14T18:23:56.131023+00:00",
+      "last_draft_path": "generated/peachtree/approved/drafts_md/2026-07-13-174110-hail-damage-in-pickens-dawson-gilmer-what-to-inspect-now.md",
+      "last_runner": "blog_automation.pipeline.approve_listen",
+      "use_count": 1
+    },
+    {
+      "url": "https://www.cbs46.com/2026/02/27/many-north-georgia-reportedly-seeing-hail-severe-thunderstorm-moves-through",
+      "normalized_url": "https://cbs46.com/2026/02/27/many-north-georgia-reportedly-seeing-hail-severe-thunderstorm-moves-through",
+      "domain": "cbs46.com",
+      "title": "Many in north Georgia reportedly see hail as severe thunderstorm moves through",
+      "strategy_cluster": "storm_damage",
+      "first_used_at": "2026-07-14T18:23:56.131023+00:00",
+      "last_used_at": "2026-07-14T18:23:56.131023+00:00",
+      "last_draft_path": "generated/peachtree/approved/drafts_md/2026-07-13-174110-hail-damage-in-pickens-dawson-gilmer-what-to-inspect-now.md",
+      "last_runner": "blog_automation.pipeline.approve_listen",
+      "use_count": 1
+    }
+  ]
+}

@@ -151,7 +151,7 @@
     "runner": "blog_automation.pipeline.write_multi",
     "mode": "multi"
   },
-  "draft_path": "generated/peachtree/runs/29269756555/drafts_md/2026-07-13-174110-hail-damage-in-pickens-dawson-gilmer-what-to-inspect-now.md",
+  "draft_path": "generated/peachtree/approved/drafts_md/2026-07-13-174110-hail-damage-in-pickens-dawson-gilmer-what-to-inspect-now.md",
   "sources_used": [
     {
       "url": "https://www.cbs46.com/2026/01/10/live-updates-tornado-watch-issued-west-georgia-counties-cold-front-moves",
@@ -219,17 +219,17 @@
     "scorer_estimated_cost_usd": null,
     "total_inference_cost_usd": 0.36262
   },
-  "pdf_path": "generated/peachtree/runs/29269756555/drafts_pdf/2026-07-13-174110-hail-damage-in-pickens-dawson-gilmer-what-to-inspect-now.pdf",
+  "pdf_path": "generated/peachtree/approved/drafts_pdf/2026-07-13-174110-hail-damage-in-pickens-dawson-gilmer-what-to-inspect-now.pdf",
   "pipeline_log_path": "output/peachtree/multi_run/2026-07-13-173605/run.log",
   "pipeline_log_canonical_path": "output/peachtree/drafts/pipeline_run.log",
   "approval": {
     "post_format": "pdf",
     "channel": "C0B8KU4JV6J",
     "message_ts": "1783964473.589409",
-    "status": "pending",
+    "status": "approved",
     "posted_at": "2026-07-13T17:41:14.250787+00:00",
-    "approved_at": null,
-    "approved_by": null,
+    "approved_at": "2026-07-14T18:23:56.128990+00:00",
+    "approved_by": "U0B4MHUL684",
     "rejected_at": null,
     "rejected_by": null,
     "feedback_requested_at": null,
