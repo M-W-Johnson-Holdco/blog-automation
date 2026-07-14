@@ -245,7 +245,14 @@
     "recycled_by": null,
     "revision_mode": "",
     "revision_mode_reason": "",
-    "feedback": []
+    "feedback": [],
+    "psai": {
+      "status": "published",
+      "published_at": "2026-07-14T18:24:43.543626+00:00",
+      "blog_id": "260714000",
+      "url": "/blog/p.260714000/hail-damage-in-pickens-dawson-gilmer-what-to-inspect-now",
+      "published_by": "U0B4MHUL684"
+    }
   },
   "ci_run_id": "29269756555"
 }
