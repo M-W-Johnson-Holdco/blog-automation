@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-07-10T18:36:37.265241+00:00",
-  "source_count": 1,
+  "updated_at": "2026-07-14T19:37:53.993787+00:00",
+  "source_count": 2,
   "sources": [
     {
       "url": "https://www.cbsnews.com/texas/video/hail-wind-damage-across-for-some-parts-of-north-texas-possible/",
@@ -11,6 +11,18 @@
       "first_used_at": "2026-07-10T18:36:37.264988+00:00",
       "last_used_at": "2026-07-10T18:36:37.264988+00:00",
       "last_draft_path": "generated/tc/approved/drafts_md/2026-07-10-173505-july-7-north-texas-hail-what-dfw-homeowners-should-inspect.md",
+      "last_runner": "blog_automation.pipeline.approve_listen",
+      "use_count": 1
+    },
+    {
+      "url": "https://www.cbsnews.com/texas/video/tracking-scattered-storm-chances-for-sunday/",
+      "normalized_url": "https://cbsnews.com/texas/video/tracking-scattered-storm-chances-for-sunday",
+      "domain": "cbsnews.com",
+      "title": "Tracking scattered storm chances for Sunday - CBS News",
+      "strategy_cluster": "storm_damage",
+      "first_used_at": "2026-07-14T19:37:53.993632+00:00",
+      "last_used_at": "2026-07-14T19:37:53.993632+00:00",
+      "last_draft_path": "generated/tc/approved/drafts_md/2026-07-13-174111-north-texas-marginal-risk-storm-sunday-is-your-dfw-roof-read.md",
       "last_runner": "blog_automation.pipeline.approve_listen",
       "use_count": 1
     }
