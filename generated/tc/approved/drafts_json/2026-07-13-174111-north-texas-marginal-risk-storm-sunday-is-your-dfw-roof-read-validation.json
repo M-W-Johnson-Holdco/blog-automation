@@ -249,7 +249,14 @@
     "recycled_by": null,
     "revision_mode": "",
     "revision_mode_reason": "",
-    "feedback": []
+    "feedback": [],
+    "psai": {
+      "status": "published",
+      "published_at": "2026-07-14T19:38:41.022158+00:00",
+      "blog_id": "260714000",
+      "url": "/blog/p.260714000/north-texas-marginal-risk-storm-sunday-is-your-dfw-roof-ready",
+      "published_by": "U059KMJ0Q1H"
+    }
   },
   "ci_run_id": "29269756555"
 }
