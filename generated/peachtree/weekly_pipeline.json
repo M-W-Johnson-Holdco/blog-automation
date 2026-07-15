@@ -6,5 +6,12 @@
     "finished_at": "2026-07-13T12:02:31+00:00"
   },
   "monday_failure_notified_at": "2026-07-13T12:02:33+00:00",
-  "credits_failure_notified_at": "2026-07-13T17:17:00+00:00"
+  "credits_failure_notified_at": "2026-07-13T17:17:00+00:00",
+  "wednesday": {
+    "run_id": "29413601142",
+    "status": "success",
+    "finished_at": "2026-07-15T12:07:41+00:00"
+  },
+  "draft_run_id": "29413601142",
+  "draft_archived_at": "2026-07-15T12:07:41+00:00"
 }
