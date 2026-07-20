@@ -1,10 +1,9 @@
 {
-  "iso_week": "2026-W29",
-  "credits_failure_notified_at": "2026-07-13T17:17:22+00:00",
-  "wednesday": {
-    "run_id": "29413601142",
+  "iso_week": "2026-W30",
+  "monday": {
+    "run_id": "29740603118",
     "status": "failed",
-    "finished_at": "2026-07-15T12:04:03+00:00"
+    "finished_at": "2026-07-20T12:05:11+00:00"
   },
-  "no_draft_notified_at": "2026-07-15T12:04:04+00:00"
+  "monday_failure_notified_at": "2026-07-20T12:05:11+00:00"
 }
