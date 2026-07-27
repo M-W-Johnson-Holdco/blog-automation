@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-07-14T19:37:53.993787+00:00",
-  "source_count": 2,
+  "updated_at": "2026-07-27T12:22:17.413416+00:00",
+  "source_count": 4,
   "sources": [
     {
       "url": "https://www.cbsnews.com/texas/video/hail-wind-damage-across-for-some-parts-of-north-texas-possible/",
@@ -23,6 +23,30 @@
       "first_used_at": "2026-07-14T19:37:53.993632+00:00",
       "last_used_at": "2026-07-14T19:37:53.993632+00:00",
       "last_draft_path": "generated/tc/approved/drafts_md/2026-07-13-174111-north-texas-marginal-risk-storm-sunday-is-your-dfw-roof-read.md",
+      "last_runner": "blog_automation.pipeline.approve_listen",
+      "use_count": 1
+    },
+    {
+      "url": "https://www.dallasnews.com/opinion/editorials/article/wind-hail-roof-abbott-grant-insurance-22357733.php",
+      "normalized_url": "https://dallasnews.com/opinion/editorials/article/wind-hail-roof-abbott-grant-insurance-22357733.php",
+      "domain": "dallasnews.com",
+      "title": "Abbott's smart plan to strengthen Texas roofs, lower insurance costs",
+      "strategy_cluster": "storm_damage",
+      "first_used_at": "2026-07-27T12:22:17.413216+00:00",
+      "last_used_at": "2026-07-27T12:22:17.413216+00:00",
+      "last_draft_path": "generated/tc/approved/drafts_md/2026-07-27-120617-texas-roof-hardening-grants-can-dfw-homeowners-lower-insuran.md",
+      "last_runner": "blog_automation.pipeline.approve_listen",
+      "use_count": 1
+    },
+    {
+      "url": "https://www.star-telegram.com/news/weather-news/article316619015.html",
+      "normalized_url": "https://star-telegram.com/news/weather-news/article316619015.html",
+      "domain": "star-telegram.com",
+      "title": "Severe thunderstorm warning issued for Johnson and Tarrant counties Wednesday evening",
+      "strategy_cluster": "storm_damage",
+      "first_used_at": "2026-07-27T12:22:17.413216+00:00",
+      "last_used_at": "2026-07-27T12:22:17.413216+00:00",
+      "last_draft_path": "generated/tc/approved/drafts_md/2026-07-27-120617-texas-roof-hardening-grants-can-dfw-homeowners-lower-insuran.md",
       "last_runner": "blog_automation.pipeline.approve_listen",
       "use_count": 1
     }
