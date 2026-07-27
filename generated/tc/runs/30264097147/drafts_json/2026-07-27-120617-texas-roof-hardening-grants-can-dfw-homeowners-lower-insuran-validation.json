@@ -1,0 +1,260 @@
+{
+  "passed": true,
+  "checks": {
+    "has_h1": true,
+    "answer_first_opening_roughly_50_to_120_words": true,
+    "has_quick_answer_block": true,
+    "all_h2_headings_are_questions": true,
+    "has_comparison_table": true,
+    "citation_count_3_to_6": true,
+    "citations_include_links": true,
+    "citations_span_multiple_outlets": true,
+    "citations_match_kept_source_urls": true,
+    "percentage_claims_grounded_in_sources": true,
+    "location_count_at_least_6": true,
+    "bridges_to_roof_service": true,
+    "faq_exactly_8": true,
+    "has_author_byline": true,
+    "has_exactly_one_cta": true,
+    "no_competitor_brand_voice": true,
+    "no_generic_openers": true
+  },
+  "h2_headings": [
+    "What Did Abbott's Roof-Hardening Grant Proposal Actually Propose?",
+    "Why Do Dallas-Fort Worth Premiums Reflect Hail Risk So Directly?",
+    "Which DFW Neighborhoods and Housing Types Stand to Gain Most From a Hardening Grant?",
+    "How Does Roof Condition Trigger Claim Denials \u2014 and Discounts?",
+    "What Does the Roof-Hardening Timeline and Cost Picture Look Like for DFW Homeowners?",
+    "How Should DFW Homeowners Document Roof Condition Before a Storm or Grant Application?",
+    "FAQ"
+  ],
+  "citation_count": 5,
+  "citation_domains_found": [
+    "dallasnews.com",
+    "star-telegram.com"
+  ],
+  "citation_urls_found": [
+    "https://dallasnews.com/opinion/editorials/article/wind-hail-roof-abbott-grant-insurance-22357733.php",
+    "https://dallasnews.com/opinion/editorials/article/wind-hail-roof-abbott-grant-insurance-22357733.php",
+    "https://dallasnews.com/opinion/editorials/article/wind-hail-roof-abbott-grant-insurance-22357733.php",
+    "https://star-telegram.com/news/weather-news/article316619015.html",
+    "https://star-telegram.com/news/weather-news/article316619015.html"
+  ],
+  "required_source_domains": [
+    "dallasnews.com",
+    "star-telegram.com"
+  ],
+  "kept_source_urls": [
+    "https://dallasnews.com/opinion/editorials/article/wind-hail-roof-abbott-grant-insurance-22357733.php",
+    "https://star-telegram.com/news/weather-news/article316619015.html"
+  ],
+  "invalid_citation_urls": [],
+  "ungrounded_percentage_claims": [],
+  "cta_count": 1,
+  "roof_bridge_signal_count": 5,
+  "competitor_brands_found": [],
+  "opening_word_count": 95,
+  "locations_found": [
+    "Arlington",
+    "Dallas",
+    "Fort Worth",
+    "Frisco",
+    "Garland",
+    "Grapevine",
+    "McKinney",
+    "Mesquite",
+    "Plano",
+    "Richardson",
+    "Rowlett",
+    "Southlake",
+    "Tarrant County"
+  ],
+  "faq_count": 8,
+  "generic_openers_found": [],
+  "writing_prompt": {
+    "id": "geo",
+    "label": "GEO news + Quick Answer",
+    "path": "prompts/blog_geo.txt",
+    "summary_heading": "The short answer",
+    "opening_style": "news-anchored"
+  },
+  "generated_at": "2026-07-27T12:06:17.141567",
+  "source_count": 2,
+  "available_source_count": 2,
+  "source_selection": {
+    "strategy": "auto",
+    "mode": "combine",
+    "reason": "Auto mode included all 2 kept source(s) so the draft cites every outlet evaluate kept.",
+    "available_source_count": 2,
+    "selected_source_count": 2,
+    "selected_titles": [
+      "Abbott's smart plan to strengthen Texas roofs, lower insurance costs",
+      "Severe thunderstorm warning issued for Johnson and Tarrant counties Wednesday evening"
+    ],
+    "available_titles": [
+      "Abbott's smart plan to strengthen Texas roofs, lower insurance costs",
+      "Severe thunderstorm warning issued for Johnson and Tarrant counties Wednesday evening"
+    ]
+  },
+  "model": "claude-opus-4-8",
+  "generation": {
+    "model_requested": "claude-opus-4-8",
+    "model_used": "claude-opus-4-8",
+    "model_returned_by_api": "claude-opus-4-8",
+    "elapsed_seconds": 120.83,
+    "endpoint_management_used": false,
+    "usage": {
+      "prompt_tokens": 29184,
+      "completion_tokens": 9868,
+      "total_tokens": 39052,
+      "cached_tokens": 0
+    },
+    "estimated_cost_usd": {
+      "tokens": {
+        "total": 0.39262,
+        "input": 0.14592,
+        "output": 0.2467,
+        "currency": "USD",
+        "pricing_per_million_tokens": {
+          "input": 5.0,
+          "output": 25.0
+        },
+        "pricing_source": "anthropic_catalog"
+      }
+    },
+    "provider": "anthropic",
+    "validation_attempt": 2,
+    "fact_audit": {
+      "model_requested": "claude-sonnet-4-6",
+      "model_used": "claude-sonnet-4-6",
+      "model_returned_by_api": "claude-sonnet-4-6",
+      "elapsed_seconds": 14.81,
+      "endpoint_management_used": false,
+      "usage": {
+        "prompt_tokens": 4662,
+        "completion_tokens": 615,
+        "total_tokens": 5277,
+        "cached_tokens": 0
+      },
+      "estimated_cost_usd": {
+        "tokens": {
+          "total": 0.023211,
+          "input": 0.013986,
+          "output": 0.009225,
+          "currency": "USD",
+          "pricing_per_million_tokens": {
+            "input": 3.0,
+            "output": 15.0
+          },
+          "pricing_source": "anthropic_catalog"
+        }
+      },
+      "provider": "anthropic"
+    },
+    "validation_passed": false,
+    "validation_attempts": 2,
+    "template_elapsed_seconds": 136.42,
+    "writing_prompt_id": "geo",
+    "multi_run_seconds": 136.42,
+    "multi_run_dir": "/home/runner/work/blog-automation/blog-automation/output/tc/multi_run/2026-07-27-120101",
+    "runner": "blog_automation.pipeline.write_multi",
+    "mode": "multi"
+  },
+  "draft_path": "generated/tc/runs/30264097147/drafts_md/2026-07-27-120617-texas-roof-hardening-grants-can-dfw-homeowners-lower-insuran.md",
+  "sources_used": [
+    {
+      "url": "https://www.dallasnews.com/opinion/editorials/article/wind-hail-roof-abbott-grant-insurance-22357733.php",
+      "normalized_url": "https://dallasnews.com/opinion/editorials/article/wind-hail-roof-abbott-grant-insurance-22357733.php",
+      "domain": "dallasnews.com",
+      "title": "Abbott's smart plan to strengthen Texas roofs, lower insurance costs",
+      "strategy_cluster": "storm_damage"
+    },
+    {
+      "url": "https://www.star-telegram.com/news/weather-news/article316619015.html",
+      "normalized_url": "https://star-telegram.com/news/weather-news/article316619015.html",
+      "domain": "star-telegram.com",
+      "title": "Severe thunderstorm warning issued for Johnson and Tarrant counties Wednesday evening",
+      "strategy_cluster": "storm_damage"
+    }
+  ],
+  "tavily_search_ran": true,
+  "pipeline_costs": {
+    "updated_at": "2026-07-27T12:04:00.525813+00:00",
+    "evaluate": {
+      "model_used": "claude-sonnet-4-6",
+      "api_calls": 3,
+      "elapsed_seconds": 174.14,
+      "estimated_cost_usd": {
+        "tokens": {
+          "total": 0.024342,
+          "input": 0.012942,
+          "output": 0.0114,
+          "currency": "USD",
+          "pricing_per_million_tokens": {
+            "input": 3.0,
+            "output": 15.0
+          },
+          "pricing_source": "anthropic_catalog"
+        }
+      },
+      "mode": "evaluate_incremental"
+    },
+    "search": {
+      "queries_run": 62,
+      "credits_used": 124,
+      "estimated_cost_usd": 0.992,
+      "currency": "USD",
+      "pricing_per_credit": 0.008,
+      "pricing_source": "tavily_catalog"
+    }
+  },
+  "validation_attempts": 2,
+  "validation_passed_on_generation": false,
+  "multi_run": {
+    "winner": "geo",
+    "scores": {},
+    "tiebreaker_applied": false,
+    "reason": "Single-template run (geo); scoring not needed.",
+    "scorer_model": "claude-sonnet-4-6",
+    "scorer_passes": null,
+    "scorer_usage": null,
+    "generation_model": "claude-opus-4-8",
+    "all_templates_passed": [],
+    "scoring_skipped": true,
+    "template_generation_costs_usd": {
+      "geo": 0.39262
+    },
+    "multi_run_write_inference_cost_usd": 0.39262,
+    "scorer_estimated_cost_usd": null,
+    "total_inference_cost_usd": 0.39262
+  },
+  "pdf_path": "generated/tc/runs/30264097147/drafts_pdf/2026-07-27-120617-texas-roof-hardening-grants-can-dfw-homeowners-lower-insuran.pdf",
+  "pipeline_log_path": "output/tc/multi_run/2026-07-27-120101/run.log",
+  "pipeline_log_canonical_path": "output/tc/drafts/pipeline_run.log",
+  "approval": {
+    "post_format": "pdf",
+    "channel": "C0BAPA5MWG6",
+    "message_ts": "1785153980.197299",
+    "status": "pending",
+    "posted_at": "2026-07-27T12:06:22.145266+00:00",
+    "approved_at": null,
+    "approved_by": null,
+    "rejected_at": null,
+    "rejected_by": null,
+    "feedback_requested_at": null,
+    "rewritten_from": null,
+    "recycled_from": null,
+    "revision_draft_path": null,
+    "revision_generated_at": null,
+    "pipeline_restart_requested_at": null,
+    "pipeline_restart_requested_by": null,
+    "pipeline_restart_failed_at": null,
+    "pipeline_restart_error": null,
+    "recycled_at": null,
+    "recycled_by": null,
+    "revision_mode": "",
+    "revision_mode_reason": "",
+    "feedback": []
+  },
+  "ci_run_id": "30264097147"
+}
