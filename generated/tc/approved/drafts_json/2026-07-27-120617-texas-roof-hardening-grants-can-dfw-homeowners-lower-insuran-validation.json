@@ -254,7 +254,14 @@
     "recycled_by": null,
     "revision_mode": "",
     "revision_mode_reason": "",
-    "feedback": []
+    "feedback": [],
+    "psai": {
+      "status": "published",
+      "published_at": "2026-07-27T12:23:08.341154+00:00",
+      "blog_id": "260727000",
+      "url": "/blog/p.260727000/texas-roof-hardening-grants-can-dfw-homeowners-lower-insurance-premiums",
+      "published_by": "U059KMJ0Q1H"
+    }
   },
   "ci_run_id": "30264097147"
 }
