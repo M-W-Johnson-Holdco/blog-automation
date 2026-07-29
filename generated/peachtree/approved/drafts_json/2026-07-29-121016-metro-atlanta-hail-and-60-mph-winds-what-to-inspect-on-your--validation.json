@@ -245,7 +245,14 @@
     "recycled_by": null,
     "revision_mode": "",
     "revision_mode_reason": "",
-    "feedback": []
+    "feedback": [],
+    "psai": {
+      "status": "published",
+      "published_at": "2026-07-29T12:36:28.629659+00:00",
+      "blog_id": "260729000",
+      "url": "/blog/p.260729000/metro-atlanta-hail-and-60-mph-winds-what-to-inspect-on-your-roof",
+      "published_by": "U059KMJ0Q1H"
+    }
   },
   "ci_run_id": "30449769410"
 }
