@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-07-14T18:23:56.131216+00:00",
-  "source_count": 2,
+  "updated_at": "2026-07-29T12:35:21.161240+00:00",
+  "source_count": 3,
   "sources": [
     {
       "url": "https://www.cbs46.com/2026/01/10/live-updates-tornado-watch-issued-west-georgia-counties-cold-front-moves",
@@ -23,6 +23,18 @@
       "first_used_at": "2026-07-14T18:23:56.131023+00:00",
       "last_used_at": "2026-07-14T18:23:56.131023+00:00",
       "last_draft_path": "generated/peachtree/approved/drafts_md/2026-07-13-174110-hail-damage-in-pickens-dawson-gilmer-what-to-inspect-now.md",
+      "last_runner": "blog_automation.pipeline.approve_listen",
+      "use_count": 1
+    },
+    {
+      "url": "https://patch.com/georgia/atlanta/sweeping-severe-storms-hammer-ga-hail-60-mph-winds",
+      "normalized_url": "https://patch.com/georgia/atlanta/sweeping-severe-storms-hammer-ga-hail-60-mph-winds",
+      "domain": "patch.com",
+      "title": "Sweeping Severe Storms To Hammer GA With Hail, 60 MPH Winds | Atlanta, GA Patch",
+      "strategy_cluster": "storm_damage",
+      "first_used_at": "2026-07-29T12:35:21.161078+00:00",
+      "last_used_at": "2026-07-29T12:35:21.161078+00:00",
+      "last_draft_path": "generated/peachtree/approved/drafts_md/2026-07-29-121016-metro-atlanta-hail-and-60-mph-winds-what-to-inspect-on-your-.md",
       "last_runner": "blog_automation.pipeline.approve_listen",
       "use_count": 1
     }
