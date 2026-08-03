@@ -1,0 +1,269 @@
+{
+  "passed": true,
+  "checks": {
+    "has_h1": true,
+    "answer_first_opening_roughly_50_to_120_words": true,
+    "has_quick_answer_block": true,
+    "all_h2_headings_are_questions": true,
+    "has_comparison_table": true,
+    "citation_count_3_to_6": true,
+    "citations_include_links": true,
+    "citations_span_multiple_outlets": true,
+    "citations_match_kept_source_urls": true,
+    "percentage_claims_grounded_in_sources": true,
+    "location_count_at_least_6": true,
+    "bridges_to_roof_service": true,
+    "faq_exactly_8": true,
+    "has_author_byline": true,
+    "has_exactly_one_cta": true,
+    "no_competitor_brand_voice": true,
+    "no_generic_openers": true
+  },
+  "h2_headings": [
+    "Should I call my insurer or get a roof inspection first after hail?",
+    "What does an AI drone inspection find that a ground check misses?",
+    "How does the insurance claim process work for hail damage in Georgia?",
+    "What is the difference between RCV and ACV on my policy?",
+    "How do aging shingles affect my hail claim in Gwinnett and Cobb County?",
+    "Which Metro Atlanta areas face the most hail exposure?",
+    "What should Metro Atlanta homeowners check before and after a storm?",
+    "What happens after a hail claim is approved for roof replacement?",
+    "FAQ"
+  ],
+  "citation_count": 6,
+  "citation_domains_found": [
+    "domroofing.com",
+    "google.com"
+  ],
+  "citation_urls_found": [
+    "https://domroofing.com/roof-academy/roof-insurance-claim-hail-storm-georgia",
+    "https://domroofing.com/roof-academy/roof-insurance-claim-hail-storm-georgia",
+    "https://domroofing.com/roof-academy/roof-insurance-claim-hail-storm-georgia",
+    "https://domroofing.com/roof-academy/roof-insurance-claim-hail-storm-georgia",
+    "https://domroofing.com/roof-academy/roof-insurance-claim-hail-storm-georgia",
+    "https://google.com/goto"
+  ],
+  "required_source_domains": [
+    "domroofing.com",
+    "google.com"
+  ],
+  "kept_source_urls": [
+    "https://domroofing.com/roof-academy/roof-insurance-claim-hail-storm-georgia",
+    "https://google.com/goto"
+  ],
+  "invalid_citation_urls": [],
+  "ungrounded_percentage_claims": [],
+  "cta_count": 1,
+  "roof_bridge_signal_count": 4,
+  "competitor_brands_found": [],
+  "opening_word_count": 101,
+  "locations_found": [
+    "Alpharetta",
+    "Atlanta",
+    "Brookhaven",
+    "Cherokee",
+    "Cobb",
+    "Decatur",
+    "Duluth",
+    "Dunwoody",
+    "Gwinnett",
+    "Johns Creek",
+    "Kennesaw",
+    "Lawrenceville",
+    "Marietta",
+    "Norcross",
+    "Roswell",
+    "Sandy Springs",
+    "Suwanee",
+    "Tucker",
+    "Woodstock"
+  ],
+  "faq_count": 8,
+  "generic_openers_found": [],
+  "writing_prompt": {
+    "id": "industry_insight",
+    "label": "Industry insight for local homeowners",
+    "path": "prompts/blog_industry_insight.txt",
+    "summary_heading": "The short answer",
+    "opening_style": "industry-insight"
+  },
+  "generated_at": "2026-08-03T12:07:35.533940",
+  "source_count": 2,
+  "available_source_count": 2,
+  "source_selection": {
+    "strategy": "auto",
+    "mode": "combine",
+    "reason": "Auto mode included all 2 kept source(s) so the draft cites every outlet evaluate kept.",
+    "available_source_count": 2,
+    "selected_source_count": 2,
+    "selected_titles": [
+      "Hail Hit Your Roof? Georgia Insurance Claim Guide (2026)",
+      "Sweeping Severe Storms To Hammer GA With Hail, 60 MPH Winds | Atlanta, GA Patch"
+    ],
+    "available_titles": [
+      "Hail Hit Your Roof? Georgia Insurance Claim Guide (2026)",
+      "Sweeping Severe Storms To Hammer GA With Hail, 60 MPH Winds | Atlanta, GA Patch"
+    ]
+  },
+  "model": "claude-opus-4-8",
+  "generation": {
+    "model_requested": "claude-opus-4-8",
+    "model_used": "claude-opus-4-8",
+    "model_returned_by_api": "claude-opus-4-8",
+    "elapsed_seconds": 136.72,
+    "endpoint_management_used": false,
+    "usage": {
+      "prompt_tokens": 30534,
+      "completion_tokens": 10651,
+      "total_tokens": 41185,
+      "cached_tokens": 0
+    },
+    "estimated_cost_usd": {
+      "tokens": {
+        "total": 0.418945,
+        "input": 0.15267,
+        "output": 0.266275,
+        "currency": "USD",
+        "pricing_per_million_tokens": {
+          "input": 5.0,
+          "output": 25.0
+        },
+        "pricing_source": "anthropic_catalog"
+      }
+    },
+    "provider": "anthropic",
+    "validation_attempt": 2,
+    "fact_audit": {
+      "model_requested": "claude-sonnet-4-6",
+      "model_used": "claude-sonnet-4-6",
+      "model_returned_by_api": "claude-sonnet-4-6",
+      "elapsed_seconds": 16.05,
+      "endpoint_management_used": false,
+      "usage": {
+        "prompt_tokens": 5815,
+        "completion_tokens": 753,
+        "total_tokens": 6568,
+        "cached_tokens": 0
+      },
+      "estimated_cost_usd": {
+        "tokens": {
+          "total": 0.02874,
+          "input": 0.017445,
+          "output": 0.011295,
+          "currency": "USD",
+          "pricing_per_million_tokens": {
+            "input": 3.0,
+            "output": 15.0
+          },
+          "pricing_source": "anthropic_catalog"
+        }
+      },
+      "provider": "anthropic"
+    },
+    "validation_passed": false,
+    "validation_attempts": 2,
+    "template_elapsed_seconds": 153.6,
+    "writing_prompt_id": "industry_insight",
+    "multi_run_seconds": 153.61,
+    "multi_run_dir": "/home/runner/work/blog-automation/blog-automation/output/peachtree/multi_run/2026-08-03-120143",
+    "runner": "blog_automation.pipeline.write_multi",
+    "mode": "multi"
+  },
+  "draft_path": "generated/peachtree/runs/30811795331/drafts_md/2026-08-03-120735-hail-damage-in-north-atlanta-what-to-do-first-after-a-storm.md",
+  "sources_used": [
+    {
+      "url": "https://www.domroofing.com/roof-academy/roof-insurance-claim-hail-storm-georgia",
+      "normalized_url": "https://domroofing.com/roof-academy/roof-insurance-claim-hail-storm-georgia",
+      "domain": "domroofing.com",
+      "title": "Hail Hit Your Roof? Georgia Insurance Claim Guide (2026)",
+      "strategy_cluster": "storm_damage"
+    },
+    {
+      "url": "https://www.google.com/goto?url=CAESjAEB7keqTXW5MuheHRxBbPJ5f3HYatPH46CG3WXFyUtZe9gDTNzmIILbXxlhOoJyskixCaKyswSGOdWQhlAzUBuTRoHEGbBgpGntBgtuM27dfbXhO1QHUWcW5JsbiOp6eTERsYUNtnr-TQ_3JOpNfQqdSBamcGTaVz_bYNfRy_85t9Nu66JNZuEfoNd4_A%3D%3D",
+      "normalized_url": "https://google.com/goto",
+      "domain": "google.com",
+      "title": "Sweeping Severe Storms To Hammer GA With Hail, 60 MPH Winds | Atlanta, GA Patch",
+      "strategy_cluster": "storm_damage"
+    }
+  ],
+  "tavily_search_ran": true,
+  "pipeline_costs": {
+    "updated_at": "2026-08-03T12:05:01.650816+00:00",
+    "evaluate": {
+      "model_used": "claude-sonnet-4-6",
+      "api_calls": 10,
+      "elapsed_seconds": 191.42,
+      "estimated_cost_usd": {
+        "tokens": {
+          "total": 0.079485,
+          "input": 0.04227,
+          "output": 0.037215,
+          "currency": "USD",
+          "pricing_per_million_tokens": {
+            "input": 3.0,
+            "output": 15.0
+          },
+          "pricing_source": "anthropic_catalog"
+        }
+      },
+      "mode": "evaluate_incremental"
+    },
+    "search": {
+      "queries_run": 31,
+      "credits_used": 62,
+      "estimated_cost_usd": 0.496,
+      "currency": "USD",
+      "pricing_per_credit": 0.008,
+      "pricing_source": "tavily_catalog"
+    }
+  },
+  "validation_attempts": 2,
+  "validation_passed_on_generation": false,
+  "multi_run": {
+    "winner": "industry_insight",
+    "scores": {},
+    "tiebreaker_applied": false,
+    "reason": "Single-template run (industry_insight); scoring not needed.",
+    "scorer_model": "claude-sonnet-4-6",
+    "scorer_passes": null,
+    "scorer_usage": null,
+    "generation_model": "claude-opus-4-8",
+    "all_templates_passed": [],
+    "scoring_skipped": true,
+    "template_generation_costs_usd": {
+      "industry_insight": 0.418945
+    },
+    "multi_run_write_inference_cost_usd": 0.418945,
+    "scorer_estimated_cost_usd": null,
+    "total_inference_cost_usd": 0.418945
+  },
+  "pdf_path": "generated/peachtree/runs/30811795331/drafts_pdf/2026-08-03-120735-hail-damage-in-north-atlanta-what-to-do-first-after-a-storm.pdf",
+  "pipeline_log_path": "output/peachtree/multi_run/2026-08-03-120143/run.log",
+  "pipeline_log_canonical_path": "output/peachtree/drafts/pipeline_run.log",
+  "approval": {
+    "post_format": "pdf",
+    "channel": "C0B8KU4JV6J",
+    "message_ts": "1785758858.542669",
+    "status": "pending",
+    "posted_at": "2026-08-03T12:07:39.993924+00:00",
+    "approved_at": null,
+    "approved_by": null,
+    "rejected_at": null,
+    "rejected_by": null,
+    "feedback_requested_at": null,
+    "rewritten_from": null,
+    "recycled_from": null,
+    "revision_draft_path": null,
+    "revision_generated_at": null,
+    "pipeline_restart_requested_at": null,
+    "pipeline_restart_requested_by": null,
+    "pipeline_restart_failed_at": null,
+    "pipeline_restart_error": null,
+    "recycled_at": null,
+    "recycled_by": null,
+    "revision_mode": "",
+    "revision_mode_reason": "",
+    "feedback": []
+  },
+  "ci_run_id": "30811795331"
+}
