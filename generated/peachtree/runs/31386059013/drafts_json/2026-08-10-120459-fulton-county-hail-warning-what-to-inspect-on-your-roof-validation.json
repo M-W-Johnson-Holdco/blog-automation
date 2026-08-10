@@ -1,0 +1,265 @@
+{
+  "passed": true,
+  "checks": {
+    "has_h1": true,
+    "answer_first_opening_roughly_50_to_120_words": true,
+    "has_quick_answer_block": true,
+    "all_h2_headings_are_questions": true,
+    "has_comparison_table": true,
+    "citation_count_3_to_6": true,
+    "citations_include_links": true,
+    "citations_span_multiple_outlets": true,
+    "citations_match_kept_source_urls": true,
+    "percentage_claims_grounded_in_sources": true,
+    "location_count_at_least_6": true,
+    "bridges_to_roof_service": true,
+    "faq_exactly_8": true,
+    "has_author_byline": true,
+    "has_exactly_one_cta": true,
+    "no_competitor_brand_voice": true,
+    "no_generic_openers": true
+  },
+  "h2_headings": [
+    "What Hail Damage Actually Looks Like on an Atlanta Roof?",
+    "What Should Fulton County Homeowners Inspect First After Tonight's Storm?",
+    "Which Metro Atlanta Neighborhoods Face the Highest Roof Risk Tonight?",
+    "How Do You Compare Roof Risk by Location and Housing Type?",
+    "How Does a Damaged Roof Turn Into a Denied Insurance Claim?",
+    "What Does Storm Damage Cost \u2014 and How Fast Should You Act?",
+    "Why Does Metro Atlanta's Storm History Make Tonight's Hail Worth Taking Seriously?",
+    "FAQ"
+  ],
+  "citation_count": 4,
+  "citation_domains_found": [
+    "forecast.weather.gov",
+    "patch.com"
+  ],
+  "citation_urls_found": [
+    "https://forecast.weather.gov/MapClick.php",
+    "https://forecast.weather.gov/MapClick.php",
+    "https://patch.com/georgia/atlanta/heres-every-tornado-hit-ga-so-far-2026",
+    "https://patch.com/georgia/atlanta/heres-every-tornado-hit-ga-so-far-2026"
+  ],
+  "required_source_domains": [
+    "forecast.weather.gov",
+    "patch.com"
+  ],
+  "kept_source_urls": [
+    "https://forecast.weather.gov/MapClick.php",
+    "https://patch.com/georgia/atlanta/heres-every-tornado-hit-ga-so-far-2026"
+  ],
+  "invalid_citation_urls": [],
+  "ungrounded_percentage_claims": [],
+  "cta_count": 1,
+  "roof_bridge_signal_count": 4,
+  "competitor_brands_found": [],
+  "opening_word_count": 91,
+  "locations_found": [
+    "Alpharetta",
+    "Atlanta",
+    "Buckhead",
+    "Cobb",
+    "DeKalb",
+    "Decatur",
+    "East Cobb",
+    "Fulton",
+    "Gwinnett",
+    "Lithonia",
+    "Marietta",
+    "Roswell",
+    "Sandy Springs",
+    "Smyrna",
+    "Stone Mountain",
+    "Vinings"
+  ],
+  "faq_count": 8,
+  "generic_openers_found": [],
+  "writing_prompt": {
+    "id": "explainer",
+    "label": "Definition-first explainer",
+    "path": "prompts/blog_explainer.txt",
+    "summary_heading": "The short answer",
+    "opening_style": "definition-first"
+  },
+  "generated_at": "2026-08-10T12:04:59.523367",
+  "source_count": 2,
+  "available_source_count": 2,
+  "source_selection": {
+    "strategy": "auto",
+    "mode": "combine",
+    "reason": "Auto mode included all 2 kept source(s) so the draft cites every outlet evaluate kept.",
+    "available_source_count": 2,
+    "selected_source_count": 2,
+    "selected_titles": [
+      "National Weather Service",
+      "Here's Every Tornado To Hit GA So Far In 2026 | Atlanta, GA Patch"
+    ],
+    "available_titles": [
+      "National Weather Service",
+      "Here's Every Tornado To Hit GA So Far In 2026 | Atlanta, GA Patch"
+    ]
+  },
+  "model": "claude-opus-4-8",
+  "generation": {
+    "model_requested": "claude-opus-4-8",
+    "model_used": "claude-opus-4-8",
+    "model_returned_by_api": "claude-opus-4-8",
+    "elapsed_seconds": 114.08,
+    "endpoint_management_used": false,
+    "usage": {
+      "prompt_tokens": 30728,
+      "completion_tokens": 8755,
+      "total_tokens": 39483,
+      "cached_tokens": 0
+    },
+    "estimated_cost_usd": {
+      "tokens": {
+        "total": 0.372515,
+        "input": 0.15364,
+        "output": 0.218875,
+        "currency": "USD",
+        "pricing_per_million_tokens": {
+          "input": 5.0,
+          "output": 25.0
+        },
+        "pricing_source": "anthropic_catalog"
+      }
+    },
+    "provider": "anthropic",
+    "validation_attempt": 2,
+    "fact_audit": {
+      "model_requested": "claude-sonnet-4-6",
+      "model_used": "claude-sonnet-4-6",
+      "model_returned_by_api": "claude-sonnet-4-6",
+      "elapsed_seconds": 1.94,
+      "endpoint_management_used": false,
+      "usage": {
+        "prompt_tokens": 4895,
+        "completion_tokens": 32,
+        "total_tokens": 4927,
+        "cached_tokens": 0
+      },
+      "estimated_cost_usd": {
+        "tokens": {
+          "total": 0.015165,
+          "input": 0.014685,
+          "output": 0.00048,
+          "currency": "USD",
+          "pricing_per_million_tokens": {
+            "input": 3.0,
+            "output": 15.0
+          },
+          "pricing_source": "anthropic_catalog"
+        }
+      },
+      "provider": "anthropic"
+    },
+    "validation_passed": true,
+    "validation_attempts": 2,
+    "template_elapsed_seconds": 135.38,
+    "writing_prompt_id": "explainer",
+    "multi_run_seconds": 135.38,
+    "multi_run_dir": "/home/runner/work/blog-automation/blog-automation/output/peachtree/multi_run/2026-08-10-120146",
+    "runner": "blog_automation.pipeline.write_multi",
+    "mode": "multi"
+  },
+  "draft_path": "generated/peachtree/runs/31386059013/drafts_md/2026-08-10-120459-fulton-county-hail-warning-what-to-inspect-on-your-roof.md",
+  "sources_used": [
+    {
+      "url": "https://forecast.weather.gov/MapClick.php?zoneid=OHZ002",
+      "normalized_url": "https://forecast.weather.gov/MapClick.php",
+      "domain": "forecast.weather.gov",
+      "title": "National Weather Service",
+      "strategy_cluster": "storm_damage"
+    },
+    {
+      "url": "https://patch.com/georgia/atlanta/heres-every-tornado-hit-ga-so-far-2026",
+      "normalized_url": "https://patch.com/georgia/atlanta/heres-every-tornado-hit-ga-so-far-2026",
+      "domain": "patch.com",
+      "title": "Here's Every Tornado To Hit GA So Far In 2026 | Atlanta, GA Patch",
+      "strategy_cluster": "storm_damage"
+    }
+  ],
+  "tavily_search_ran": true,
+  "pipeline_costs": {
+    "updated_at": "2026-08-10T12:02:43.867015+00:00",
+    "evaluate": {
+      "model_used": "claude-sonnet-4-6",
+      "api_calls": 3,
+      "elapsed_seconds": 52.05,
+      "estimated_cost_usd": {
+        "tokens": {
+          "total": 0.026205,
+          "input": 0.014355,
+          "output": 0.01185,
+          "currency": "USD",
+          "pricing_per_million_tokens": {
+            "input": 3.0,
+            "output": 15.0
+          },
+          "pricing_source": "anthropic_catalog"
+        }
+      },
+      "mode": "evaluate_incremental"
+    },
+    "search": {
+      "queries_run": 7,
+      "credits_used": 14,
+      "estimated_cost_usd": 0.112,
+      "currency": "USD",
+      "pricing_per_credit": 0.008,
+      "pricing_source": "tavily_catalog"
+    }
+  },
+  "validation_attempts": 2,
+  "validation_passed_on_generation": true,
+  "multi_run": {
+    "winner": "explainer",
+    "scores": {},
+    "tiebreaker_applied": false,
+    "reason": "Single-template run (explainer); scoring not needed.",
+    "scorer_model": "claude-sonnet-4-6",
+    "scorer_passes": null,
+    "scorer_usage": null,
+    "generation_model": "claude-opus-4-8",
+    "all_templates_passed": [
+      "explainer"
+    ],
+    "scoring_skipped": true,
+    "template_generation_costs_usd": {
+      "explainer": 0.372515
+    },
+    "multi_run_write_inference_cost_usd": 0.372515,
+    "scorer_estimated_cost_usd": null,
+    "total_inference_cost_usd": 0.372515
+  },
+  "pdf_path": "generated/peachtree/runs/31386059013/drafts_pdf/2026-08-10-120459-fulton-county-hail-warning-what-to-inspect-on-your-roof.pdf",
+  "pipeline_log_path": "output/peachtree/multi_run/2026-08-10-120146/run.log",
+  "pipeline_log_canonical_path": "output/peachtree/drafts/pipeline_run.log",
+  "approval": {
+    "post_format": "pdf",
+    "channel": "C0B8KU4JV6J",
+    "message_ts": "1786363502.729849",
+    "status": "pending",
+    "posted_at": "2026-08-10T12:05:03.699077+00:00",
+    "approved_at": null,
+    "approved_by": null,
+    "rejected_at": null,
+    "rejected_by": null,
+    "feedback_requested_at": null,
+    "rewritten_from": null,
+    "recycled_from": null,
+    "revision_draft_path": null,
+    "revision_generated_at": null,
+    "pipeline_restart_requested_at": null,
+    "pipeline_restart_requested_by": null,
+    "pipeline_restart_failed_at": null,
+    "pipeline_restart_error": null,
+    "recycled_at": null,
+    "recycled_by": null,
+    "revision_mode": "",
+    "revision_mode_reason": "",
+    "feedback": []
+  },
+  "ci_run_id": "31386059013"
+}
