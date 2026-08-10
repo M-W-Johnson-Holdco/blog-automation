@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-07-27T12:22:17.413416+00:00",
-  "source_count": 4,
+  "updated_at": "2026-08-10T12:32:37.406589+00:00",
+  "source_count": 6,
   "sources": [
     {
       "url": "https://www.cbsnews.com/texas/video/hail-wind-damage-across-for-some-parts-of-north-texas-possible/",
@@ -47,6 +47,30 @@
       "first_used_at": "2026-07-27T12:22:17.413216+00:00",
       "last_used_at": "2026-07-27T12:22:17.413216+00:00",
       "last_draft_path": "generated/tc/approved/drafts_md/2026-07-27-120617-texas-roof-hardening-grants-can-dfw-homeowners-lower-insuran.md",
+      "last_runner": "blog_automation.pipeline.approve_listen",
+      "use_count": 1
+    },
+    {
+      "url": "https://bertroofing.com/services/storm-damage",
+      "normalized_url": "https://bertroofing.com/services/storm-damage",
+      "domain": "bertroofing.com",
+      "title": "Storm Damage Roof Repair in Dallas | Bert Roofing",
+      "strategy_cluster": "storm_damage",
+      "first_used_at": "2026-08-10T12:32:37.406427+00:00",
+      "last_used_at": "2026-08-10T12:32:37.406427+00:00",
+      "last_draft_path": "generated/tc/approved/drafts_md/2026-08-10-121025-what-happens-between-a-dallas-fort-worth-hail-inspection-and.md",
+      "last_runner": "blog_automation.pipeline.approve_listen",
+      "use_count": 1
+    },
+    {
+      "url": "https://www.tcroofingexperts.com/blog/p.260714000/north-texas-marginal-risk-storm-sunday-is-your-dfw-roof-ready",
+      "normalized_url": "https://tcroofingexperts.com/blog/p.260714000/north-texas-marginal-risk-storm-sunday-is-your-dfw-roof-ready",
+      "domain": "tcroofingexperts.com",
+      "title": "North Texas Marginal Risk Storm Sunday: Is Your DFW Roof Ready? | TC Roofing & Restorations",
+      "strategy_cluster": "storm_damage",
+      "first_used_at": "2026-08-10T12:32:37.406427+00:00",
+      "last_used_at": "2026-08-10T12:32:37.406427+00:00",
+      "last_draft_path": "generated/tc/approved/drafts_md/2026-08-10-121025-what-happens-between-a-dallas-fort-worth-hail-inspection-and.md",
       "last_runner": "blog_automation.pipeline.approve_listen",
       "use_count": 1
     }
