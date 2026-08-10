@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-07-29T12:35:21.161240+00:00",
-  "source_count": 3,
+  "updated_at": "2026-08-10T12:33:02.248042+00:00",
+  "source_count": 5,
   "sources": [
     {
       "url": "https://www.cbs46.com/2026/01/10/live-updates-tornado-watch-issued-west-georgia-counties-cold-front-moves",
@@ -35,6 +35,30 @@
       "first_used_at": "2026-07-29T12:35:21.161078+00:00",
       "last_used_at": "2026-07-29T12:35:21.161078+00:00",
       "last_draft_path": "generated/peachtree/approved/drafts_md/2026-07-29-121016-metro-atlanta-hail-and-60-mph-winds-what-to-inspect-on-your-.md",
+      "last_runner": "blog_automation.pipeline.approve_listen",
+      "use_count": 1
+    },
+    {
+      "url": "https://forecast.weather.gov/MapClick.php?zoneid=OHZ002",
+      "normalized_url": "https://forecast.weather.gov/MapClick.php",
+      "domain": "forecast.weather.gov",
+      "title": "National Weather Service",
+      "strategy_cluster": "storm_damage",
+      "first_used_at": "2026-08-10T12:33:02.247873+00:00",
+      "last_used_at": "2026-08-10T12:33:02.247873+00:00",
+      "last_draft_path": "generated/peachtree/approved/drafts_md/2026-08-10-120459-fulton-county-hail-warning-what-to-inspect-on-your-roof.md",
+      "last_runner": "blog_automation.pipeline.approve_listen",
+      "use_count": 1
+    },
+    {
+      "url": "https://patch.com/georgia/atlanta/heres-every-tornado-hit-ga-so-far-2026",
+      "normalized_url": "https://patch.com/georgia/atlanta/heres-every-tornado-hit-ga-so-far-2026",
+      "domain": "patch.com",
+      "title": "Here's Every Tornado To Hit GA So Far In 2026 | Atlanta, GA Patch",
+      "strategy_cluster": "storm_damage",
+      "first_used_at": "2026-08-10T12:33:02.247873+00:00",
+      "last_used_at": "2026-08-10T12:33:02.247873+00:00",
+      "last_draft_path": "generated/peachtree/approved/drafts_md/2026-08-10-120459-fulton-county-hail-warning-what-to-inspect-on-your-roof.md",
       "last_runner": "blog_automation.pipeline.approve_listen",
       "use_count": 1
     }
