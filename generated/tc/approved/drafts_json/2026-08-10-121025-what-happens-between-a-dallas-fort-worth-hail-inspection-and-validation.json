@@ -233,7 +233,14 @@
     "recycled_by": null,
     "revision_mode": "",
     "revision_mode_reason": "",
-    "feedback": []
+    "feedback": [],
+    "psai": {
+      "status": "published",
+      "published_at": "2026-08-10T12:33:25.954977+00:00",
+      "blog_id": "260810000",
+      "url": "/blog/p.260810000/what-happens-between-a-dallas-fort-worth-hail-inspection-and-your-insurance",
+      "published_by": "U059KMJ0Q1H"
+    }
   },
   "ci_run_id": "31386059013"
 }
