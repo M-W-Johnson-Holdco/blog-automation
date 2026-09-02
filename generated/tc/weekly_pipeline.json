@@ -5,5 +5,11 @@
     "status": "failed",
     "finished_at": "2026-08-31T12:01:26+00:00"
   },
-  "monday_failure_notified_at": "2026-08-31T12:01:27+00:00"
+  "monday_failure_notified_at": "2026-08-31T12:01:27+00:00",
+  "wednesday": {
+    "run_id": "33627571761",
+    "status": "failed",
+    "finished_at": "2026-09-02T12:01:41+00:00"
+  },
+  "no_draft_notified_at": "2026-09-02T12:01:41+00:00"
 }
