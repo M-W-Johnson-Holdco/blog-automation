@@ -176,7 +176,9 @@ def _anthropic_chat_completion(
         "max_tokens": max_tokens,
     }
     if not anthropic_omits_sampling_params(model):
-        request_kwargs["temperature"] = temperature
+        # anthropic SDK 1.x dropped sampling kwargs from messages.create(); the API
+        # still accepts them on pre-4.7 models, so pass through the raw body.
+        request_kwargs["extra_body"] = {"temperature": temperature}
     if system:
         request_kwargs["system"] = system
 

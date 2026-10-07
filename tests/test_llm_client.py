@@ -81,7 +81,8 @@ class AnthropicChatCompletionTests(unittest.TestCase):
         request_kwargs = mock_client.messages.create.call_args.kwargs
         self.assertEqual(request_kwargs["model"], "claude-sonnet-4-6")
         self.assertIn("Return strict JSON only", request_kwargs["system"])
-        self.assertEqual(request_kwargs["temperature"], 0.1)
+        self.assertNotIn("temperature", request_kwargs)
+        self.assertEqual(request_kwargs["extra_body"], {"temperature": 0.1})
 
     def test_opus_write_omits_temperature(self) -> None:
         mock_response = SimpleNamespace(
@@ -110,6 +111,7 @@ class AnthropicChatCompletionTests(unittest.TestCase):
 
         request_kwargs = mock_client.messages.create.call_args.kwargs
         self.assertNotIn("temperature", request_kwargs)
+        self.assertNotIn("extra_body", request_kwargs)
 
 
 class LlmProviderTests(unittest.TestCase):
