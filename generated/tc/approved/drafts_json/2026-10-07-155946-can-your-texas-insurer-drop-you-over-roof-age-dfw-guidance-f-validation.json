@@ -252,7 +252,14 @@
     "recycled_by": null,
     "revision_mode": "",
     "revision_mode_reason": "",
-    "feedback": []
+    "feedback": [],
+    "psai": {
+      "status": "published",
+      "published_at": "2026-10-07T17:16:38.927444+00:00",
+      "blog_id": "pyxgvxy9l",
+      "url": "/blog/can-your-texas-insurer-drop-you-over-roof-age-dfw-guidance-for-2026/",
+      "published_by": "U059KMJ0Q1H"
+    }
   },
   "ci_run_id": "37617948036"
 }
