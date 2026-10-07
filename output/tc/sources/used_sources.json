@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-08-10T12:32:37.406589+00:00",
-  "source_count": 6,
+  "updated_at": "2026-10-07T17:15:46.744246+00:00",
+  "source_count": 7,
   "sources": [
     {
       "url": "https://www.cbsnews.com/texas/video/hail-wind-damage-across-for-some-parts-of-north-texas-possible/",
@@ -71,6 +71,18 @@
       "first_used_at": "2026-08-10T12:32:37.406427+00:00",
       "last_used_at": "2026-08-10T12:32:37.406427+00:00",
       "last_draft_path": "generated/tc/approved/drafts_md/2026-08-10-121025-what-happens-between-a-dallas-fort-worth-hail-inspection-and.md",
+      "last_runner": "blog_automation.pipeline.approve_listen",
+      "use_count": 1
+    },
+    {
+      "url": "https://www.propertycasualty360.com/2026/10/05/texas-doi-clarifies-limits-on-denial-nonrenewal-for-roof-age",
+      "normalized_url": "https://propertycasualty360.com/2026/10/05/texas-doi-clarifies-limits-on-denial-nonrenewal-for-roof-age",
+      "domain": "propertycasualty360.com",
+      "title": "Texas DOI clarifies limits on denial, nonrenewal for roof age",
+      "strategy_cluster": "storm_damage",
+      "first_used_at": "2026-10-07T17:15:46.744139+00:00",
+      "last_used_at": "2026-10-07T17:15:46.744139+00:00",
+      "last_draft_path": "generated/tc/approved/drafts_md/2026-10-07-155946-can-your-texas-insurer-drop-you-over-roof-age-dfw-guidance-f.md",
       "last_runner": "blog_automation.pipeline.approve_listen",
       "use_count": 1
     }
