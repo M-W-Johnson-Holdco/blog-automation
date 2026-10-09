@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-09T16:03:54.029546+00:00",
-  "source_count": 6,
+  "updated_at": "2026-10-09T16:06:26.608254+00:00",
+  "source_count": 5,
   "sources": [
     {
       "url": "https://www.cbs46.com/2026/01/10/live-updates-tornado-watch-issued-west-georgia-counties-cold-front-moves",
@@ -59,18 +59,6 @@
       "first_used_at": "2026-08-10T12:33:02.247873+00:00",
       "last_used_at": "2026-08-10T12:33:02.247873+00:00",
       "last_draft_path": "generated/peachtree/approved/drafts_md/2026-08-10-120459-fulton-county-hail-warning-what-to-inspect-on-your-roof.md",
-      "last_runner": "blog_automation.pipeline.approve_listen",
-      "use_count": 1
-    },
-    {
-      "url": "https://www.fox5atlanta.com/live-blog/weather/atlanta-weather-scattered-showers-friday-09112026",
-      "normalized_url": "https://fox5atlanta.com/live-blog/weather/atlanta-weather-scattered-showers-friday-09112026",
-      "domain": "fox5atlanta.com",
-      "title": "Friday's flooding threat diminishes; more storms forecasted Saturday | FOX 5 Atlanta",
-      "strategy_cluster": "storm_damage",
-      "first_used_at": "2026-10-09T16:03:54.029425+00:00",
-      "last_used_at": "2026-10-09T16:03:54.029425+00:00",
-      "last_draft_path": "generated/peachtree/approved/drafts_md/2026-10-07-155640-atlanta-flash-floods-how-to-spot-hidden-roof-water-damage.md",
       "last_runner": "blog_automation.pipeline.approve_listen",
       "use_count": 1
     }
