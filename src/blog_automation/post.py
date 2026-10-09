@@ -32,6 +32,7 @@ from blog_automation.write_common import (
     draft_validation_json_path,
     extract_opening_paragraph,
     first_heading,
+    first_sentence_plain_text,
 )
 from blog_automation.company import get_company_slug, get_profile
 
@@ -59,6 +60,9 @@ PSAI_POST_COMMAND_STATUSES: dict[str, str] = {
 }
 RESPONSE_URL_KEYS = ("url", "blogUrl", "blog_url", "friendly_url", "public_url")
 DEFAULT_REQUEST_TIMEOUT = 30.0
+# PSAI derives the post preview from the body's first sentence and fails with an
+# opaque 500 ("error occurred while executing the skill") above this length.
+PSAI_FIRST_SENTENCE_MAX = 300
 
 logger = logging.getLogger(__name__)
 
@@ -285,6 +289,11 @@ def _meta_keywords(title: str, report: dict[str, Any] | None) -> list[str]:
     return keywords[:8]
 
 
+def _strip_leading_h1(markdown: str) -> str:
+    """Drop the `# Title` line; PSAI renders the title from the payload's title field."""
+    return re.sub(r"\A\s*# [^\n]*\n+", "", markdown, count=1)
+
+
 def build_blog_payload(
     markdown: str,
     report: dict[str, Any] | None,
@@ -300,6 +309,14 @@ def build_blog_payload(
     categories, tags = _categories_and_tags(report)
     page_title = f"{title} | {config.site_brand}"
 
+    content = markdown_body_to_html(normalize_text_for_pdf(_strip_leading_h1(markdown)))
+    first_sentence = first_sentence_plain_text(content)
+    if len(first_sentence) > PSAI_FIRST_SENTENCE_MAX:
+        raise PsaiError(
+            f"The post's first sentence is {len(first_sentence)} characters; PSAI rejects anything over "
+            f"{PSAI_FIRST_SENTENCE_MAX}. Shorten it and try again: {first_sentence[:120]}…"
+        )
+
     resolved_status = (status or config.default_status).strip().lower()
     if resolved_status not in VALID_STATUSES:
         raise ValueError(f"Invalid status {resolved_status!r}; expected one of {sorted(VALID_STATUSES)}.")
@@ -309,7 +326,7 @@ def build_blog_payload(
         "status": resolved_status,
         "author": config.author,
         "display_author_details": config.display_author_details,
-        "content": markdown_body_to_html(normalize_text_for_pdf(markdown)),
+        "content": content,
         "categories": categories,
         "tags": tags,
         "meta": {

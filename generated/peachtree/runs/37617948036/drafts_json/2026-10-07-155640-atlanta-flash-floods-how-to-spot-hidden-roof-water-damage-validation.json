@@ -219,7 +219,14 @@
     "recycled_by": null,
     "revision_mode": "",
     "revision_mode_reason": "",
-    "feedback": []
+    "feedback": [],
+    "psai": {
+      "status": "published",
+      "published_at": "2026-10-09T20:28:53.157468+00:00",
+      "url": "/blog/atlanta-flash-floods-how-to-spot-hidden-roof-water-damage/",
+      "published_by": "PSAI support (manual)",
+      "blog_id": "t34wz8kpp"
+    }
   },
   "ci_run_id": "37617948036"
 }

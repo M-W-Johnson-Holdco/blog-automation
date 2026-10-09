@@ -90,6 +90,9 @@ GENERIC_OPENERS = [
 
 MIN_CITATION_COUNT = 2
 MAX_CITATION_COUNT = 6
+# PSAI builds the blog preview snippet from the body's first sentence and
+# returns a 500 when it exceeds 300 chars; keep drafts safely under that.
+MAX_OPENING_FIRST_SENTENCE_CHARS = 260
 
 SOURCE_STRATEGIES = ("auto", "best", "combine")
 WRITE_RUNNER_ENV = "WRITE_RUNNER"
@@ -523,6 +526,7 @@ def validation_checklist_block(
     return (
         "- One H1 title at the top.\n"
         f"- Opening paragraph before the summary block is 50-120 words, {variant.opening_style}, news-anchored.\n"
+        f"- The opening paragraph's first sentence is at most {MAX_OPENING_FIRST_SENTENCE_CHARS} characters.\n"
         f"- Summary block after opening with {variant.summary_heading_markdown}, "
         f"**{SUMMARY_HEADING_WHO}:**, **{SUMMARY_HEADING_WHAT}:**, **{SUMMARY_HEADING_WHEN}:**.\n"
         "- Every ## heading is a question ending with ?, except the exact heading `## FAQ`.\n"
@@ -1260,6 +1264,15 @@ def extract_opening_paragraph(
     return before_first_h2.split("\n\n", maxsplit=1)[0].strip()
 
 
+def first_sentence_plain_text(text: str) -> str:
+    """First sentence of markdown/HTML text as a reader sees it (links and markup stripped)."""
+    plain = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", text)
+    plain = re.sub(r"<[^>]+>", " ", plain)
+    plain = re.sub(r"[*_`]+", "", plain)
+    plain = re.sub(r"\s+", " ", plain).strip()
+    return re.split(r"(?<=[.!?])\s+", plain, maxsplit=1)[0]
+
+
 def has_summary_block(
     markdown: str,
     *,
@@ -1451,6 +1464,7 @@ def validate_draft(
     locations = sorted({loc for loc in METRO_LOCATIONS if re.search(rf"\b{re.escape(loc)}\b", markdown)})
     opening_text = extract_opening_paragraph(markdown, writing_prompt_id=writing_prompt_id)
     opening_words = len(opening_text.split())
+    opening_first_sentence_chars = len(first_sentence_plain_text(opening_text))
     generic_openers = [phrase for phrase in GENERIC_OPENERS if phrase.lower() in markdown[:250].lower()]
     cta_count = count_cta_occurrences(markdown)
     competitor_hits = competitor_brands_found(markdown)
@@ -1465,6 +1479,7 @@ def validate_draft(
     checks = {
         "has_h1": bool(re.search(r"^#\s+\S", markdown, flags=re.MULTILINE)),
         "answer_first_opening_roughly_50_to_120_words": 50 <= opening_words <= 120,
+        "opening_first_sentence_short": opening_first_sentence_chars <= MAX_OPENING_FIRST_SENTENCE_CHARS,
         "has_quick_answer_block": has_summary_block(markdown, writing_prompt_id=writing_prompt_id),
         "all_h2_headings_are_questions": bool(h2s) and all(h2.strip().endswith("?") or h2.strip().lower() == "faq" for h2 in h2s),
         "has_comparison_table": tables,
@@ -1499,6 +1514,7 @@ def validate_draft(
         "roof_bridge_signal_count": roof_bridge_count,
         "competitor_brands_found": competitor_hits,
         "opening_word_count": opening_words,
+        "opening_first_sentence_chars": opening_first_sentence_chars,
         "locations_found": locations,
         "faq_count": count_faq_pairs(markdown),
         "generic_openers_found": generic_openers,
@@ -1542,6 +1558,10 @@ VALIDATION_CHECK_HINTS: dict[str, str] = {
     "has_h1": "Start with one H1 title line: `# Your Title Here`.",
     "answer_first_opening_roughly_50_to_120_words": (
         "The opening paragraph before the summary block must be 50-120 words, news-anchored, answer-first."
+    ),
+    "opening_first_sentence_short": (
+        f"The first sentence of the opening paragraph must be {MAX_OPENING_FIRST_SENTENCE_CHARS} characters "
+        "or fewer — end it after the outlet, date, and core event, then continue in a second sentence."
     ),
     "has_quick_answer_block": summary_block_validation_hint(),
     "all_h2_headings_are_questions": (
@@ -1693,6 +1713,13 @@ def format_failed_validation_feedback(
         "answer_first_opening_roughly_50_to_120_words"
     ):
         lines.append(f"- Current opening word count: {report['opening_word_count']} (need 50-120).")
+    if report.get("opening_first_sentence_chars") is not None and not report["checks"].get(
+        "opening_first_sentence_short"
+    ):
+        lines.append(
+            f"- Current first-sentence length: {report['opening_first_sentence_chars']} characters "
+            f"(need {MAX_OPENING_FIRST_SENTENCE_CHARS} or fewer)."
+        )
     if report.get("faq_count") is not None and not report["checks"].get("faq_exactly_8"):
         lines.append(f"- Current FAQ question count: {report['faq_count']} (need exactly 8).")
     if report.get("locations_found") is not None and not report["checks"].get("location_count_at_least_6"):
