@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-07T17:15:46.744246+00:00",
-  "source_count": 7,
+  "updated_at": "2026-10-12T14:06:09.066592+00:00",
+  "source_count": 8,
   "sources": [
     {
       "url": "https://www.cbsnews.com/texas/video/hail-wind-damage-across-for-some-parts-of-north-texas-possible/",
@@ -83,6 +83,18 @@
       "first_used_at": "2026-10-07T17:15:46.744139+00:00",
       "last_used_at": "2026-10-07T17:15:46.744139+00:00",
       "last_draft_path": "generated/tc/approved/drafts_md/2026-10-07-155946-can-your-texas-insurer-drop-you-over-roof-age-dfw-guidance-f.md",
+      "last_runner": "blog_automation.pipeline.approve_listen",
+      "use_count": 1
+    },
+    {
+      "url": "https://www.wbap.com/2026/10/09/collin-county-judgment-hits-rubinsky-roofing-with-1-52-million-penalty",
+      "normalized_url": "https://wbap.com/2026/10/09/collin-county-judgment-hits-rubinsky-roofing-with-1-52-million-penalty",
+      "domain": "wbap.com",
+      "title": "Collin County Judgment Hits Rubinsky Roofing With $1.52 Million Penalty",
+      "strategy_cluster": "storm_damage",
+      "first_used_at": "2026-10-12T14:06:09.066437+00:00",
+      "last_used_at": "2026-10-12T14:06:09.066437+00:00",
+      "last_draft_path": "generated/tc/approved/drafts_md/2026-10-12-121128-collin-county-1-52m-roofing-judgment-how-to-vet-dfw-roofers.md",
       "last_runner": "blog_automation.pipeline.approve_listen",
       "use_count": 1
     }
