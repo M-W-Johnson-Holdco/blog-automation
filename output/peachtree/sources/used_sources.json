@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-09T16:06:26.608254+00:00",
-  "source_count": 5,
+  "updated_at": "2026-10-12T14:05:57.614364+00:00",
+  "source_count": 7,
   "sources": [
     {
       "url": "https://www.cbs46.com/2026/01/10/live-updates-tornado-watch-issued-west-georgia-counties-cold-front-moves",
@@ -59,6 +59,30 @@
       "first_used_at": "2026-08-10T12:33:02.247873+00:00",
       "last_used_at": "2026-08-10T12:33:02.247873+00:00",
       "last_draft_path": "generated/peachtree/approved/drafts_md/2026-08-10-120459-fulton-county-hail-warning-what-to-inspect-on-your-roof.md",
+      "last_runner": "blog_automation.pipeline.approve_listen",
+      "use_count": 1
+    },
+    {
+      "url": "https://www.fox5atlanta.com/video/fmc-5i3h0gahgxq8xhud",
+      "normalized_url": "https://fox5atlanta.com/video/fmc-5i3h0gahgxq8xhud",
+      "domain": "fox5atlanta.com",
+      "title": "Massive tree crushes Stone Mountain home during storm | FOX 5 Atlanta",
+      "strategy_cluster": "storm_damage",
+      "first_used_at": "2026-10-12T14:05:57.614191+00:00",
+      "last_used_at": "2026-10-12T14:05:57.614191+00:00",
+      "last_draft_path": "generated/peachtree/approved/drafts_md/2026-10-12-120512-tree-hits-your-roof-in-metro-atlanta-what-to-do-next.md",
+      "last_runner": "blog_automation.pipeline.approve_listen",
+      "use_count": 1
+    },
+    {
+      "url": "https://www.ajc.com/news/2026/10/hurricane-isaias-affects-georgia/",
+      "normalized_url": "https://ajc.com/news/2026/10/hurricane-isaias-affects-georgia",
+      "domain": "ajc.com",
+      "title": "Hurricane Isaias: Follow along for live updates throughout the storm - The Atlanta Journal-Constitution",
+      "strategy_cluster": "storm_damage",
+      "first_used_at": "2026-10-12T14:05:57.614191+00:00",
+      "last_used_at": "2026-10-12T14:05:57.614191+00:00",
+      "last_draft_path": "generated/peachtree/approved/drafts_md/2026-10-12-120512-tree-hits-your-roof-in-metro-atlanta-what-to-do-next.md",
       "last_runner": "blog_automation.pipeline.approve_listen",
       "use_count": 1
     }
