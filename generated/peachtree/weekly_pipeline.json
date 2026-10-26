@@ -1,15 +1,9 @@
 {
-  "iso_week": "2026-W43",
+  "iso_week": "2026-W44",
   "monday": {
-    "run_id": "39248732890",
+    "run_id": "40319220327",
     "status": "failed",
-    "finished_at": "2026-10-19T12:06:11+00:00"
+    "finished_at": "2026-10-26T12:08:03+00:00"
   },
-  "monday_failure_notified_at": "2026-10-19T12:06:12+00:00",
-  "wednesday": {
-    "run_id": "39596209976",
-    "status": "failed",
-    "finished_at": "2026-10-21T12:07:52+00:00"
-  },
-  "no_draft_notified_at": "2026-10-21T12:07:53+00:00"
+  "monday_failure_notified_at": "2026-10-26T12:08:03+00:00"
 }
