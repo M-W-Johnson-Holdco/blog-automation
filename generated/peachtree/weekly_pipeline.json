@@ -1,15 +1,10 @@
 {
-  "iso_week": "2026-W44",
+  "iso_week": "2026-W45",
   "monday": {
-    "run_id": "40319220327",
-    "status": "failed",
-    "finished_at": "2026-10-26T12:08:03+00:00"
+    "run_id": "41449231349",
+    "status": "success",
+    "finished_at": "2026-11-02T13:12:02+00:00"
   },
-  "monday_failure_notified_at": "2026-10-26T12:08:03+00:00",
-  "wednesday": {
-    "run_id": "40684371792",
-    "status": "failed",
-    "finished_at": "2026-10-28T12:08:01+00:00"
-  },
-  "no_draft_notified_at": "2026-10-28T12:08:02+00:00"
+  "draft_run_id": "41449231349",
+  "draft_archived_at": "2026-11-02T13:12:02+00:00"
 }
