@@ -251,7 +251,14 @@
     "recycled_by": null,
     "revision_mode": "",
     "revision_mode_reason": "",
-    "feedback": []
+    "feedback": [],
+    "psai": {
+      "status": "published",
+      "published_at": "2026-11-02T13:31:22.001084+00:00",
+      "blog_id": "g0k274m3e",
+      "url": "/blog/tarrant-county-storm-prep-is-your-roof-ready-for-mondays-thunderstorms/",
+      "published_by": "U059KMJ0Q1H"
+    }
   },
   "ci_run_id": "41449231349"
 }
