@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-02T13:30:21.525098+00:00",
-  "source_count": 9,
+  "updated_at": "2026-11-23T14:21:52.150098+00:00",
+  "source_count": 10,
   "sources": [
     {
       "url": "https://www.cbsnews.com/texas/video/hail-wind-damage-across-for-some-parts-of-north-texas-possible/",
@@ -107,6 +107,18 @@
       "first_used_at": "2026-11-02T13:30:21.524987+00:00",
       "last_used_at": "2026-11-02T13:30:21.524987+00:00",
       "last_draft_path": "generated/tc/approved/drafts_md/2026-11-02-131115-tarrant-county-storm-prep-is-your-roof-ready-for-monday-s-th.md",
+      "last_runner": "blog_automation.pipeline.approve_listen",
+      "use_count": 1
+    },
+    {
+      "url": "https://www.dallasnews.com/news/watchdog/article/state-farm-storm-damage-claims-texas-oklahoma-laws-22536288.php",
+      "normalized_url": "https://dallasnews.com/news/watchdog/article/state-farm-storm-damage-claims-texas-oklahoma-laws-22536288.php",
+      "domain": "dallasnews.com",
+      "title": "State Farm first tested its plan to cut homeowners' claims in Dallas.",
+      "strategy_cluster": "storm_damage",
+      "first_used_at": "2026-11-23T14:21:52.149959+00:00",
+      "last_used_at": "2026-11-23T14:21:52.149959+00:00",
+      "last_draft_path": "generated/tc/approved/drafts_md/2026-11-23-131228-did-state-farm-underpay-your-dallas-hail-damage-claim.md",
       "last_runner": "blog_automation.pipeline.approve_listen",
       "use_count": 1
     }
