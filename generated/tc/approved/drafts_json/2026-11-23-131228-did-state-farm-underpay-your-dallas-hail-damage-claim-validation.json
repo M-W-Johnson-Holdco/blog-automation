@@ -247,7 +247,14 @@
     "recycled_by": null,
     "revision_mode": "",
     "revision_mode_reason": "",
-    "feedback": []
+    "feedback": [],
+    "psai": {
+      "status": "published",
+      "published_at": "2026-11-23T14:22:32.645142+00:00",
+      "blog_id": "sf52vfokp",
+      "url": "/blog/did-state-farm-underpay-your-dallas-hail-damage-claim/",
+      "published_by": "U059KMJ0Q1H"
+    }
   },
   "ci_run_id": "45179679927"
 }
